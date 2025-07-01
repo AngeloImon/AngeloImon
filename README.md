@@ -1,6 +1,6 @@
 # imon-dev: versão em constante desenvolvimento 🚀
 
-    class Imon:
+    class Angelo_Imon:
         def __init__(self):
             self.nome = "Angelo Ferdinand Imon Spano"
             self.stack = ["Python", "SQL", "Git", "OpenCV", "Scikit-learn"]
@@ -27,7 +27,7 @@
 
 # imon-dev: constantly evolving 🛠️🚀
 
-    class Imon:
+    class Angelo_Imon:
         def __init__(self):
             self.name = "Angelo Ferdinand Imon Spano"
             self.stack = ["Python", "SQL", "Git", "OpenCV", "Scikit-learn"]
