@@ -1,10 +1,10 @@
 # imon-dev: versão em constante desenvolvimento 🚀
 
-class Imon:
-    def __init__(self):
-        self.nome = "Angelo Ferdinand Imon Spano"
-        self.stack = ["Python", "SQL", "Git", "OpenCV", "Scikit-learn"]
-        self.status = "Explorando o mundo do código com curiosidade e consistência"
+    class Imon:
+        def __init__(self):
+            self.nome = "Angelo Ferdinand Imon Spano"
+            self.stack = ["Python", "SQL", "Git", "OpenCV", "Scikit-learn"]
+            self.status = "Explorando o mundo do código com curiosidade e consistência"
     
     def aprendizado_continuo(self):
         while True:
@@ -27,11 +27,11 @@ class Imon:
 
 # imon-dev: constantly evolving 🛠️🚀
 
-class Imon:
-    def __init__(self):
-        self.name = "Angelo Ferdinand Imon Spano"
-        self.stack = ["Python", "SQL", "Git", "OpenCV", "Scikit-learn"]
-        self.status = "Exploring code through curiosity and consistency"
+    class Imon:
+        def __init__(self):
+            self.name = "Angelo Ferdinand Imon Spano"
+            self.stack = ["Python", "SQL", "Git", "OpenCV", "Scikit-learn"]
+            self.status = "Exploring code through curiosity and consistency"
     
     def lifelong_learning(self):
         while True:
