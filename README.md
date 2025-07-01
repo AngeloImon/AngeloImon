@@ -22,8 +22,11 @@
 🎓 Tecnólogo em Análise e Desenvolvimento de Sistemas (FATEC-RP)
 
 💡 Sou movido pela curiosidade de destrinchar estruturas complexas e encontrar caminhos mais simples e eficientes.
+
 🔍 Já brinquei com IA supervisionada, pré-processamento de imagens e dashboards interativos.
+
 🌱 Expandindo minha bagagem com projetos que envolvem Python, dados, visão computacional e automação — sempre aprendendo com intenção e prática.
+
 💬 Ainda não sei tudo — mas estou sempre aprendendo de verdade.
 
 # imon-dev: constantly evolving 🛠️🚀
@@ -48,7 +51,11 @@
 
 
 🎓 Technologist in Systems Analysis and Development (FATEC-RP).
+
 💡 I'm driven by the need to break complex structures down and rebuild them in simpler, smarter ways.
+
 🔍 I've explored supervised learning, image preprocessing, and interactive dashboards.
-🌍 Currently expanding my skills through small real-world projects involving Python, data, computer vision, and automation.
+
+🌱 Currently expanding my skills through small real-world projects involving Python, data, computer vision, and automation.
+
 💬 I don’t know everything — but I’m truly learning every day.
