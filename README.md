@@ -20,6 +20,7 @@
 
         
 🎓 Tecnólogo em Análise e Desenvolvimento de Sistemas (FATEC-RP)
+
 💡 Sou movido pela curiosidade de destrinchar estruturas complexas e encontrar caminhos mais simples e eficientes.
 🔍 Já brinquei com IA supervisionada, pré-processamento de imagens e dashboards interativos.
 🌱 Expandindo minha bagagem com projetos que envolvem Python, dados, visão computacional e automação — sempre aprendendo com intenção e prática.
