@@ -55,5 +55,13 @@
     "Processamento de Imagens – OpenCV + Matplotlib",
     "Criptosistema RSA – Python e Aritmética Modular",
     "Otimização de Turnos – Programação Linear com Gurobi"
-  ]
+  ],
+  "secoes": {
+    "resumo": "Resumo",
+    "experiencia": "Experiência Profissional",
+    "habilidades": "Habilidades Técnicas",
+    "formacao": "Formação",
+    "certificacoes": "Certificações",
+    "projetos": "Projetos"
+  }
 }
