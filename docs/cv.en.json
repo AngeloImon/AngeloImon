@@ -9,11 +9,11 @@
   "formacao": "Technology Degree in Systems Analysis and Development – FATEC-RP (2022–2025)",
   "habilidades": ["Python", "C++", "PL/SQL", "Oracle DB", "Git/GitHub", "VS Code", "Google Colab"],
   "certificacoes": [
-    "TOEIC - 945 pontos (2025)",
+    "TOEIC - 945 points (2025)",
     "SAP/ABAP",
-    "Oracle BD Design",
+    "Oracle DB Design",
     "Oracle SQL",
-    "Soft Skills fot IT professionals",
+    "Soft Skills for IT professionals",
     "Emotional Management & Self-Control",
     "Autonomous Vehicles Mini-Course",
     "Computer Vision with OpenCV"
@@ -22,7 +22,7 @@
     {
       "empresa": "Foxtime",
       "cargo": "Administrative Assistant I",
-      "periodo": "mai/2021 – mai/2022",
+      "periodo": "May/2021 – May/2022",
       "tarefas": [
         "Analyzed credit and documentation for financing approval.",
         "Maintained internal databases using spreadsheets and enterprise systems.",
@@ -32,7 +32,7 @@
     {
       "empresa": "Museu da Gula",
       "cargo": "Sales Associate / Department Lead",
-      "periodo": "dez/2014 – fev/2020",
+      "periodo": "Dec/2014 – Feb/2020",
       "tarefas": [
         "Managed the spirits department, handling restocking, display, and inventory supervision.",
         "Delivered personalized service, increasing sales through direct recommendation.",
@@ -42,7 +42,7 @@
     {
       "empresa": "Fundamental TI",
       "cargo": "Document Technician",
-      "periodo": "nov/2013 – dez/2014",
+      "periodo": "Nov/2013 – Dec/2014",
       "tarefas": [
         "Digitized and classified official documents with accuracy and data integrity.",
         "Provided internal tech support for digital archive management.",
@@ -51,17 +51,33 @@
     }
   ],
   "projetos": [
-    "Classificador Titanic – Machine Learning com Scikit-learn",
-    "Processamento de Imagens – OpenCV + Matplotlib",
-    "Criptosistema RSA – Python e Aritmética Modular",
-    "Otimização de Turnos – Programação Linear com Gurobi"
+    {
+      "nome": "Titanic Survival Classifier – Machine Learning with Scikit-learn",
+      "descricao": "Supervised model predicting passenger survival using the Titanic Dataset",
+      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
+    },
+    {
+      "nome": "Digital Image Processing – Segmentation with OpenCV + Matplotlib",
+      "descricao": "Applied key techniques for real-world image manipulation and visualization",
+      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
+    },
+    {
+      "nome": "RSA Cryptosystem with Modular Arithmetic – Cryptography in Python",
+      "descricao": "Implemented RSA algorithm and encryption logic using modular arithmetic with public/private key generation",
+      "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
+    },
+    {
+      "nome": "Workforce Optimization – Linear Programming with Python + Gurobi",
+      "descricao": "Designed models to optimize shift schedules and reduce payroll costs across scenarios",
+      "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
+    }
   ],
-    "secoes": {
-      "resumo": "Summary",
-      "experiencia": "Professional Experience",
-      "habilidades": "Technical Skills",
-      "formacao": "Education",
-      "certificacoes": "Certifications",
-      "projetos": "Projects"
+  "secoes": {
+    "resumo": "Summary",
+    "experiencia": "Professional Experience",
+    "habilidades": "Technical Skills",
+    "formacao": "Education",
+    "certificacoes": "Certifications",
+    "projetos": "Projects"
   }
 }

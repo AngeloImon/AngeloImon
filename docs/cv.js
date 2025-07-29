@@ -66,14 +66,35 @@ function carregarDados() {
   });
   
   // Listas (habilidades, certificações, projetos)
-  ['habilidades', 'certificacoes', 'projetos'].forEach(secao => {
+  ['habilidades', 'certificacoes'].forEach(secao => {
     const ul = document.getElementById(secao);
     ul.innerHTML = '';
     dadosCV[secao].forEach(item => {
       ul.innerHTML += `<li>${item}</li>`;
     });
   });
-}
+
+  // Projetos com descrições e links
+    const projetosUl = document.getElementById('projetos');
+    projetosUl.innerHTML = '';
+    dadosCV.projetos.forEach(projeto => {
+      if (typeof projeto === 'object' && projeto.nome) {
+        // Novo formato com nome, descrição e link
+        let projetoHTML = `<li>
+          <strong><a href="${projeto.link}" target="_blank" rel="noopener">${projeto.nome}</a></strong>`;
+        
+        if (projeto.descricao) {
+          projetoHTML += `<br><span style="font-size: 0.9em; color: #666;">${projeto.descricao}</span>`;
+        }
+        
+        projetoHTML += `</li>`;
+        projetosUl.innerHTML += projetoHTML;
+      } else {
+        // Formato antigo (string simples) - para compatibilidade
+        projetosUl.innerHTML += `<li>${projeto}</li>`;
+      }
+    });
+  }
 
 // Função para atualizar títulos
 function atualizarTitulos() {
