@@ -1,9 +1,11 @@
+/* Reset e fontes profissionais */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Variáveis CSS para temas */
 :root {
   --bg-color: #ffffff;
   --text-color: #2c3e50;
@@ -41,13 +43,6 @@ body {
   color: var(--text-color);
   background-color: var(--bg-color);
   transition: all 0.3s ease;
-}
-
-/* Container principal */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
 }
 
 /* Controles superiores */
@@ -150,13 +145,31 @@ h1 {
   text-decoration: underline;
 }
 
-/* Main content */
+/* NOVO: Layout em duas colunas */
 main {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   display: grid;
+  grid-template-columns: 1fr 400px;
   gap: 2rem;
+  align-items: start;
+}
+
+/* Coluna esquerda (principal) */
+.main-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Coluna direita (sidebar) */
+.sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: sticky;
+  top: 120px;
 }
 
 /* Seções */
@@ -193,6 +206,20 @@ h2::after {
   width: 50px;
   height: 2px;
   background-color: var(--accent-color);
+}
+
+/* Sidebar com estilo diferenciado */
+.sidebar-column section {
+  border-left: 4px solid var(--accent-color);
+}
+
+.sidebar-column h2 {
+  font-size: 1.3rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-column h2::after {
+  width: 30px;
 }
 
 /* Parágrafos */
@@ -276,7 +303,36 @@ li::before {
   line-height: 1.4;
 }
 
+/* Habilidades com badges */
+#habilidades li {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  margin: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+#habilidades li::before {
+  display: none;
+}
+
+/* Certificações mais compactas */
+.sidebar-column #certificacoes li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  padding-left: 1rem;
+}
+
 /* Responsive Design */
+@media (max-width: 1024px) {
+  main {
+    grid-template-columns: 1fr 350px;
+  }
+}
+
 @media (max-width: 768px) {
   .controls {
     flex-direction: column;
@@ -294,12 +350,39 @@ li::before {
     font-size: 2rem;
   }
   
+  /* Layout em coluna única no mobile */
   main {
+    grid-template-columns: 1fr;
     padding: 1rem;
+  }
+  
+  .sidebar-column {
+    position: static;
+    order: 2;
+  }
+  
+  .main-column {
+    order: 1;
   }
   
   section {
     padding: 1.5rem;
+  }
+  
+  /* Habilidades em lista no mobile */
+  #habilidades li {
+    display: block;
+    background-color: transparent;
+    color: var(--text-color);
+    padding: 0.25rem 0;
+    border-radius: 0;
+    margin: 0;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1rem;
+  }
+  
+  #habilidades li::before {
+    display: block;
   }
 }
 
@@ -307,6 +390,10 @@ li::before {
 @media print {
   .controls {
     display: none !important;
+  }
+  
+  main {
+    grid-template-columns: 1fr;
   }
   
   body {
