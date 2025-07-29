@@ -11,7 +11,7 @@ class AppConfig {
         // Para desenvolvimento local
         local: './',
         // Para GitHub Pages
-        production: 'https://angeloimon.github.io/AngeloImon/DOCS/'
+        production: 'https://angeloimon.github.io/AngeloImon/docs/'
     };
 
     /**

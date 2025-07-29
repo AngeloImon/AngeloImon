@@ -1,94 +1,91 @@
 /**
  * Gerenciador de dados do CV
- * Responsável por carregar, processar e fornecer dados do currículo
  */
 class DataManager {
-    /**
-     * Inicializa o gerenciador de dados
-     */
     constructor() {
-        /** @type {Object} Dados do CV carregados */
         this.cvData = {};
-
-        /** @type {string} Idioma atual */
         this.currentLanguage = 'pt';
-
-        /** @type {boolean} Estado de carregamento */
         this.isLoading = false;
     }
 
     /**
-     * Carrega dados do CV baseado no idioma especificado
+     * Carrega dados do CV com múltiplas tentativas de URL
      * @param {string} language - Código do idioma ('pt' ou 'en')
      * @returns {Promise<Object>} Dados do CV carregados
-     * @throws {Error} Erro de carregamento de dados
      */
     async loadCVData(language = 'pt') {
-        // Usar a função do config para obter URL correta
-        const fileUrl = AppConfig.getDataFileUrl(language);
-
-        if (!fileUrl) {
-            throw new Error(`Idioma não suportado: ${language}`);
-        }
-
         this.isLoading = true;
 
+        // URLs para tentar em ordem de prioridade
+        const urlsToTry = [
+            // URL principal (docs minúsculo)
+            `https://angeloimon.github.io/AngeloImon/docs/${AppConfig.DATA_FILES[language]}`,
+            // URL alternativa (DOCS maiúsculo)
+            `https://angeloimon.github.io/AngeloImon/DOCS/${AppConfig.DATA_FILES[language]}`,
+            // Raw GitHub
+            `https://raw.githubusercontent.com/AngeloImon/AngeloImon/main/docs/${AppConfig.DATA_FILES[language]}`,
+            `https://raw.githubusercontent.com/AngeloImon/AngeloImon/main/DOCS/${AppConfig.DATA_FILES[language]}`,
+            // Desenvolvimento local
+            `./${AppConfig.DATA_FILES[language]}`
+        ];
+
         try {
-            if (AppConfig.DEBUG) {
-                console.log(`[DataManager] Carregando dados de: ${fileUrl}`);
-            }
+            console.log(`[DataManager] Tentando carregar dados em ${language}`);
 
-            const response = await fetch(fileUrl, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Cache-Control': 'no-cache',
-                    'Pragma': 'no-cache'
-                },
-                cache: 'no-cache'
-            });
+            for (let i = 0; i < urlsToTry.length; i++) {
+                const url = urlsToTry[i];
 
-            if (AppConfig.DEBUG) {
-                console.log(`[DataManager] Response status: ${response.status}`);
-                console.log(`[DataManager] Response headers:`, response.headers);
-            }
+                try {
+                    console.log(`[DataManager] Tentativa ${i + 1}: ${url}`);
 
-            if (!response.ok) {
-                if (response.status === 404) {
-                    throw new Error(`Arquivo não encontrado: ${fileUrl}`);
+                    const response = await fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Cache-Control': 'no-cache',
+                            'Pragma': 'no-cache'
+                        },
+                        cache: 'no-cache'
+                    });
+
+                    console.log(`[DataManager] Response status: ${response.status} para ${url}`);
+
+                    if (response.ok) {
+                        const responseText = await response.text();
+
+                        if (responseText.trim() === '') {
+                            console.warn(`[DataManager] Resposta vazia de ${url}`);
+                            continue;
+                        }
+
+                        try {
+                            this.cvData = JSON.parse(responseText);
+                            this.currentLanguage = language;
+
+                            console.log(`[DataManager] ✅ Sucesso com URL: ${url}`);
+                            console.log('[DataManager] Dados carregados:', this.cvData);
+
+                            return this.cvData;
+
+                        } catch (parseError) {
+                            console.error(`[DataManager] Erro de parse JSON em ${url}:`, parseError);
+                            continue;
+                        }
+                    } else {
+                        console.warn(`[DataManager] HTTP ${response.status} em ${url}`);
+                    }
+
+                } catch (fetchError) {
+                    console.warn(`[DataManager] Erro de fetch em ${url}:`, fetchError.message);
+                    continue;
                 }
-                throw new Error(`HTTP ${response.status}: Falha ao carregar ${fileUrl}`);
             }
 
-            const responseText = await response.text();
-            if (AppConfig.DEBUG) {
-                console.log(`[DataManager] Response text length: ${responseText.length}`);
-            }
-
-            try {
-                this.cvData = JSON.parse(responseText);
-            } catch (parseError) {
-                console.error('[DataManager] Erro ao parsear JSON:', parseError);
-                throw new Error(`Arquivo JSON inválido: ${parseError.message}`);
-            }
-
-            this.currentLanguage = language;
-
-            if (AppConfig.DEBUG) {
-                console.log('[DataManager] Dados carregados com sucesso:', this.cvData);
-            }
-
-            return this.cvData;
+            // Se chegou aqui, nenhuma URL funcionou
+            throw new Error('Nenhuma URL de dados funcionou. Verifique se os arquivos cv.json e cv.en.json existem no repositório.');
 
         } catch (error) {
-            console.error('[DataManager] Erro ao carregar dados:', error);
-
-            // Tentar URLs alternativos
-            if (!fileUrl.includes('github.io')) {
-                console.log('[DataManager] Tentando URL alternativo...');
-                return this.tryAlternativeUrls(language);
-            }
-
+            console.error('[DataManager] Erro final:', error);
             throw new Error(`${AppConfig.INTERFACE_TEXTS[language].errors.dataLoadError}: ${error.message}`);
         } finally {
             this.isLoading = false;
@@ -96,48 +93,7 @@ class DataManager {
     }
 
     /**
-     * Tenta URLs alternativos se o primeiro falhar
-     * @param {string} language - Idioma
-     * @returns {Promise<Object>} Dados carregados
-     */
-    async tryAlternativeUrls(language) {
-        const alternativeUrls = [
-            `https://raw.githubusercontent.com/AngeloImon/AngeloImon/main/DOCS/${AppConfig.DATA_FILES[language]}`,
-            `https://angeloimon.github.io/AngeloImon/DOCS/${AppConfig.DATA_FILES[language]}`,
-            `./${AppConfig.DATA_FILES[language]}`, // URL relativa local
-        ];
-
-        for (const url of alternativeUrls) {
-            try {
-                console.log(`[DataManager] Tentando URL alternativo: ${url}`);
-
-                const response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Cache-Control': 'no-cache'
-                    }
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    this.cvData = data;
-                    this.currentLanguage = language;
-                    console.log(`[DataManager] Sucesso com URL: ${url}`);
-                    return data;
-                }
-            } catch (error) {
-                console.log(`[DataManager] Falhou URL ${url}:`, error.message);
-                continue;
-            }
-        }
-
-        throw new Error('Nenhuma URL de dados funcionou');
-    }
-
-    /**
      * Retorna os dados do CV atualmente carregados
-     * @returns {Object} Dados do CV
      */
     getCVData() {
         return this.cvData;
@@ -145,7 +101,6 @@ class DataManager {
 
     /**
      * Retorna o idioma atual
-     * @returns {string} Código do idioma atual
      */
     getCurrentLanguage() {
         return this.currentLanguage;
@@ -153,7 +108,6 @@ class DataManager {
 
     /**
      * Verifica se os dados estão carregados
-     * @returns {boolean} True se os dados estão carregados
      */
     isDataLoaded() {
         return this.cvData && Object.keys(this.cvData).length > 0;
@@ -161,7 +115,6 @@ class DataManager {
 
     /**
      * Verifica se está em processo de carregamento
-     * @returns {boolean} True se está carregando
      */
     isDataLoading() {
         return this.isLoading;
@@ -169,7 +122,6 @@ class DataManager {
 
     /**
      * Valida se os dados do CV estão completos
-     * @returns {boolean} True se os dados são válidos
      */
     validateCVData() {
         const requiredFields = ['nome', 'email', 'links', 'resumo', 'experiencia', 'habilidades', 'formacao', 'certificacoes', 'projetos'];
@@ -185,8 +137,6 @@ class DataManager {
 
     /**
      * Obtém dados de uma seção específica
-     * @param {string} sectionName - Nome da seção
-     * @returns {*} Dados da seção ou null se não encontrada
      */
     getSectionData(sectionName) {
         return this.cvData[sectionName] || null;
@@ -194,13 +144,10 @@ class DataManager {
 
     /**
      * Obtém título traduzido de uma seção
-     * @param {string} sectionName - Nome da seção
-     * @returns {string} Título da seção ou nome da seção se não encontrado
      */
     getSectionTitle(sectionName) {
         return this.cvData.secoes?.[sectionName] || sectionName;
     }
 }
 
-// Torna a classe globalmente acessível
 window.DataManager = DataManager;
