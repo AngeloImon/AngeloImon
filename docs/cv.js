@@ -7,7 +7,13 @@ async function carregarDadosJSON(idioma = 'pt') {
   console.log(`Tentando carregar ${arquivo}...`);
   
   try {
-    const response = await fetch(arquivo);
+    const response = await fetch(arquivo, {
+      cache: 'no-cache',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    });
     console.log('Response status:', response.status);
     
     if (!response.ok) {
