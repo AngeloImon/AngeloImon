@@ -1,4 +1,4 @@
-# imon-dev: versão em constante desenvolvimento 🚀
+# Angelo Imon: versão em constante desenvolvimento 🚀
 
     class Angelo_Imon:
         def __init__(self):
@@ -29,7 +29,7 @@
 
 💬 Ainda não sei tudo — mas estou sempre aprendendo de verdade.
 
-# imon-dev: constantly evolving 🛠️🚀
+# Angelo Imon: constantly evolving 🛠️🚀
 
     class Angelo_Imon:
         def __init__(self):
