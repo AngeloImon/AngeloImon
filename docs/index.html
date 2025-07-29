@@ -52,11 +52,22 @@
     </section>
   </main>
 
-  <footer>
-    <p>Última atualização: Julho de 2025</p>
-  </footer>
-
-  <!-- Scripts no final para garantir carregamento -->
+<!-- Scripts no final para garantir carregamento -->
   <script src="cv.js"></script>
+  <script>
+    // Debug: verificar se o script foi carregado
+    console.log('Script carregado!');
+    
+    // Verificação adicional se algo não funcionar
+    setTimeout(function() {
+      if (!document.getElementById('nome').textContent) {
+        console.log('Dados não carregados, tentando novamente...');
+        if (typeof carregarDados === 'function') {
+          carregarDados();
+          atualizarTitulos();
+        }
+      }
+    }, 1000);
+  </script>
 </body>
 </html>

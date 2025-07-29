@@ -169,3 +169,48 @@ function atualizarTitulos() {
 document.addEventListener('DOMContentLoaded', function() {
   carregarDados();
 });
+
+// ...existing code...
+
+// Função para atualizar títulos das seções
+function atualizarTitulos() {
+  const secoes = dadosCV[idiomaAtual].secoes;
+  const titulos = document.querySelectorAll('main section h2');
+  
+  titulos[0].textContent = secoes.resumo;
+  titulos[1].textContent = secoes.experiencia;
+  titulos[2].textContent = secoes.habilidades;
+  titulos[3].textContent = secoes.formacao;
+  titulos[4].textContent = secoes.certificacoes;
+  titulos[5].textContent = secoes.projetos;
+}
+
+// Função para verificar se todos os elementos existem
+function verificarElementos() {
+  const elementos = ['nome', 'email', 'github', 'linkedin', 'resumo', 'experiencia', 'habilidades', 'formacao', 'certificacoes', 'projetos'];
+  
+  elementos.forEach(id => {
+    const elemento = document.getElementById(id);
+    if (!elemento) {
+      console.error(`Elemento com ID '${id}' não encontrado!`);
+    }
+  });
+}
+
+// Carregar dados quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM carregado, iniciando carregamento dos dados...');
+  verificarElementos();
+  carregarDados();
+  atualizarTitulos();
+});
+
+// Fallback caso o DOMContentLoaded não funcione
+window.addEventListener('load', function() {
+  // Só carrega se ainda não foi carregado
+  if (!document.getElementById('nome').textContent) {
+    console.log('Carregando dados via window.load...');
+    carregarDados();
+    atualizarTitulos();
+  }
+});
