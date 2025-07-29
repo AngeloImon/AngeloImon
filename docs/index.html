@@ -73,31 +73,55 @@
   <!-- Scripts -->
   <script src="cv.js"></script>
   <script>
+    let idiomaInterfaceAtual = 'pt';
+
+    // Textos do botão de tema
+    const themeTexts = {
+      pt: {
+        dark: '🌙 Tema Escuro',
+        light: '☀️ Tema Claro'
+      },
+      en: {
+        dark: '🌙 Dark Theme',
+        light: '☀️ Light Theme'
+      }
+    };
+
+    // Função para atualizar texto do botão de tema
+    function atualizarTextoTema() {
+      const themeButton = document.getElementById('theme-toggle');
+      const isDarkTheme = document.body.classList.contains('dark-theme');
+      
+      if (isDarkTheme) {
+        themeButton.textContent = themeTexts[idiomaInterfaceAtual].light;
+      } else {
+        themeButton.textContent = themeTexts[idiomaInterfaceAtual].dark;
+      }
+    }
+
     // Função para alternar tema
     function toggleTheme() {
       const body = document.body;
-      const themeButton = document.getElementById('theme-toggle');
-      
       body.classList.toggle('dark-theme');
-      
-      if (body.classList.contains('dark-theme')) {
-        themeButton.textContent = '☀️ Tema Claro';
-        localStorage.setItem('theme', 'dark');
-      } else {
-        themeButton.textContent = '🌙 Tema Escuro';
-        localStorage.setItem('theme', 'light');
-      }
+      localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+      atualizarTextoTema();
+    }
+
+    // Função original trocarIdioma modificada
+    function trocarIdiomaInterface(idioma) {
+      idiomaInterfaceAtual = idioma;
+      atualizarTextoTema();
     }
     
     // Carregar tema salvo
     document.addEventListener('DOMContentLoaded', function() {
       const savedTheme = localStorage.getItem('theme');
-      const themeButton = document.getElementById('theme-toggle');
       
       if (savedTheme === 'dark') {
         document.body.classList.add('dark-theme');
-        themeButton.textContent = '☀️ Tema Claro';
       }
+      
+      atualizarTextoTema();
       
       console.log('DOM carregado, iniciando aplicação...');
       

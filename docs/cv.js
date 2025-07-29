@@ -36,6 +36,11 @@ async function carregarDadosJSON(idioma = 'pt') {
 function trocarIdioma(idioma) {
   idiomaAtual = idioma;
   carregarDadosJSON(idioma);
+  
+  // Atualizar idioma da interface também
+  if (typeof trocarIdiomaInterface === 'function') {
+    trocarIdiomaInterface(idioma);
+  }
 }
 
 // Função para carregar dados na página
