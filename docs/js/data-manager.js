@@ -24,42 +24,115 @@ class DataManager {
      * @throws {Error} Erro de carregamento de dados
      */
     async loadCVData(language = 'pt') {
-        const fileName = AppConfig.DATA_FILES[language];
+        // Usar a função do config para obter URL correta
+        const fileUrl = AppConfig.getDataFileUrl(language);
 
-        if (!fileName) {
+        if (!fileUrl) {
             throw new Error(`Idioma não suportado: ${language}`);
         }
 
         this.isLoading = true;
 
         try {
-            console.log(`[DataManager] Carregando dados de: ${fileName}`);
-
-            const response = await fetch(fileName, {
-                cache: 'no-cache',
-                headers: {
-                    'Cache-Control': 'no-cache',
-                    'Pragma': 'no-cache'
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: Falha ao carregar ${fileName}`);
+            if (AppConfig.DEBUG) {
+                console.log(`[DataManager] Carregando dados de: ${fileUrl}`);
             }
 
-            this.cvData = await response.json();
+            const response = await fetch(fileUrl, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache'
+                },
+                cache: 'no-cache'
+            });
+
+            if (AppConfig.DEBUG) {
+                console.log(`[DataManager] Response status: ${response.status}`);
+                console.log(`[DataManager] Response headers:`, response.headers);
+            }
+
+            if (!response.ok) {
+                if (response.status === 404) {
+                    throw new Error(`Arquivo não encontrado: ${fileUrl}`);
+                }
+                throw new Error(`HTTP ${response.status}: Falha ao carregar ${fileUrl}`);
+            }
+
+            const responseText = await response.text();
+            if (AppConfig.DEBUG) {
+                console.log(`[DataManager] Response text length: ${responseText.length}`);
+            }
+
+            try {
+                this.cvData = JSON.parse(responseText);
+            } catch (parseError) {
+                console.error('[DataManager] Erro ao parsear JSON:', parseError);
+                throw new Error(`Arquivo JSON inválido: ${parseError.message}`);
+            }
+
             this.currentLanguage = language;
 
-            console.log('[DataManager] Dados carregados com sucesso:', this.cvData);
+            if (AppConfig.DEBUG) {
+                console.log('[DataManager] Dados carregados com sucesso:', this.cvData);
+            }
 
             return this.cvData;
 
         } catch (error) {
             console.error('[DataManager] Erro ao carregar dados:', error);
+
+            // Tentar URLs alternativos
+            if (!fileUrl.includes('github.io')) {
+                console.log('[DataManager] Tentando URL alternativo...');
+                return this.tryAlternativeUrls(language);
+            }
+
             throw new Error(`${AppConfig.INTERFACE_TEXTS[language].errors.dataLoadError}: ${error.message}`);
         } finally {
             this.isLoading = false;
         }
+    }
+
+    /**
+     * Tenta URLs alternativos se o primeiro falhar
+     * @param {string} language - Idioma
+     * @returns {Promise<Object>} Dados carregados
+     */
+    async tryAlternativeUrls(language) {
+        const alternativeUrls = [
+            `https://raw.githubusercontent.com/AngeloImon/AngeloImon/main/DOCS/${AppConfig.DATA_FILES[language]}`,
+            `https://angeloimon.github.io/AngeloImon/DOCS/${AppConfig.DATA_FILES[language]}`,
+            `./${AppConfig.DATA_FILES[language]}`, // URL relativa local
+        ];
+
+        for (const url of alternativeUrls) {
+            try {
+                console.log(`[DataManager] Tentando URL alternativo: ${url}`);
+
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Cache-Control': 'no-cache'
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    this.cvData = data;
+                    this.currentLanguage = language;
+                    console.log(`[DataManager] Sucesso com URL: ${url}`);
+                    return data;
+                }
+            } catch (error) {
+                console.log(`[DataManager] Falhou URL ${url}:`, error.message);
+                continue;
+            }
+        }
+
+        throw new Error('Nenhuma URL de dados funcionou');
     }
 
     /**

@@ -4,6 +4,49 @@
  */
 class AppConfig {
     /**
+     * URLs base para diferentes ambientes
+     * @type {Object}
+     */
+    static BASE_URLS = {
+        // Para desenvolvimento local
+        local: './',
+        // Para GitHub Pages
+        production: 'https://angeloimon.github.io/AngeloImon/DOCS/'
+    };
+
+    /**
+     * Detecta se está em produção ou desenvolvimento
+     * @returns {string} URL base apropriada
+     */
+    static getBaseUrl() {
+        const isLocalhost = window.location.hostname === 'localhost' ||
+            window.location.hostname === '127.0.0.1' ||
+            window.location.hostname === '';
+
+        return isLocalhost ? this.BASE_URLS.local : this.BASE_URLS.production;
+    }
+
+    /**
+     * Configurações de arquivos de dados
+     * @type {Object}
+     */
+    static DATA_FILES = {
+        pt: 'cv.json',
+        en: 'cv.en.json'
+    };
+
+    /**
+     * Obtém URL completa do arquivo de dados
+     * @param {string} language - Idioma ('pt' ou 'en')
+     * @returns {string} URL completa do arquivo
+     */
+    static getDataFileUrl(language) {
+        const baseUrl = this.getBaseUrl();
+        const fileName = this.DATA_FILES[language];
+        return `${baseUrl}${fileName}`;
+    }
+
+    /**
      * Textos da interface em múltiplos idiomas
      * @type {Object}
      */
@@ -17,7 +60,8 @@ class AppConfig {
                 pdfLibraryNotLoaded: 'Biblioteca PDF não carregada. Tente novamente.',
                 dataNotLoaded: 'Dados do CV ainda não carregados. Aguarde e tente novamente.',
                 pdfGenerationError: 'Erro ao gerar PDF. Tente novamente.',
-                dataLoadError: 'Erro ao carregar dados do CV'
+                dataLoadError: 'Erro ao carregar dados do CV',
+                fileNotFound: 'Arquivo de dados não encontrado'
             }
         },
         en: {
@@ -29,18 +73,10 @@ class AppConfig {
                 pdfLibraryNotLoaded: 'PDF library not loaded. Please try again.',
                 dataNotLoaded: 'CV data not loaded yet. Please wait and try again.',
                 pdfGenerationError: 'Error generating PDF. Please try again.',
-                dataLoadError: 'Error loading CV data'
+                dataLoadError: 'Error loading CV data',
+                fileNotFound: 'Data file not found'
             }
         }
-    };
-
-    /**
-     * Configurações de arquivos de dados
-     * @type {Object}
-     */
-    static DATA_FILES = {
-        pt: 'cv.json',
-        en: 'cv.en.json'
     };
 
     /**
@@ -117,6 +153,12 @@ class AppConfig {
         TOGGLE_THEME: 'toggle-theme',
         EXPORT_PDF: 'export-pdf'
     };
+
+    /**
+     * Debug mode
+     * @type {boolean}
+     */
+    static DEBUG = window.location.hostname === 'localhost';
 }
 
 // Torna a configuração globalmente acessível
