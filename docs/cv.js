@@ -3,48 +3,23 @@ let idiomaAtual = 'pt';
 
 // Função para carregar dados do JSON
 async function carregarDadosJSON() {
+  console.log('Tentando carregar cv.json...');
   try {
-    const response = await fetch('./cv.json');
+    const response = await fetch('cv.json');
+    console.log('Response status:', response.status);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
     const dadosBase = await response.json();
+    console.log('JSON carregado com sucesso:', dadosBase);
     
-    // Criar versões bilíngues
-    dadosCV = {
-      pt: {
-        ...dadosBase,
-        github: dadosBase.links.github,
-        linkedin: dadosBase.links.linkedin,
-        secoes: {
-          resumo: "Resumo",
-          experiencia: "Experiência Profissional",
-          habilidades: "Habilidades Técnicas",
-          formacao: "Formação",
-          certificacoes: "Certificações",
-          projetos: "Projetos"
-        }
-      },
-      en: {
-        ...dadosBase,
-        github: dadosBase.links.github,
-        linkedin: dadosBase.links.linkedin,
-        resumo: "Developer transitioning to technology, studying ADS at FATEC-RP. Fluent in English (TOEIC 945). Solid experience in technical support, customer service and credit analysis...",
-        formacao: "Technology in Systems Analysis and Development – FATEC-RP (2022–2025)",
-        secoes: {
-          resumo: "Summary",
-          experiencia: "Professional Experience",
-          habilidades: "Technical Skills",
-          formacao: "Education",
-          certificacoes: "Certifications",
-          projetos: "Projects"
-        }
-      }
-    };
-    
-    carregarDados();
-    atualizarTitulos();
+    // ...existing code...
     
   } catch (error) {
-    console.error('Erro ao carregar JSON:', error);
-    console.log('Use um servidor local para evitar problemas de CORS');
+    console.error('Erro detalhado:', error);
+    usarDadosEmbarcados();
   }
 }
 
