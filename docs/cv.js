@@ -1,79 +1,171 @@
-function carregarCV(data) {
-  // Campos simples
-  const nome = document.getElementById('nome');
-  nome.textContent = data.nome || '';
+// Dados do currículo em diferentes idiomas
+const dadosCV = {
+  pt: {
+    nome: "Angelo Imon",
+    email: "angelo.imon@email.com",
+    github: "https://github.com/angeloimon",
+    linkedin: "https://linkedin.com/in/angeloimon",
+    resumo: "Desenvolvedor Full Stack com experiência em tecnologias modernas e paixão por criar soluções inovadoras.",
+    experiencia: [
+      {
+        cargo: "Desenvolvedor Full Stack",
+        empresa: "Empresa XYZ",
+        periodo: "2023 - Presente",
+        descricao: "Desenvolvimento de aplicações web usando React, Node.js e PostgreSQL."
+      }
+    ],
+    habilidades: [
+      "JavaScript/TypeScript",
+      "React/Next.js",
+      "Node.js",
+      "Python",
+      "PostgreSQL/MongoDB",
+      "Git/GitHub"
+    ],
+    formacao: "Bacharelado em Ciência da Computação - Universidade ABC (2019-2023)",
+    certificacoes: [
+      "AWS Cloud Practitioner",
+      "Google Analytics Certified"
+    ],
+    projetos: [
+      "Sistema de Gestão - Aplicação web completa com dashboard administrativo",
+      "API RESTful - Microserviços para e-commerce"
+    ],
+    secoes: {
+      resumo: "Resumo",
+      experiencia: "Experiência Profissional",
+      habilidades: "Habilidades Técnicas",
+      formacao: "Formação",
+      certificacoes: "Certificações",
+      projetos: "Projetos"
+    }
+  },
+  en: {
+    nome: "Angelo Imon",
+    email: "angelo.imon@email.com",
+    github: "https://github.com/angeloimon",
+    linkedin: "https://linkedin.com/in/angeloimon",
+    resumo: "Full Stack Developer with experience in modern technologies and passion for creating innovative solutions.",
+    experiencia: [
+      {
+        cargo: "Full Stack Developer",
+        empresa: "XYZ Company",
+        periodo: "2023 - Present",
+        descricao: "Web application development using React, Node.js and PostgreSQL."
+      }
+    ],
+    habilidades: [
+      "JavaScript/TypeScript",
+      "React/Next.js",
+      "Node.js",
+      "Python",
+      "PostgreSQL/MongoDB",
+      "Git/GitHub"
+    ],
+    formacao: "Bachelor in Computer Science - ABC University (2019-2023)",
+    certificacoes: [
+      "AWS Cloud Practitioner",
+      "Google Analytics Certified"
+    ],
+    projetos: [
+      "Management System - Complete web application with administrative dashboard",
+      "RESTful API - Microservices for e-commerce"
+    ],
+    secoes: {
+      resumo: "Summary",
+      experiencia: "Professional Experience",
+      habilidades: "Technical Skills",
+      formacao: "Education",
+      certificacoes: "Certifications",
+      projetos: "Projects"
+    }
+  }
+};
 
-  const email = document.getElementById('email');
-  email.textContent = '';
-  if (data.email) email.textContent = data.email;
+// Idioma atual
+let idiomaAtual = 'pt';
 
-  const resumo = document.getElementById('resumo');
-  resumo.textContent = data.resumo || '';
-
-  const formacao = document.getElementById('formacao');
-  formacao.textContent = data.formacao || '';
-
-  const github = document.getElementById('github');
-  github.href = data.links?.github || '#';
-
-  const linkedin = document.getElementById('linkedin');
-  linkedin.href = data.links?.linkedin || '#';
-
-  // Listas dinâmicas
-  const habilidades = document.getElementById('habilidades');
-  habilidades.innerHTML = '';
-  (data.habilidades || []).forEach(h => {
-    const li = document.createElement('li');
-    li.textContent = h;
-    habilidades.appendChild(li);
-  });
-
-  const certificacoes = document.getElementById('certificacoes');
-  certificacoes.innerHTML = '';
-  (data.certificacoes || []).forEach(c => {
-    const li = document.createElement('li');
-    li.textContent = c;
-    certificacoes.appendChild(li);
-  });
-
-  const experiencia = document.getElementById('experiencia');
-  experiencia.innerHTML = '';
-  (data.experiencia || []).forEach(item => {
-    const div = document.createElement('div');
-    const h3 = document.createElement('h3');
-    h3.textContent = `${item.empresa} – ${item.cargo} (${item.periodo})`;
-    div.appendChild(h3);
-
-    const ul = document.createElement('ul');
-    (item.tarefas || []).forEach(tarefa => {
-      const li = document.createElement('li');
-      li.textContent = tarefa;
-      ul.appendChild(li);
-    });
-
-    div.appendChild(ul);
-    experiencia.appendChild(div);
-  });
-
-  const projetos = document.getElementById('projetos');
-  projetos.innerHTML = '';
-  (data.projetos || []).forEach(proj => {
-    const li = document.createElement('li');
-    li.textContent = proj;
-    projetos.appendChild(li);
-  });
-}
-
+// Função para trocar idioma
 function trocarIdioma(idioma) {
-  const arquivoBase = idioma === 'en' ? 'cv.en.json' : 'cv.json';
-  const semCache = `${arquivoBase}?v=${new Date().getTime()}`;
-  fetch(semCache)
-    .then(res => res.json())
-    .then(data => carregarCV(data))
-    .catch(() => console.error('Erro ao carregar JSON'));
+  idiomaAtual = idioma;
+  carregarDados();
+  atualizarTitulos();
+  
+  // Atualizar idioma do documento
+  document.documentElement.lang = idioma === 'pt' ? 'pt-BR' : 'en-US';
 }
 
-// ✅ Carrega o padrão português ao abrir
-document.addEventListener('DOMContentLoaded', () => {
-  trocarIdioma('pt');
+// Função para carregar os dados
+function carregarDados() {
+  const dados = dadosCV[idiomaAtual];
+  
+  // Informações básicas
+  document.getElementById('nome').textContent = dados.nome;
+  document.getElementById('email').textContent = dados.email;
+  document.getElementById('github').href = dados.github;
+  document.getElementById('linkedin').href = dados.linkedin;
+  
+  // Resumo
+  document.getElementById('resumo').textContent = dados.resumo;
+  
+  // Experiência
+  const experienciaDiv = document.getElementById('experiencia');
+  experienciaDiv.innerHTML = '';
+  dados.experiencia.forEach(exp => {
+    const expDiv = document.createElement('div');
+    expDiv.innerHTML = `
+      <h3>${exp.cargo}</h3>
+      <p><strong>${exp.empresa}</strong> | ${exp.periodo}</p>
+      <p>${exp.descricao}</p>
+    `;
+    experienciaDiv.appendChild(expDiv);
+  });
+  
+  // Habilidades
+  const habilidadesUl = document.getElementById('habilidades');
+  habilidadesUl.innerHTML = '';
+  dados.habilidades.forEach(habilidade => {
+    const li = document.createElement('li');
+    li.textContent = habilidade;
+    habilidadesUl.appendChild(li);
+  });
+  
+  // Formação
+  document.getElementById('formacao').textContent = dados.formacao;
+  
+  // Certificações
+  const certificacoesUl = document.getElementById('certificacoes');
+  certificacoesUl.innerHTML = '';
+  dados.certificacoes.forEach(cert => {
+    const li = document.createElement('li');
+    li.textContent = cert;
+    certificacoesUl.appendChild(li);
+  });
+  
+  // Projetos
+  const projetosUl = document.getElementById('projetos');
+  projetosUl.innerHTML = '';
+  dados.projetos.forEach(projeto => {
+    const li = document.createElement('li');
+    li.textContent = projeto;
+    projetosUl.appendChild(li);
+  });
+}
+
+// Função para atualizar títulos das seções
+function atualizarTitulos() {
+  const secoes = dadosCV[idiomaAtual].secoes;
+  const titulos = document.querySelectorAll('main section h2');
+  
+  titulos[0].textContent = secoes.resumo;
+  titulos[1].textContent = secoes.experiencia;
+  titulos[2].textContent = secoes.habilidades;
+  titulos[3].textContent = secoes.formacao;
+  titulos[4].textContent = secoes.certificacoes;
+  titulos[5].textContent = secoes.projetos;
+}
+
+// Carregar dados quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+  carregarDados();
 });
