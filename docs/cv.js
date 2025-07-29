@@ -1,10 +1,27 @@
 let dadosCV = {};
 let idiomaAtual = 'pt';
 
+// Função para mostrar/esconder loading
+function toggleLoading(show) {
+  const loading = document.getElementById('main-loading');
+  const content = document.getElementById('main-content');
+  
+  if (show) {
+    loading.style.display = 'flex';
+    content.style.display = 'none';
+  } else {
+    loading.style.display = 'none';
+    content.style.display = 'grid';
+  }
+}
+
 // Função para carregar dados do JSON baseado no idioma
 async function carregarDadosJSON(idioma = 'pt') {
   const arquivo = idioma === 'pt' ? 'cv.json' : 'cv.en.json';
   console.log(`Tentando carregar ${arquivo}...`);
+  
+  // Mostrar loading
+  toggleLoading(true);
   
   try {
     const response = await fetch(arquivo, {
@@ -27,8 +44,13 @@ async function carregarDadosJSON(idioma = 'pt') {
     carregarDados();
     atualizarTitulos();
     
+    // Esconder loading
+    toggleLoading(false);
+    
   } catch (error) {
     console.error(`Erro ao carregar ${arquivo}:`, error);
+    // Em caso de erro, ainda esconde o loading
+    toggleLoading(false);
   }
 }
 
@@ -59,8 +81,6 @@ function carregarDados() {
     expDiv.appendChild(expElement);
   });
   
-  // CORRIGIDO: Carregar cada seção individualmente
-  
   // Habilidades técnicas
   const habilidadesUl = document.getElementById('habilidades');
   habilidadesUl.innerHTML = '';
@@ -80,18 +100,16 @@ function carregarDados() {
   projetosUl.innerHTML = '';
   dadosCV.projetos.forEach(projeto => {
     if (typeof projeto === 'object' && projeto.nome) {
-      // Novo formato com nome, descrição e link
       let projetoHTML = `<li>
         <strong><a href="${projeto.link}" target="_blank" rel="noopener">${projeto.nome}</a></strong>`;
       
       if (projeto.descricao) {
-        projetoHTML += `<br><span style="font-size: 0.9em; color: #666;">${projeto.descricao}</span>`;
+        projetoHTML += `<br><span style="font-size: 0.9em; color: var(--text-color); opacity: 0.8;">${projeto.descricao}</span>`;
       }
       
       projetoHTML += `</li>`;
       projetosUl.innerHTML += projetoHTML;
     } else {
-      // Formato antigo (string simples) - para compatibilidade
       projetosUl.innerHTML += `<li>${projeto}</li>`;
     }
   });
