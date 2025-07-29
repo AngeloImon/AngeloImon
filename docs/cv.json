@@ -51,10 +51,26 @@
     }
   ],
   "projetos": [
-    "Classificador Titanic – Machine Learning com Scikit-learn",
-    "Processamento de Imagens – OpenCV + Matplotlib",
-    "Criptosistema RSA – Python e Aritmética Modular",
-    "Otimização de Turnos – Programação Linear com Gurobi"
+    {
+      "nome": "Classificador de sobrevivência do Titanic – Machine learning com Scikit-learn ",
+      "descricao": "Modelo supervisionado para prever a sobrevivência de passageiros a partir do Titanic Dataset.",
+      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
+    },
+    {
+      "nome": "Processamento de Imagens Digitais – Segmentação e manipulação com OpenCV + Matplotlib",
+      "descricao": "Explora técnicas fundamentais de processamento de imagem com aplicação de imagens reais.",
+      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
+    },
+    {
+      "nome": "Criptosistema RSA com Aritmética Modular – Algoritmo de criptografia em Python",
+      "descricao": "Implementa o algoritmo de criptografia RSA do zero usando aritmética modular e geração de números primos, incluindo geração de chaves públicas e privadas.",
+      "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
+    },
+    {
+      "nome": "Otimização da Força de Trabalho – Modelagem com Programação Linear usando Python + Gurobi",
+      "descricao": "Otimização de escalas de trabalho, minimizando os custos salarias em diferentes cenários.",
+      "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
+    }
   ],
   "secoes": {
     "resumo": "Resumo",
