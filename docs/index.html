@@ -79,7 +79,7 @@
   <script>
     let idiomaInterfaceAtual = 'pt';
 
-    // Textos da interface bilíngue
+    // Textos do botão de tema e exportar
     const interfaceTexts = {
       pt: {
         darkTheme: '🌙 Tema Escuro',
@@ -93,45 +93,8 @@
       }
     };
 
-    // Função para atualizar todos os textos da interface
-    function atualizarTextosInterface() {
-      const themeButton = document.getElementById('theme-toggle');
-      const exportButton = document.getElementById('export-pdf');
-      const isDarkTheme = document.body.classList.contains('dark-theme');
-      
-      // Atualizar botão de tema baseado no estado atual
-      if (isDarkTheme) {
-        themeButton.textContent = interfaceTexts[idiomaInterfaceAtual].lightTheme;
-      } else {
-        themeButton.textContent = interfaceTexts[idiomaInterfaceAtual].darkTheme;
-      }
-      
-      // Atualizar botão de exportar
-      exportButton.textContent = interfaceTexts[idiomaInterfaceAtual].exportPdf;
-    }
-
-    // Função para alternar tema
-    function toggleTheme() {
-      const body = document.body;
-      body.classList.toggle('dark-theme');
-      localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
-      atualizarTextosInterface();
-    }
-
-    // Função para trocar idioma da interface (chamada pelo cv.js)
-    function trocarIdiomaInterface(idioma) {
-      console.log(`Trocando idioma da interface para: ${idioma}`);
-      idiomaInterfaceAtual = idioma;
-      atualizarTextosInterface();
-    }
-
     // Função para exportar PDF
     function exportarPDF() {
-      if (!window.jspdf) {
-        alert('Biblioteca PDF não carregada. Tente novamente.');
-        return;
-      }
-
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF();
       
@@ -162,12 +125,6 @@
       }
       
       try {
-        // Verificar se dadosCV está carregado
-        if (!dadosCV || !dadosCV.nome) {
-          alert('Dados do CV ainda não foram carregados. Aguarde e tente novamente.');
-          return;
-        }
-
         // Título
         addText(dadosCV.nome, 20, true);
         yPosition += 5;
@@ -233,6 +190,9 @@
             if (projeto.descricao) {
               addText(`  ${projeto.descricao}`, 9);
             }
+            if (projeto.link) {
+              addText(`  Link: ${projeto.link}`, 8);
+            }
           } else {
             addText(`• ${projeto}`, 10);
           }
@@ -248,8 +208,39 @@
         alert('Erro ao gerar PDF. Tente novamente.');
       }
     }
+
+    // Função para atualizar textos da interface
+    function atualizarTextosInterface() {
+      const themeButton = document.getElementById('theme-toggle');
+      const exportButton = document.getElementById('export-pdf');
+      const isDarkTheme = document.body.classList.contains('dark-theme');
+      
+      // Atualizar botão de tema
+      if (isDarkTheme) {
+        themeButton.textContent = interfaceTexts[idiomaInterfaceAtual].lightTheme;
+      } else {
+        themeButton.textContent = interfaceTexts[idiomaInterfaceAtual].darkTheme;
+      }
+      
+      // Atualizar botão de exportar
+      exportButton.textContent = interfaceTexts[idiomaInterfaceAtual].exportPdf;
+    }
+
+    // Função para alternar tema
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('dark-theme');
+      localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+      atualizarTextosInterface();
+    }
+
+    // Função para trocar idioma da interface
+    function trocarIdiomaInterface(idioma) {
+      idiomaInterfaceAtual = idioma;
+      atualizarTextosInterface();
+    }
     
-    // Carregar tema salvo e inicializar
+    // Carregar tema salvo
     document.addEventListener('DOMContentLoaded', function() {
       const savedTheme = localStorage.getItem('theme');
       
@@ -257,7 +248,6 @@
         document.body.classList.add('dark-theme');
       }
       
-      // Inicializar textos da interface
       atualizarTextosInterface();
       
       console.log('DOM carregado, iniciando aplicação...');
