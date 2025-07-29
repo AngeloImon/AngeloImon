@@ -1,105 +1,146 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Currículo de Angelo Ferdinand Imon Spanó - Desenvolvedor em transição para tecnologia">
+  
+  <!-- SEO e Performance -->
+  <meta name="description" content="Currículo de Angelo Ferdinand Imon Spanó - Desenvolvedor em transição para tecnologia, especialista em otimização e análise de dados">
+  <meta name="keywords" content="desenvolvedor, python, análise de dados, otimização, programação linear, gurobi">
+  <meta name="author" content="Angelo Ferdinand Imon Spanó">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Angelo Imon - Desenvolvedor">
+  <meta property="og:description" content="Desenvolvedor em transição para tecnologia, especialista em otimização e análise de dados">
+  <meta property="og:url" content="https://angeloimon.github.io/">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="js/app.js" as="script">
+  
   <title>Angelo Imon - Desenvolvedor</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body>
+  <!-- Skip to main content for screen readers -->
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
   <!-- Navigation Controls -->
-  <nav class="controls" aria-label="Controles da página">
-    <div class="language-selector">
-      <button data-action="language" data-lang="pt" aria-label="Português">
+  <nav class="controls" role="navigation" aria-label="Controles da página">
+    <div class="language-selector" role="group" aria-label="Seleção de idioma">
+      <button data-action="language" data-lang="pt" aria-label="Alterar idioma para Português" aria-pressed="true">
         🇧🇷 Português
       </button>
-      <button data-action="language" data-lang="en" aria-label="English">
+      <button data-action="language" data-lang="en" aria-label="Change language to English" aria-pressed="false">
         🇺🇸 English
       </button>
     </div>
-    <div class="action-buttons">
-      <button id="export-pdf" data-action="export-pdf" aria-label="Exportar PDF">
+    <div class="action-buttons" role="group" aria-label="Ações da página">
+      <button id="export-pdf" data-action="export-pdf" aria-label="Exportar currículo em formato PDF">
         📄 Exportar PDF
       </button>
-      <button id="theme-toggle" data-action="toggle-theme" aria-label="Alternar tema">
+      <button id="theme-toggle" data-action="toggle-theme" aria-label="Alternar entre tema claro e escuro">
         🌙 Tema Escuro
       </button>
     </div>
   </nav>
 
   <!-- Header Section -->
-  <header>
+  <header role="banner">
     <h1 id="nome">Angelo Ferdinand Imon Spanó</h1>
-    <div class="contact-info">
-      <p id="email">angeloimon@outlook.com</p>
+    <address class="contact-info">
+      <p id="email" aria-label="Email de contato">angeloimon@outlook.com</p>
       <p class="links">
-        <a id="github" href="https://github.com/AngeloImon" target="_blank" rel="noopener">GitHub</a> |
-        <a id="linkedin" href="https://linkedin.com/in/angelo-ferdinand-imon-spano" target="_blank"
-          rel="noopener">LinkedIn</a>
+        <a id="github" href="https://github.com/AngeloImon" target="_blank" rel="noopener" 
+           aria-label="Perfil no GitHub - abre em nova aba">
+          GitHub
+        </a>
+        <span aria-hidden="true"> | </span>
+        <a id="linkedin" href="https://linkedin.com/in/angelo-ferdinand-imon-spano" target="_blank" rel="noopener"
+           aria-label="Perfil no LinkedIn - abre em nova aba">
+          LinkedIn
+        </a>
       </p>
-    </div>
+    </address>
   </header>
 
   <!-- Loading State -->
-  <div id="main-loading" class="main-loading">
+  <div id="main-loading" class="main-loading" role="status" aria-live="polite">
     <div class="loading-content">
-      <div class="spinner"></div>
+      <div class="spinner" aria-hidden="true"></div>
       <p>Carregando currículo...</p>
     </div>
   </div>
 
   <!-- Main Content -->
-  <main id="main-content" style="display: none;">
+  <main id="main-content" role="main" style="display: none;">
     <!-- Left Column - Primary Content -->
     <div class="main-column">
-      <section aria-labelledby="resumo-title">
-        <h2 id="resumo-title">Resumo</h2>
+      <article aria-labelledby="resumo-title">
+        <header>
+          <h2 id="resumo-title">Resumo</h2>
+        </header>
         <p id="resumo"></p>
-      </section>
+      </article>
 
       <section aria-labelledby="projetos-title">
-        <h2 id="projetos-title">Projetos</h2>
-        <ul id="projetos"></ul>
+        <header>
+          <h2 id="projetos-title">Projetos</h2>
+        </header>
+        <ul id="projetos" role="list"></ul>
       </section>
 
       <section aria-labelledby="experiencia-title">
-        <h2 id="experiencia-title">Experiência Profissional</h2>
-        <div id="experiencia"></div>
+        <header>
+          <h2 id="experiencia-title">Experiência Profissional</h2>
+        </header>
+        <div id="experiencia" role="list"></div>
       </section>
     </div>
 
     <!-- Right Column - Sidebar -->
-    <div class="sidebar-column">
+    <aside class="sidebar-column" role="complementary">
       <section aria-labelledby="formacao-title">
-        <h2 id="formacao-title">Formação</h2>
+        <header>
+          <h2 id="formacao-title">Formação</h2>
+        </header>
         <p id="formacao"></p>
       </section>
 
       <section aria-labelledby="habilidades-title">
-        <h2 id="habilidades-title">Habilidades Técnicas</h2>
-        <ul id="habilidades"></ul>
+        <header>
+          <h2 id="habilidades-title">Habilidades Técnicas</h2>
+        </header>
+        <ul id="habilidades" role="list"></ul>
       </section>
 
       <section aria-labelledby="certificacoes-title">
-        <h2 id="certificacoes-title">Certificações</h2>
-        <ul id="certificacoes"></ul>
+        <header>
+          <h2 id="certificacoes-title">Certificações</h2>
+        </header>
+        <ul id="certificacoes" role="list"></ul>
       </section>
-    </div>
+    </aside>
   </main>
 
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <p>&copy; 2025 Angelo Ferdinand Imon Spanó. Todos os direitos reservados.</p>
+    <p>Última atualização: <time datetime="2025-01-29">29 de Janeiro de 2025</time></p>
+  </footer>
+
   <!-- External Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 
   <!-- Application Scripts -->
-  <script src="js/config.js"></script>
-  <script src="js/data-manager.js"></script>
-  <script src="js/ui-manager.js"></script>
-  <script src="js/pdf-generator.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/data-manager.js" defer></script>
+  <script src="js/ui-manager.js" defer></script>
+  <script src="js/pdf-generator.js" defer></script>
+  <script src="js/app.js" defer></script>
 </body>
-
 </html>
