@@ -37,22 +37,31 @@ class PDFGenerator {
     }
 
     /**
-     * Verifies jsPDF library availability and initializes font metrics
+     * Verifies jsPDF library availability with enhanced detection and timing
+     * Implements multiple detection methods and delayed initialization to handle
+     * asynchronous library loading scenarios in different environments
      */
     checkLibraryAvailability() {
-        if (typeof window.jsPDF !== 'undefined') {
-            this.isLibraryLoaded = true;
-            this.initializeFontMetrics();
+        // Implement delayed verification to accommodate asynchronous library loading
+        setTimeout(() => {
+            // Multi-method library detection for comprehensive compatibility
+            const jsPDFAvailable = typeof window.jsPDF !== 'undefined' ||
+                typeof jsPDF !== 'undefined' ||
+                (window.jspdf && window.jspdf.jsPDF);
 
-            if (AppConfig.DEBUG) {
-                console.log('[PDFGenerator] jsPDF library loaded successfully');
+            if (jsPDFAvailable) {
+                this.isLibraryLoaded = true;
+                this.initializeFontMetrics();
+
+                if (AppConfig.DEBUG) {
+                    console.log('[PDFGenerator] jsPDF library detected and verified successfully');
+                }
+            } else {
+                console.warn('[PDFGenerator] jsPDF library not available, attempting dynamic load');
+                // Fallback to dynamic library loading for improved reliability
+                this.loadLibraryDynamically();
             }
-        } else {
-            console.warn('[PDFGenerator] jsPDF library not available');
-
-            // Attempt to load library dynamically if needed
-            this.loadLibraryDynamically();
-        }
+        }, 100); // Strategic delay for library initialization completion
     }
 
     /**
@@ -75,15 +84,19 @@ class PDFGenerator {
     }
 
     /**
-     * Initializes font metrics for accurate text measurement
+     * Initializes comprehensive font metrics system for precise text measurement
+     * Calculates character widths and line heights across all font sizes with
+     * robust error handling and fallback metric generation
      */
     initializeFontMetrics() {
         if (!this.isLibraryLoaded) return;
 
         try {
-            const tempPdf = new window.jsPDF();
+            // Create temporary PDF instance for metric calculation
+            const PDFConstructor = window.jsPDF || jsPDF || (window.jspdf && window.jspdf.jsPDF);
+            const tempPdf = new PDFConstructor();
 
-            // Measure character widths for different font sizes
+            // Generate precise metrics for each configured font size
             Object.keys(this.config.fontSize).forEach(key => {
                 const fontSize = this.config.fontSize[key];
                 tempPdf.setFontSize(fontSize);
@@ -96,10 +109,19 @@ class PDFGenerator {
             });
 
             if (AppConfig.DEBUG) {
-                console.log('[PDFGenerator] Font metrics initialized:', this.fontMetrics);
+                console.log('[PDFGenerator] Font metrics calculation completed:', this.fontMetrics);
             }
         } catch (error) {
-            console.error('[PDFGenerator] Failed to initialize font metrics:', error);
+            console.error('[PDFGenerator] Font metrics initialization failed, applying fallback values:', error);
+
+            // Implement fallback metrics for graceful degradation
+            Object.keys(this.config.fontSize).forEach(key => {
+                this.fontMetrics[key] = {
+                    fontSize: this.config.fontSize[key],
+                    charWidth: 0.6, // Standard character width approximation
+                    lineHeight: this.config.fontSize[key] * 1.2 // Standard line height ratio
+                };
+            });
         }
     }
 
@@ -141,14 +163,24 @@ class PDFGenerator {
     }
 
     /**
-     * Initializes new PDF document with optimal settings
+     * Initializes new PDF document with comprehensive configuration and error handling
+     * Implements fallback constructor detection and optimal document settings
+     * for professional CV generation with proper metadata
      */
     initializeDocument() {
-        this.pdf = new window.jsPDF('portrait', 'mm', 'a4');
+        // Multi-source constructor resolution for maximum compatibility
+        const PDFConstructor = window.jsPDF || jsPDF || (window.jspdf && window.jspdf.jsPDF);
+
+        if (!PDFConstructor) {
+            throw new Error('jsPDF library constructor not accessible');
+        }
+
+        // Initialize PDF with professional A4 portrait configuration
+        this.pdf = new PDFConstructor('portrait', 'mm', 'a4');
         this.currentY = this.config.margin;
         this.currentPage = 1;
 
-        // Set document properties
+        // Configure document metadata for professional presentation
         this.pdf.setProperties({
             title: 'Professional CV',
             subject: 'Curriculum Vitae',
@@ -157,7 +189,7 @@ class PDFGenerator {
             producer: 'jsPDF'
         });
 
-        // Set default font and encoding
+        // Establish default typography settings for consistent formatting
         this.pdf.setFont('helvetica', 'normal');
         this.pdf.setFontSize(this.config.fontSize.normal);
     }
