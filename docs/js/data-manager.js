@@ -6,7 +6,7 @@
  * for reliable data retrieval across different environments.
  * 
  * @author Angelo Ferdinand Imon Spanó
- * @version 2.0.0
+ * @version 2.0.1
  * @since 2025-01-29
  */
 

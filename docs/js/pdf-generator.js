@@ -42,26 +42,36 @@ class PDFGenerator {
      * asynchronous library loading scenarios in different environments
      */
     checkLibraryAvailability() {
-        // Implement delayed verification to accommodate asynchronous library loading
-        setTimeout(() => {
-            // Multi-method library detection for comprehensive compatibility
-            const jsPDFAvailable = typeof window.jsPDF !== 'undefined' ||
-                typeof jsPDF !== 'undefined' ||
-                (window.jspdf && window.jspdf.jsPDF);
+        let attempts = 0;
+        const maxAttempts = 50; // 10 segundos total
+
+        const checkInterval = setInterval(() => {
+            attempts++;
+
+            const jsPDFAvailable = (typeof window.jsPDF === 'function') ||
+                (typeof jsPDF === 'function') ||
+                (window.jspdf && typeof window.jspdf.jsPDF === 'function');
 
             if (jsPDFAvailable) {
+                clearInterval(checkInterval);
                 this.isLibraryLoaded = true;
                 this.initializeFontMetrics();
 
                 if (AppConfig.DEBUG) {
                     console.log('[PDFGenerator] jsPDF library detected and verified successfully');
+                    console.log('[PDFGenerator] jsPDF type:', typeof window.jsPDF);
                 }
-            } else {
-                console.warn('[PDFGenerator] jsPDF library not available, attempting dynamic load');
-                // Fallback to dynamic library loading for improved reliability
+            } else if (attempts >= maxAttempts) {
+                clearInterval(checkInterval);
+                console.error('[PDFGenerator] jsPDF library failed to load after timeout');
+                this.isLibraryLoaded = false;
                 this.loadLibraryDynamically();
             }
-        }, 100); // Strategic delay for library initialization completion
+
+            if (AppConfig.DEBUG && attempts % 10 === 0) {
+                console.log(`[PDFGenerator] Attempt ${attempts}: jsPDF type = ${typeof window.jsPDF}`);
+            }
+        }, 200);
     }
 
     /**
