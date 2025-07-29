@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <title>Currículo - Angelo Imon</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="cv.js" defer></script>
-  <script>
-    trocarIdioma('pt-BR');
-  </script>
 </head>
 <body>
+  <div style="text-align:right; padding:10px;">
+    <button onclick="trocarIdioma('pt')">🇧🇷 Português</button>
+    <button onclick="trocarIdioma('en')">🇺🇸 English</button>
+  </div>
+
   <header>
     <h1 id="nome"></h1>
     <p id="email"></p>
@@ -54,5 +55,8 @@
   <footer>
     <p>Última atualização: Julho de 2025</p>
   </footer>
+
+  <!-- Scripts no final para garantir carregamento -->
+  <script src="cv.js"></script>
 </body>
 </html>

@@ -1,13 +1,25 @@
 function carregarCV(data) {
   // Campos simples
-  document.getElementById('nome').textContent = data.nome || '';
-  document.getElementById('email').textContent = data.contato || '';
-  document.getElementById('resumo').textContent = data.resumo || '';
-  document.getElementById('formacao').textContent = data.formacao || '';
-  document.getElementById('github').href = data.links?.github || '#';
-  document.getElementById('linkedin').href = data.links?.linkedin || '#';
+  const nome = document.getElementById('nome');
+  nome.textContent = data.nome || '';
 
-  // Listas e blocos — limpar antes
+  const email = document.getElementById('email');
+  email.textContent = '';
+  if (data.email) email.textContent = data.email;
+
+  const resumo = document.getElementById('resumo');
+  resumo.textContent = data.resumo || '';
+
+  const formacao = document.getElementById('formacao');
+  formacao.textContent = data.formacao || '';
+
+  const github = document.getElementById('github');
+  github.href = data.links?.github || '#';
+
+  const linkedin = document.getElementById('linkedin');
+  linkedin.href = data.links?.linkedin || '#';
+
+  // Listas dinâmicas
   const habilidades = document.getElementById('habilidades');
   habilidades.innerHTML = '';
   (data.habilidades || []).forEach(h => {
@@ -16,38 +28,52 @@ function carregarCV(data) {
     habilidades.appendChild(li);
   });
 
-  const certs = document.getElementById('certificacoes');
-  certs.innerHTML = '';
+  const certificacoes = document.getElementById('certificacoes');
+  certificacoes.innerHTML = '';
   (data.certificacoes || []).forEach(c => {
     const li = document.createElement('li');
     li.textContent = c;
-    certs.appendChild(li);
+    certificacoes.appendChild(li);
   });
 
-  const exp = document.getElementById('experiencia');
-  exp.innerHTML = '';
+  const experiencia = document.getElementById('experiencia');
+  experiencia.innerHTML = '';
   (data.experiencia || []).forEach(item => {
-    const block = document.createElement('div');
-    const titulo = document.createElement('h3');
-    titulo.textContent = `${item.empresa} – ${item.cargo} (${item.periodo})`;
-    block.appendChild(titulo);
+    const div = document.createElement('div');
+    const h3 = document.createElement('h3');
+    h3.textContent = `${item.empresa} – ${item.cargo} (${item.periodo})`;
+    div.appendChild(h3);
 
     const ul = document.createElement('ul');
-    (item.tarefas || []).forEach(t => {
+    (item.tarefas || []).forEach(tarefa => {
       const li = document.createElement('li');
-      li.textContent = t;
+      li.textContent = tarefa;
       ul.appendChild(li);
     });
 
-    block.appendChild(ul);
-    exp.appendChild(block);
+    div.appendChild(ul);
+    experiencia.appendChild(div);
   });
 
-  const proj = document.getElementById('projetos');
-  proj.innerHTML = '';
-  (data.projetos || []).forEach(p => {
+  const projetos = document.getElementById('projetos');
+  projetos.innerHTML = '';
+  (data.projetos || []).forEach(proj => {
     const li = document.createElement('li');
-    li.textContent = p;
-    proj.appendChild(li);
+    li.textContent = proj;
+    projetos.appendChild(li);
   });
 }
+
+function trocarIdioma(idioma) {
+  const arquivoBase = idioma === 'en' ? 'cv.en.json' : 'cv.json';
+  const semCache = `${arquivoBase}?v=${new Date().getTime()}`;
+  fetch(semCache)
+    .then(res => res.json())
+    .then(data => carregarCV(data))
+    .catch(() => console.error('Erro ao carregar JSON'));
+}
+
+// ✅ Carrega o padrão português ao abrir
+document.addEventListener('DOMContentLoaded', () => {
+  trocarIdioma('pt');
+});
