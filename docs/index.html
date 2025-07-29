@@ -8,10 +8,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Controles de idioma -->
-  <nav class="language-selector" aria-label="Seletor de idioma">
-    <button onclick="trocarIdioma('pt')" aria-label="Português">🇧🇷 Português</button>
-    <button onclick="trocarIdioma('en')" aria-label="English">🇺🇸 English</button>
+  <nav class="controls" aria-label="Controles da página">
+    <div class="language-selector">
+      <button onclick="trocarIdioma('pt')" aria-label="Português">🇧🇷 Português</button>
+      <button onclick="trocarIdioma('en')" aria-label="English">🇺🇸 English</button>
+    </div>
+    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">🌙 Tema Escuro</button>
   </nav>
 
   <header>
@@ -71,8 +73,32 @@
   <!-- Scripts -->
   <script src="cv.js"></script>
   <script>
-    // Verificação de carregamento melhorada
+    // Função para alternar tema
+    function toggleTheme() {
+      const body = document.body;
+      const themeButton = document.getElementById('theme-toggle');
+      
+      body.classList.toggle('dark-theme');
+      
+      if (body.classList.contains('dark-theme')) {
+        themeButton.textContent = '☀️ Tema Claro';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeButton.textContent = '🌙 Tema Escuro';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    
+    // Carregar tema salvo
     document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeButton = document.getElementById('theme-toggle');
+      
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        themeButton.textContent = '☀️ Tema Claro';
+      }
+      
       console.log('DOM carregado, iniciando aplicação...');
       
       // Timeout para debug se algo falhar

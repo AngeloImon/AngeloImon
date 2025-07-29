@@ -52,3 +52,91 @@ footer {
   color: #6c757d;
   margin-top: 50px;
 }
+
+/* Tema claro (padrão) */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --heading-color: #2c3e50;
+  --link-color: #3498db;
+  --border-color: #e0e0e0;
+  --section-bg: #f9f9f9;
+  --button-bg: #f0f0f0;
+  --button-hover: #e0e0e0;
+}
+
+/* Tema escuro */
+body.dark-theme {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --heading-color: #4a9eff;
+  --link-color: #64b5f6;
+  --border-color: #333333;
+  --section-bg: #2d2d2d;
+  --button-bg: #333333;
+  --button-hover: #404040;
+}
+
+/* Aplicar variáveis CSS */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3 {
+  color: var(--heading-color);
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--heading-color);
+}
+
+section {
+  background-color: var(--section-bg);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Controles */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--section-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.language-selector {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+}
+
+#theme-toggle {
+  margin-left: auto;
+}
+
+/* Loading indicator */
+.loading {
+  background-color: var(--section-bg);
+  color: var(--text-color);
+}

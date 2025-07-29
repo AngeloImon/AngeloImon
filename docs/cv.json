@@ -63,7 +63,7 @@
     },
     {
       "nome": "Criptosistema RSA com Aritmética Modular – Algoritmo de criptografia em Python",
-      "descricao": "Implementa o algoritmo de criptografia RSA do zero usando aritmética modular e geração de números primos, incluindo geração de chaves públicas e privadas.",
+      "descricao": "Implementa o algoritmo de criptografia RSA do zero usando aritmética modular, incluindo geração de chaves públicas e privadas.",
       "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
     },
     {
