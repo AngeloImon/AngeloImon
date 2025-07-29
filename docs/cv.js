@@ -50,9 +50,9 @@ function carregarDados() {
     expElement.innerHTML = `
       <h3>${exp.cargo}</h3>
       <p><strong>${exp.empresa}</strong> | ${exp.periodo}</p>
-      <ul>
-        ${exp.tarefas.map(tarefa => `<li>${tarefa}</li>`).join('')}
-      </ul>
+      <div style="margin-left: 20px;">
+        ${exp.tarefas.map(tarefa => `<p>• ${tarefa}</p>`).join('')}
+      </div>
       <br>
     `;
     expDiv.appendChild(expElement);
