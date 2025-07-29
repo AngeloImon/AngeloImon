@@ -46,13 +46,16 @@ function carregarDados() {
   const expDiv = document.getElementById('experiencia');
   expDiv.innerHTML = '';
   dadosCV.experiencia.forEach(exp => {
-    expDiv.innerHTML += `
-      <div>
-        <h3>${exp.cargo}</h3>
-        <p><strong>${exp.empresa}</strong> | ${exp.periodo}</p>
-        <p>${exp.tarefas.join(' • ')}</p><br>
-      </div>
+    const expElement = document.createElement('div');
+    expElement.innerHTML = `
+      <h3>${exp.cargo}</h3>
+      <p><strong>${exp.empresa}</strong> | ${exp.periodo}</p>
+      <ul>
+        ${exp.tarefas.map(tarefa => `<li>${tarefa}</li>`).join('')}
+      </ul>
+      <br>
     `;
+    expDiv.appendChild(expElement);
   });
   
   // Listas (habilidades, certificações, projetos)
