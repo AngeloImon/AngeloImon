@@ -5,7 +5,7 @@ let idiomaAtual = 'pt';
 function toggleLoading(show) {
   const loading = document.getElementById('main-loading');
   const content = document.getElementById('main-content');
-  
+
   if (show) {
     loading.style.display = 'flex';
     content.style.display = 'none';
@@ -19,10 +19,10 @@ function toggleLoading(show) {
 async function carregarDadosJSON(idioma = 'pt') {
   const arquivo = idioma === 'pt' ? 'cv.json' : 'cv.en.json';
   console.log(`Tentando carregar ${arquivo}...`);
-  
+
   // Mostrar loading
   toggleLoading(true);
-  
+
   try {
     const response = await fetch(arquivo, {
       cache: 'no-cache',
@@ -32,21 +32,21 @@ async function carregarDadosJSON(idioma = 'pt') {
       }
     });
     console.log('Response status:', response.status);
-    
+
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
-    
+
     dadosCV = await response.json();
     console.log('JSON carregado com sucesso:', dadosCV);
-    
+
     // Carregar dados após processar o JSON
     carregarDados();
     atualizarTitulos();
-    
+
     // Esconder loading
     toggleLoading(false);
-    
+
   } catch (error) {
     console.error(`Erro ao carregar ${arquivo}:`, error);
     // Em caso de erro, ainda esconde o loading
@@ -57,14 +57,14 @@ async function carregarDadosJSON(idioma = 'pt') {
 // Função para carregar dados na página
 function carregarDados() {
   if (!dadosCV.nome) return;
-  
+
   document.getElementById('nome').textContent = dadosCV.nome;
   document.getElementById('email').textContent = dadosCV.email;
   document.getElementById('github').href = dadosCV.links.github;
   document.getElementById('linkedin').href = dadosCV.links.linkedin;
   document.getElementById('resumo').textContent = dadosCV.resumo;
   document.getElementById('formacao').textContent = dadosCV.formacao;
-  
+
   // Experiência
   const expDiv = document.getElementById('experiencia');
   expDiv.innerHTML = '';
@@ -80,21 +80,21 @@ function carregarDados() {
     `;
     expDiv.appendChild(expElement);
   });
-  
+
   // Habilidades técnicas
   const habilidadesUl = document.getElementById('habilidades');
   habilidadesUl.innerHTML = '';
   dadosCV.habilidades.forEach(item => {
     habilidadesUl.innerHTML += `<li>${item}</li>`;
   });
-  
+
   // Certificações
   const certificacoesUl = document.getElementById('certificacoes');
   certificacoesUl.innerHTML = '';
   dadosCV.certificacoes.forEach(item => {
     certificacoesUl.innerHTML += `<li>${item}</li>`;
   });
-  
+
   // Projetos com links
   const projetosUl = document.getElementById('projetos');
   projetosUl.innerHTML = '';
@@ -102,11 +102,11 @@ function carregarDados() {
     if (typeof projeto === 'object' && projeto.nome) {
       let projetoHTML = `<li>
         <strong><a href="${projeto.link}" target="_blank" rel="noopener">${projeto.nome}</a></strong>`;
-      
+
       if (projeto.descricao) {
         projetoHTML += `<br><span style="font-size: 0.9em; color: var(--text-color); opacity: 0.8;">${projeto.descricao}</span>`;
       }
-      
+
       projetoHTML += `</li>`;
       projetosUl.innerHTML += projetoHTML;
     } else {
@@ -131,7 +131,7 @@ function atualizarTitulos() {
 function trocarIdioma(idioma) {
   idiomaAtual = idioma;
   carregarDadosJSON(idioma);
-  
+
   // Atualizar idioma da interface também
   if (typeof trocarIdiomaInterface === 'function') {
     trocarIdiomaInterface(idioma);
@@ -139,7 +139,7 @@ function trocarIdioma(idioma) {
 }
 
 // Inicializar quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   console.log('CV.js carregado, iniciando...');
   carregarDadosJSON('pt');
 });

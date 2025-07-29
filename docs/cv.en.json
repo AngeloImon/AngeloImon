@@ -1,83 +1,91 @@
 {
-  "nome": "Angelo Ferdinand Imon Spanó",
-  "email": "angeloimon@outlook.com",
-  "links": {
-    "github": "https://github.com/AngeloImon",
-    "linkedin": "https://linkedin.com/in/angelo-ferdinand-imon-spano"
-  },
-  "resumo": "Developer transitioning into tech, currently pursuing a degree in Systems Analysis and Development at FATEC-RP. Fluent in English (TOEIC 945) with solid experience in technical support, customer service, and credit analysis. Hands-on with projects focused on logic, data structures, automation, and computer vision — applying Python, SQL, C++, Oracle DB, and OpenCV. I integrate Git/GitHub and agile methodologies for version control and project organization. My background with end-users, team management, and clear communication supports empathetic, value-driven tech solutions. Ready to grow and collaborate in teams that foster initiative, continuous learning, and purpose-driven impact.",
-  "formacao": "Technology Degree in Systems Analysis and Development – FATEC-RP (2022–2025)",
-  "habilidades": ["Python", "C++", "PL/SQL", "Oracle DB", "Git/GitHub", "VS Code", "Google Colab"],
-  "certificacoes": [
-    "TOEIC - 945 points (2025)",
-    "SAP/ABAP",
-    "Oracle DB Design",
-    "Oracle SQL",
-    "Soft Skills for IT professionals",
-    "Emotional Management & Self-Control",
-    "Autonomous Vehicles Mini-Course",
-    "Computer Vision with OpenCV"
-  ],
-  "experiencia": [
-    {
-      "empresa": "Foxtime",
-      "cargo": "Administrative Assistant I",
-      "periodo": "May/2021 – May/2022",
-      "tarefas": [
-        "Analyzed credit and documentation for financing approval.",
-        "Maintained internal databases using spreadsheets and enterprise systems.",
-        "Developed commercial partnerships and led consultative insurance sales."
-      ]
+    "nome": "Angelo Ferdinand Imon Spanó",
+    "email": "angeloimon@outlook.com",
+    "links": {
+        "github": "https://github.com/AngeloImon",
+        "linkedin": "https://linkedin.com/in/angelo-ferdinand-imon-spano"
     },
-    {
-      "empresa": "Museu da Gula",
-      "cargo": "Sales Associate / Department Lead",
-      "periodo": "Dec/2014 – Feb/2020",
-      "tarefas": [
-        "Managed the spirits department, handling restocking, display, and inventory supervision.",
-        "Delivered personalized service, increasing sales through direct recommendation.",
-        "Trained staff, coordinated schedules, and supported leadership with goals and sales KPIs."
-      ]
-    },
-    {
-      "empresa": "Fundamental TI",
-      "cargo": "Document Technician",
-      "periodo": "Nov/2013 – Dec/2014",
-      "tarefas": [
-        "Digitized and classified official documents with accuracy and data integrity.",
-        "Provided internal tech support for digital archive management.",
-        "Structured files for indexing in internal systems, optimizing data retrieval."
-      ]
+    "resumo": "Developer transitioning into tech, currently pursuing a degree in Systems Analysis and Development at FATEC-RP. Fluent in English (TOEIC 945) with solid experience in technical support, customer service, and credit analysis. Hands-on with projects focused on logic, data structures, automation, and computer vision — applying Python, SQL, C++, Oracle DB, and OpenCV. I integrate Git/GitHub and agile methodologies for version control and project organization. My background with end-users, team management, and clear communication supports empathetic, value-driven tech solutions. Ready to grow and collaborate in teams that foster initiative, continuous learning, and purpose-driven impact.",
+    "formacao": "Technology Degree in Systems Analysis and Development – FATEC-RP (2022–2025)",
+    "habilidades": [
+        "Python",
+        "C++",
+        "PL/SQL",
+        "Oracle DB",
+        "Git/GitHub",
+        "VS Code",
+        "Google Colab"
+    ],
+    "certificacoes": [
+        "TOEIC - 945 points (2025)",
+        "SAP/ABAP",
+        "Oracle DB Design",
+        "Oracle SQL",
+        "Soft Skills for IT professionals",
+        "Emotional Management & Self-Control",
+        "Autonomous Vehicles Mini-Course",
+        "Computer Vision with OpenCV"
+    ],
+    "experiencia": [
+        {
+            "empresa": "Foxtime",
+            "cargo": "Administrative Assistant I",
+            "periodo": "May/2021 – May/2022",
+            "tarefas": [
+                "Analyzed credit and documentation for financing approval.",
+                "Maintained internal databases using spreadsheets and enterprise systems.",
+                "Developed commercial partnerships and led consultative insurance sales."
+            ]
+        },
+        {
+            "empresa": "Museu da Gula",
+            "cargo": "Sales Associate / Department Lead",
+            "periodo": "Dec/2014 – Feb/2020",
+            "tarefas": [
+                "Managed the spirits department, handling restocking, display, and inventory supervision.",
+                "Delivered personalized service, increasing sales through direct recommendation.",
+                "Trained staff, coordinated schedules, and supported leadership with goals and sales KPIs."
+            ]
+        },
+        {
+            "empresa": "Fundamental TI",
+            "cargo": "Document Technician",
+            "periodo": "Nov/2013 – Dec/2014",
+            "tarefas": [
+                "Digitized and classified official documents with accuracy and data integrity.",
+                "Provided internal tech support for digital archive management.",
+                "Structured files for indexing in internal systems, optimizing data retrieval."
+            ]
+        }
+    ],
+    "projetos": [
+        {
+            "nome": "Titanic Survival Classifier – Machine Learning with Scikit-learn",
+            "descricao": "Supervised model predicting passenger survival using the Titanic Dataset",
+            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
+        },
+        {
+            "nome": "Digital Image Processing – Segmentation with OpenCV + Matplotlib",
+            "descricao": "Applied key techniques for real-world image manipulation and visualization",
+            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
+        },
+        {
+            "nome": "RSA Cryptosystem with Modular Arithmetic – Cryptography in Python",
+            "descricao": "Implemented RSA algorithm and encryption logic using modular arithmetic with public/private key generation",
+            "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
+        },
+        {
+            "nome": "Workforce Optimization – Linear Programming with Python + Gurobi",
+            "descricao": "Designed models to optimize shift schedules and reduce payroll costs across scenarios",
+            "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
+        }
+    ],
+    "secoes": {
+        "resumo": "Summary",
+        "experiencia": "Professional Experience",
+        "habilidades": "Technical Skills",
+        "formacao": "Education",
+        "certificacoes": "Certifications",
+        "projetos": "Projects"
     }
-  ],
-  "projetos": [
-    {
-      "nome": "Titanic Survival Classifier – Machine Learning with Scikit-learn",
-      "descricao": "Supervised model predicting passenger survival using the Titanic Dataset",
-      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
-    },
-    {
-      "nome": "Digital Image Processing – Segmentation with OpenCV + Matplotlib",
-      "descricao": "Applied key techniques for real-world image manipulation and visualization",
-      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
-    },
-    {
-      "nome": "RSA Cryptosystem with Modular Arithmetic – Cryptography in Python",
-      "descricao": "Implemented RSA algorithm and encryption logic using modular arithmetic with public/private key generation",
-      "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
-    },
-    {
-      "nome": "Workforce Optimization – Linear Programming with Python + Gurobi",
-      "descricao": "Designed models to optimize shift schedules and reduce payroll costs across scenarios",
-      "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
-    }
-  ],
-  "secoes": {
-    "resumo": "Summary",
-    "experiencia": "Professional Experience",
-    "habilidades": "Technical Skills",
-    "formacao": "Education",
-    "certificacoes": "Certifications",
-    "projetos": "Projects"
-  }
 }

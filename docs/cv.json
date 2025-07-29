@@ -7,7 +7,15 @@
   },
   "resumo": "Desenvolvedor em transição para a área de tecnologia, atualmente cursando Análise e Desenvolvimento de Sistemas pela FATEC-RP. Fluente em inglês (TOEIC 945) e com sólida experiência em suporte técnico, atendimento ao cliente e análise de crédito. Desenvolvi projetos práticos com foco em lógica, estrutura de dados, automações e visão computacional — aplicando Python, SQL, C++, Oracle BD e OpenCV. Integro Git/GitHub e metodologias ágeis no versionamento e organização dos projetos. Minhas experiências com usuários finais, gestão de setores e comunicação contribuem para soluções tecnológicas empáticas, claras e voltadas à entrega de valor. Estou pronto para crescer e colaborar em times que valorizem iniciativa, aprendizado contínuo e impacto com propósito.",
   "formacao": "Tecnólogo em Análise e Desenvolvimento de Sistemas – FATEC-RP (2022–2025)",
-  "habilidades": ["Python", "C++", "PL/SQL", "Oracle DB", "Git/GitHub", "VS Code", "Google Colab"],
+  "habilidades": [
+    "Python",
+    "C++",
+    "PL/SQL",
+    "Oracle DB",
+    "Git/GitHub",
+    "VS Code",
+    "Google Colab"
+  ],
   "certificacoes": [
     "TOEIC - 945 pontos (2025)",
     "SAP/ABAP",

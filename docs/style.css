@@ -40,14 +40,14 @@
   --button-hover: #e8f4fd;
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
-  
+
   /* Espaçamentos responsivos */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
-  
+
   /* Transições */
   --transition: 0.2s ease-in-out;
 }
@@ -117,7 +117,8 @@ button {
   color: var(--text-color);
   cursor: pointer;
   transition: all var(--transition);
-  min-height: 44px; /* Touch target size */
+  min-height: 44px;
+  /* Touch target size */
   min-width: 44px;
 }
 
@@ -292,7 +293,7 @@ ul li::before {
 }
 
 /* Experience items */
-#experiencia > div {
+#experiencia>div {
   margin-bottom: var(--spacing-lg);
   padding: var(--spacing-md);
   background-color: var(--bg-color);
@@ -357,8 +358,13 @@ ul li::before {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Footer */
@@ -391,32 +397,32 @@ footer p {
     gap: var(--spacing-sm);
     padding: var(--spacing-sm);
   }
-  
+
   .language-selector,
   .action-buttons {
     width: 100%;
     justify-content: center;
   }
-  
+
   header {
     padding: var(--spacing-lg) var(--spacing-sm);
   }
-  
+
   main {
     grid-template-columns: 1fr;
     padding: var(--spacing-sm);
     gap: var(--spacing-md);
   }
-  
+
   .sidebar-column {
     order: 2;
   }
-  
+
   section,
   article {
     padding: var(--spacing-md);
   }
-  
+
   /* Skills as list on mobile */
   #habilidades li {
     display: block;
@@ -428,7 +434,7 @@ footer p {
     border-left: 3px solid var(--accent-color);
     padding-left: var(--spacing-sm);
   }
-  
+
   #habilidades li::before {
     display: inline;
   }
@@ -440,11 +446,11 @@ footer p {
     --spacing-md: 1rem;
     --spacing-lg: 1.25rem;
   }
-  
+
   .controls {
     padding: var(--spacing-xs);
   }
-  
+
   button {
     font-size: 12px;
     padding: 0.5rem;
@@ -453,12 +459,13 @@ footer p {
 
 /* Print styles */
 @media print {
+
   .controls,
   footer,
   .main-loading {
     display: none !important;
   }
-  
+
   main {
     grid-template-columns: 1fr !important;
     max-width: none !important;
@@ -466,14 +473,14 @@ footer p {
     padding: 0 !important;
     gap: 1rem !important;
   }
-  
+
   body {
     background-color: white !important;
     color: black !important;
     font-size: 12pt !important;
     line-height: 1.4 !important;
   }
-  
+
   section,
   article {
     break-inside: avoid;
@@ -483,23 +490,23 @@ footer p {
     margin-bottom: 1rem !important;
     padding: 1rem !important;
   }
-  
+
   h1 {
     font-size: 24pt !important;
     color: black !important;
   }
-  
+
   h2 {
     font-size: 16pt !important;
     color: black !important;
     border-bottom: 1px solid #ccc !important;
   }
-  
+
   a {
     color: black !important;
     text-decoration: underline !important;
   }
-  
+
   #habilidades li {
     background-color: transparent !important;
     color: black !important;
@@ -509,7 +516,7 @@ footer p {
     margin: 0.25rem !important;
     padding: 0.25rem !important;
   }
-  
+
   .sidebar-column {
     order: -1 !important;
   }
@@ -517,6 +524,7 @@ footer p {
 
 /* Accessibility and motion preferences */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -524,7 +532,7 @@ footer p {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .spinner {
     animation: none !important;
   }
@@ -538,7 +546,7 @@ footer p {
     --bg-color: #ffffff;
     --accent-color: #0000ff;
   }
-  
+
   .dark-theme {
     --border-color: #ffffff;
     --text-color: #ffffff;
