@@ -1,11 +1,26 @@
-/* Reset e configurações base */
+/**
+ * Professional CV Stylesheet
+ * Modern, accessible, and responsive design system
+ * Author: Angelo Ferdinand Imon Spanó
+ * Last Updated: January 2025
+ */
+
+/* ==========================================================================
+   CSS Reset and Base Configuration
+   ========================================================================== */
+
+/* Modern CSS reset for consistent cross-browser behavior */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Skip link para acessibilidade */
+/* ==========================================================================
+   Accessibility Features
+   ========================================================================== */
+
+/* Skip link for keyboard navigation accessibility */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -25,9 +40,12 @@
   outline-offset: 2px;
 }
 
-/* Variáveis CSS para temas e responsividade */
+/* ==========================================================================
+   CSS Custom Properties (Design Tokens)
+   ========================================================================== */
+
 :root {
-  /* Cores - Tema Claro com melhor contraste */
+  /* Color palette optimized for WCAG AA contrast compliance */
   --bg-color: #ffffff;
   --text-color: #1a1a1a;
   --heading-color: #0d47a1;
@@ -38,21 +56,23 @@
   --section-bg: #f8f9fa;
   --button-bg: #f5f5f5;
   --button-hover: #e8f4fd;
+
+  /* Shadow system for depth and hierarchy */
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
 
-  /* Espaçamentos responsivos */
+  /* Spacing scale using consistent proportions */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
 
-  /* Transições */
+  /* Animation and transition timing */
   --transition: 0.2s ease-in-out;
 }
 
-/* Tema escuro com contraste WCAG AA */
+/* Dark theme with enhanced contrast ratios */
 .dark-theme {
   --bg-color: #121212;
   --text-color: #e8eaed;
@@ -68,7 +88,11 @@
   --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* Base typography */
+/* ==========================================================================
+   Typography System
+   ========================================================================== */
+
+/* Base typography with fluid scaling for responsive design */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: clamp(14px, 2vw, 16px);
@@ -78,13 +102,17 @@ body {
   transition: background-color var(--transition), color var(--transition);
 }
 
-/* Focus indicators for accessibility */
+/* Enhanced focus indicators for keyboard navigation */
 *:focus {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
 
-/* Controls navigation */
+/* ==========================================================================
+   Layout Components
+   ========================================================================== */
+
+/* Sticky navigation controls with backdrop blur effect */
 .controls {
   position: sticky;
   top: 0;
@@ -105,7 +133,7 @@ body {
   gap: var(--spacing-xs);
 }
 
-/* Improved buttons */
+/* Interactive button component with accessibility enhancements */
 button {
   font-family: inherit;
   font-size: clamp(12px, 1.8vw, 14px);
@@ -118,7 +146,7 @@ button {
   cursor: pointer;
   transition: all var(--transition);
   min-height: 44px;
-  /* Touch target size */
+  /* Touch target size for mobile accessibility */
   min-width: 44px;
 }
 
@@ -134,12 +162,14 @@ button:active {
   transform: translateY(0);
 }
 
+/* State indicators for toggle buttons */
 button[aria-pressed="true"] {
   background-color: var(--accent-color);
   color: white;
   border-color: var(--accent-color);
 }
 
+/* Primary action button styling */
 #export-pdf {
   background-color: var(--accent-color);
   color: white;
@@ -151,7 +181,11 @@ button[aria-pressed="true"] {
   background-color: var(--accent-hover);
 }
 
-/* Header */
+/* ==========================================================================
+   Header Section
+   ========================================================================== */
+
+/* Main header with gradient background and centered content */
 header {
   padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
   background: linear-gradient(135deg, var(--section-bg) 0%, var(--bg-color) 100%);
@@ -159,6 +193,7 @@ header {
   text-align: center;
 }
 
+/* Primary heading with fluid typography */
 h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
@@ -167,6 +202,7 @@ h1 {
   letter-spacing: -0.02em;
 }
 
+/* Contact information styling with semantic address element */
 .contact-info {
   font-style: normal;
   max-width: 600px;
@@ -179,6 +215,7 @@ h1 {
   color: var(--text-color);
 }
 
+/* Link styling with enhanced interaction states */
 .links a {
   color: var(--link-color);
   text-decoration: none;
@@ -195,7 +232,11 @@ h1 {
   background-color: var(--button-hover);
 }
 
-/* Main layout - responsive grid */
+/* ==========================================================================
+   Main Content Layout
+   ========================================================================== */
+
+/* Responsive grid layout for main content areas */
 main {
   max-width: 1200px;
   margin: 0 auto;
@@ -218,7 +259,11 @@ main {
   gap: var(--spacing-md);
 }
 
-/* Sections */
+/* ==========================================================================
+   Content Sections
+   ========================================================================== */
+
+/* Card-based section styling with consistent spacing */
 section,
 article {
   background-color: var(--section-bg);
@@ -234,12 +279,13 @@ article:hover {
   box-shadow: var(--shadow-lg);
 }
 
-/* Section headers */
+/* Section header styling */
 section header,
 article header {
   margin-bottom: var(--spacing-md);
 }
 
+/* Section heading typography with visual hierarchy */
 h2 {
   font-size: clamp(1.25rem, 3vw, 1.5rem);
   font-weight: 600;
@@ -249,7 +295,7 @@ h2 {
   border-bottom: 2px solid var(--accent-color);
 }
 
-/* Sidebar styling */
+/* Sidebar section differentiation */
 .sidebar-column section {
   border-left: 4px solid var(--accent-color);
 }
@@ -258,7 +304,11 @@ h2 {
   font-size: clamp(1.1rem, 2.5vw, 1.25rem);
 }
 
-/* Lists */
+/* ==========================================================================
+   List Components
+   ========================================================================== */
+
+/* Custom list styling with consistent spacing */
 ul {
   list-style: none;
   padding: 0;
@@ -270,6 +320,7 @@ ul li {
   position: relative;
 }
 
+/* Custom list markers for visual consistency */
 ul li::before {
   content: '▸';
   position: absolute;
@@ -278,7 +329,7 @@ ul li::before {
   font-weight: bold;
 }
 
-/* Project links */
+/* Project link styling within lists */
 #projetos a {
   color: var(--link-color);
   text-decoration: none;
@@ -292,7 +343,11 @@ ul li::before {
   text-decoration: underline;
 }
 
-/* Experience items */
+/* ==========================================================================
+   Experience Section
+   ========================================================================== */
+
+/* Experience item styling with visual separation */
 #experiencia>div {
   margin-bottom: var(--spacing-lg);
   padding: var(--spacing-md);
@@ -312,7 +367,11 @@ ul li::before {
   color: var(--accent-color);
 }
 
-/* Skills tags */
+/* ==========================================================================
+   Skills Section
+   ========================================================================== */
+
+/* Skills displayed as interactive tags */
 #habilidades li {
   display: inline-block;
   background-color: var(--accent-color);
@@ -329,11 +388,16 @@ ul li::before {
   transform: scale(1.05);
 }
 
+/* Override default list marker for skill tags */
 #habilidades li::before {
   display: none;
 }
 
-/* Loading state */
+/* ==========================================================================
+   Loading States
+   ========================================================================== */
+
+/* Loading indicator with centered layout */
 .main-loading {
   display: flex;
   justify-content: center;
@@ -347,6 +411,7 @@ ul li::before {
   color: var(--text-color);
 }
 
+/* Animated loading spinner */
 .spinner {
   width: 40px;
   height: 40px;
@@ -367,7 +432,11 @@ ul li::before {
   }
 }
 
-/* Footer */
+/* ==========================================================================
+   Footer Section
+   ========================================================================== */
+
+/* Page footer with subdued styling */
 footer {
   background-color: var(--section-bg);
   border-top: 1px solid var(--border-color);
@@ -383,7 +452,11 @@ footer p {
   opacity: 0.8;
 }
 
-/* Responsive design */
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+/* Tablet breakpoint adjustments */
 @media (max-width: 1024px) {
   main {
     grid-template-columns: 1fr 300px;
@@ -391,6 +464,7 @@ footer p {
   }
 }
 
+/* Mobile-first responsive design for small screens */
 @media (max-width: 768px) {
   .controls {
     flex-direction: column;
@@ -408,6 +482,7 @@ footer p {
     padding: var(--spacing-lg) var(--spacing-sm);
   }
 
+  /* Single column layout for mobile */
   main {
     grid-template-columns: 1fr;
     padding: var(--spacing-sm);
@@ -423,7 +498,7 @@ footer p {
     padding: var(--spacing-md);
   }
 
-  /* Skills as list on mobile */
+  /* Skills as vertical list on mobile for better readability */
   #habilidades li {
     display: block;
     background-color: transparent;
@@ -440,6 +515,7 @@ footer p {
   }
 }
 
+/* Extra small screen optimizations */
 @media (max-width: 480px) {
   :root {
     --spacing-sm: 0.75rem;
@@ -457,7 +533,11 @@ footer p {
   }
 }
 
-/* Print styles */
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+/* Optimized print layout for professional presentation */
 @media print {
 
   .controls,
@@ -507,6 +587,7 @@ footer p {
     text-decoration: underline !important;
   }
 
+  /* Print-friendly skill display */
   #habilidades li {
     background-color: transparent !important;
     color: black !important;
@@ -520,9 +601,19 @@ footer p {
   .sidebar-column {
     order: -1 !important;
   }
+
+  /* Print URLs after external links */
+  a[target="_blank"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
 }
 
-/* Accessibility and motion preferences */
+/* ==========================================================================
+   Accessibility and Motion Preferences
+   ========================================================================== */
+
+/* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
 
   *,
@@ -538,7 +629,7 @@ footer p {
   }
 }
 
-/* High contrast mode */
+/* High contrast mode support */
 @media (prefers-contrast: high) {
   :root {
     --border-color: #000000;
@@ -555,7 +646,7 @@ footer p {
   }
 }
 
-/* Enhanced focus styles for better accessibility */
+/* Enhanced focus styles for better visibility */
 button:focus-visible,
 a:focus-visible {
   outline: 3px solid var(--accent-color);
@@ -563,36 +654,16 @@ a:focus-visible {
   background-color: var(--button-hover);
 }
 
-/* Improved loading accessibility */
-.main-loading[aria-live="polite"] {
-  position: relative;
-}
-
-.main-loading::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: var(--bg-color);
-  opacity: 0.8;
-}
-
-/* Better text readability */
+/* Improved text readability */
 p {
   max-width: 70ch;
   text-align: justify;
   hyphens: auto;
 }
 
-/* Enhanced link styling */
+/* Visual indicator for external links */
 a[target="_blank"]::after {
   content: " ↗";
   font-size: 0.8em;
   opacity: 0.7;
-}
-
-@media print {
-  a[target="_blank"]::after {
-    content: " (" attr(href) ")";
-    font-size: 0.8em;
-  }
 }

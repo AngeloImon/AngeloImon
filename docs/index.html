@@ -2,39 +2,53 @@
 <html lang="pt-BR">
 
 <head>
+  <!-- Character encoding and viewport configuration -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO e Performance -->
+  <!-- SEO optimization meta tags -->
   <meta name="description"
     content="Currículo de Angelo Ferdinand Imon Spanó - Desenvolvedor em transição para tecnologia, especialista em otimização e análise de dados">
-  <meta name="keywords" content="desenvolvedor, python, análise de dados, otimização, programação linear, gurobi">
+  <meta name="keywords"
+    content="desenvolvedor, python, análise de dados, otimização, programação linear, gurobi, machine learning, opencv">
   <meta name="author" content="Angelo Ferdinand Imon Spanó">
   <meta name="robots" content="index, follow">
+  <meta name="language" content="pt-BR">
 
-  <!-- Open Graph / Social Media -->
+  <!-- Open Graph protocol for social media sharing -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Angelo Imon - Desenvolvedor">
   <meta property="og:description"
     content="Desenvolvedor em transição para tecnologia, especialista em otimização e análise de dados">
-  <meta property="og:url" content="https://angeloimon.github.io/">
+  <meta property="og:url" content="https://angeloimon.github.io/AngeloImon/">
+  <meta property="og:locale" content="pt_BR">
 
-  <!-- Preload critical resources -->
+  <!-- Twitter Card meta tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Angelo Imon - Desenvolvedor">
+  <meta name="twitter:description" content="Desenvolvedor em transição para tecnologia">
+
+  <!-- Performance optimization through resource preloading -->
   <link rel="preload" href="style.css" as="style">
   <link rel="preload" href="js/app.js" as="script">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
+  <!-- Page title and styling -->
   <title>Angelo Imon - Desenvolvedor</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon using inline SVG with emoji for cross-platform compatibility -->
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
 </head>
 
 <body>
-  <!-- Skip to main content for screen readers -->
+  <!-- Skip navigation link for screen reader accessibility -->
   <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
-  <!-- Navigation Controls -->
+  <!-- Primary navigation controls for user interactions -->
   <nav class="controls" role="navigation" aria-label="Controles da página">
+    <!-- Language selection controls -->
     <div class="language-selector" role="group" aria-label="Seleção de idioma">
       <button data-action="language" data-lang="pt" aria-label="Alterar idioma para Português" aria-pressed="true">
         🇧🇷 Português
@@ -43,6 +57,8 @@
         🇺🇸 English
       </button>
     </div>
+
+    <!-- Action buttons for page functionality -->
     <div class="action-buttons" role="group" aria-label="Ações da página">
       <button id="export-pdf" data-action="export-pdf" aria-label="Exportar currículo em formato PDF">
         📄 Exportar PDF
@@ -53,7 +69,7 @@
     </div>
   </nav>
 
-  <!-- Header Section -->
+  <!-- Main header containing personal identification and contact information -->
   <header role="banner">
     <h1 id="nome">Angelo Ferdinand Imon Spanó</h1>
     <address class="contact-info">
@@ -72,7 +88,7 @@
     </address>
   </header>
 
-  <!-- Loading State -->
+  <!-- Loading state display with accessibility attributes -->
   <div id="main-loading" class="main-loading" role="status" aria-live="polite">
     <div class="loading-content">
       <div class="spinner" aria-hidden="true"></div>
@@ -80,10 +96,11 @@
     </div>
   </div>
 
-  <!-- Main Content -->
+  <!-- Main content area with responsive layout structure -->
   <main id="main-content" role="main" style="display: none;">
-    <!-- Left Column - Primary Content -->
+    <!-- Primary content column containing core CV sections -->
     <div class="main-column">
+      <!-- Professional summary section -->
       <article aria-labelledby="resumo-title">
         <header>
           <h2 id="resumo-title">Resumo</h2>
@@ -91,6 +108,7 @@
         <p id="resumo"></p>
       </article>
 
+      <!-- Featured projects showcase -->
       <section aria-labelledby="projetos-title">
         <header>
           <h2 id="projetos-title">Projetos</h2>
@@ -98,6 +116,7 @@
         <ul id="projetos" role="list"></ul>
       </section>
 
+      <!-- Professional experience timeline -->
       <section aria-labelledby="experiencia-title">
         <header>
           <h2 id="experiencia-title">Experiência Profissional</h2>
@@ -106,8 +125,9 @@
       </section>
     </div>
 
-    <!-- Right Column - Sidebar -->
+    <!-- Sidebar column containing supplementary information -->
     <aside class="sidebar-column" role="complementary">
+      <!-- Educational background -->
       <section aria-labelledby="formacao-title">
         <header>
           <h2 id="formacao-title">Formação</h2>
@@ -115,6 +135,7 @@
         <p id="formacao"></p>
       </section>
 
+      <!-- Technical skills inventory -->
       <section aria-labelledby="habilidades-title">
         <header>
           <h2 id="habilidades-title">Habilidades Técnicas</h2>
@@ -122,6 +143,7 @@
         <ul id="habilidades" role="list"></ul>
       </section>
 
+      <!-- Professional certifications -->
       <section aria-labelledby="certificacoes-title">
         <header>
           <h2 id="certificacoes-title">Certificações</h2>
@@ -131,16 +153,16 @@
     </aside>
   </main>
 
-  <!-- Footer -->
+  <!-- Page footer with copyright and update information -->
   <footer role="contentinfo">
     <p>&copy; 2025 Angelo Ferdinand Imon Spanó. Todos os direitos reservados.</p>
     <p>Última atualização: <time datetime="2025-01-29">29 de Janeiro de 2025</time></p>
   </footer>
 
-  <!-- External Scripts -->
+  <!-- External library for PDF generation functionality -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 
-  <!-- Application Scripts -->
+  <!-- Application modules loaded in dependency order -->
   <script src="js/config.js" defer></script>
   <script src="js/data-manager.js" defer></script>
   <script src="js/ui-manager.js" defer></script>

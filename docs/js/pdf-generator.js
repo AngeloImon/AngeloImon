@@ -1,237 +1,595 @@
 /**
- * Gerador de PDF para o currículo
- * Responsável por criar e formatar o PDF do CV
+ * PDF Generation Module
+ * 
+ * Handles professional PDF export functionality with optimized layout,
+ * typography, and formatting. Implements multi-page support, proper
+ * content flow, and accessibility considerations for generated documents.
+ * 
+ * @author Angelo Ferdinand Imon Spanó
+ * @version 2.0.0
+ * @since 2025-01-29
  */
+
 class PDFGenerator {
     /**
-     * Inicializa o gerador de PDF
-     * @param {Object} cvData - Dados do CV
-     * @param {string} language - Idioma do CV
+     * Initialize PDF generator with configuration and state management
      */
-    constructor(cvData, language) {
-        /** @type {Object} Dados do CV */
-        this.cvData = cvData;
+    constructor() {
+        /** @type {Object} jsPDF instance reference */
+        this.pdf = null;
 
-        /** @type {string} Idioma atual */
-        this.language = language;
+        /** @type {Object} Current document configuration */
+        this.config = AppConfig.PDF_CONFIG;
 
-        /** @type {jsPDF} Instância do jsPDF */
-        this.pdf = new window.jspdf.jsPDF();
+        /** @type {number} Current Y position for content placement */
+        this.currentY = this.config.margin;
 
-        /** @type {number} Posição Y atual no documento */
-        this.yPosition = AppConfig.PDF_CONFIG.margin;
+        /** @type {number} Current page number */
+        this.currentPage = 1;
 
-        this.initializePDF();
+        /** @type {boolean} PDF library loading state */
+        this.isLibraryLoaded = false;
+
+        /** @type {Object} Font metrics for text measurement */
+        this.fontMetrics = {};
+
+        this.checkLibraryAvailability();
     }
 
     /**
-     * Inicializa configurações do PDF
+     * Verifies jsPDF library availability and initializes font metrics
      */
-    initializePDF() {
-        console.log('[PDFGenerator] Inicializando geração de PDF');
-    }
+    checkLibraryAvailability() {
+        if (typeof window.jsPDF !== 'undefined') {
+            this.isLibraryLoaded = true;
+            this.initializeFontMetrics();
 
-    /**
-     * Gera o PDF completo
-     * @returns {Promise<void>}
-     */
-    async generate() {
-        try {
-            this.addHeader();
-            this.addContactInfo();
-            this.addSection('resumo', this.cvData.resumo);
-            this.addProjectsSection();
-            this.addExperienceSection();
-            this.addSection('habilidades', this.cvData.habilidades.join(', '));
-            this.addSection('formacao', this.cvData.formacao);
-            this.addCertificationsSection();
+            if (AppConfig.DEBUG) {
+                console.log('[PDFGenerator] jsPDF library loaded successfully');
+            }
+        } else {
+            console.warn('[PDFGenerator] jsPDF library not available');
 
-            this.savePDF();
-
-        } catch (error) {
-            console.error('[PDFGenerator] Erro durante geração:', error);
-            throw error;
+            // Attempt to load library dynamically if needed
+            this.loadLibraryDynamically();
         }
     }
 
     /**
-     * Adiciona cabeçalho com nome
+     * Dynamically loads jsPDF library if not available
      */
-    addHeader() {
-        this.addText(
-            this.cvData.nome,
-            AppConfig.PDF_CONFIG.fontSize.title,
-            true
-        );
-        this.yPosition += 5;
+    async loadLibraryDynamically() {
+        try {
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+            script.onload = () => {
+                this.isLibraryLoaded = true;
+                this.initializeFontMetrics();
+                console.log('[PDFGenerator] jsPDF library loaded dynamically');
+            };
+
+            document.head.appendChild(script);
+        } catch (error) {
+            console.error('[PDFGenerator] Failed to load jsPDF library:', error);
+        }
     }
 
     /**
-     * Adiciona informações de contato
+     * Initializes font metrics for accurate text measurement
      */
-    addContactInfo() {
-        this.addText(`Email: ${this.cvData.email}`);
-        this.addText(`GitHub: ${this.cvData.links.github}`);
-        this.addText(`LinkedIn: ${this.cvData.links.linkedin}`);
-        this.yPosition += 10;
-    }
+    initializeFontMetrics() {
+        if (!this.isLibraryLoaded) return;
 
-    /**
-     * Adiciona seção genérica
-     * @param {string} sectionKey - Chave da seção
-     * @param {string} content - Conteúdo da seção
-     */
-    addSection(sectionKey, content) {
-        this.checkNewPage();
+        try {
+            const tempPdf = new window.jsPDF();
 
-        const title = this.getSectionTitle(sectionKey);
-        this.addText(title, AppConfig.PDF_CONFIG.fontSize.sectionTitle, true);
-        this.yPosition += 3;
-        this.addText(content);
-        this.yPosition += 10;
-    }
+            // Measure character widths for different font sizes
+            Object.keys(this.config.fontSize).forEach(key => {
+                const fontSize = this.config.fontSize[key];
+                tempPdf.setFontSize(fontSize);
 
-    /**
-     * Adiciona seção de projetos
-     */
-    addProjectsSection() {
-        this.checkNewPage();
-
-        const title = this.getSectionTitle('projetos');
-        this.addText(title, AppConfig.PDF_CONFIG.fontSize.sectionTitle, true);
-        this.yPosition += 3;
-
-        this.cvData.projetos.forEach(project => {
-            if (typeof project === 'object') {
-                // Projeto com estrutura completa
-                this.addText(
-                    `• ${project.nome}`,
-                    AppConfig.PDF_CONFIG.fontSize.small,
-                    true
-                );
-
-                if (project.descricao) {
-                    this.addText(
-                        `  ${project.descricao}`,
-                        AppConfig.PDF_CONFIG.fontSize.tiny
-                    );
-                }
-
-                if (project.link) {
-                    this.addText(
-                        `  Link: ${project.link}`,
-                        AppConfig.PDF_CONFIG.fontSize.link
-                    );
-                }
-            } else {
-                // Projeto simples (string)
-                this.addText(
-                    `• ${project}`,
-                    AppConfig.PDF_CONFIG.fontSize.small
-                );
-            }
-            this.yPosition += 2;
-        });
-
-        this.yPosition += 10;
-    }
-
-    /**
-     * Adiciona seção de experiência profissional
-     */
-    addExperienceSection() {
-        this.checkNewPage();
-
-        const title = this.getSectionTitle('experiencia');
-        this.addText(title, AppConfig.PDF_CONFIG.fontSize.sectionTitle, true);
-        this.yPosition += 3;
-
-        this.cvData.experiencia.forEach(exp => {
-            this.checkNewPage();
-
-            // Cargo e empresa
-            this.addText(
-                `${exp.cargo} - ${exp.empresa}`,
-                AppConfig.PDF_CONFIG.fontSize.jobTitle,
-                true
-            );
-
-            // Período
-            this.addText(exp.periodo, AppConfig.PDF_CONFIG.fontSize.small);
-
-            // Tarefas
-            exp.tarefas.forEach(task => {
-                this.addText(
-                    `• ${task}`,
-                    AppConfig.PDF_CONFIG.fontSize.small
-                );
+                this.fontMetrics[key] = {
+                    fontSize: fontSize,
+                    charWidth: tempPdf.getTextWidth('W') / fontSize,
+                    lineHeight: fontSize * 1.2
+                };
             });
 
-            this.yPosition += 5;
-        });
-    }
-
-    /**
-     * Adiciona seção de certificações
-     */
-    addCertificationsSection() {
-        this.checkNewPage();
-
-        const title = this.getSectionTitle('certificacoes');
-        this.addText(title, AppConfig.PDF_CONFIG.fontSize.sectionTitle, true);
-        this.yPosition += 3;
-
-        this.cvData.certificacoes.forEach(cert => {
-            this.addText(
-                `• ${cert}`,
-                AppConfig.PDF_CONFIG.fontSize.small
-            );
-        });
-    }
-
-    /**
-     * Adiciona texto ao PDF
-     * @param {string} text - Texto a ser adicionado
-     * @param {number} fontSize - Tamanho da fonte
-     * @param {boolean} isBold - Se o texto deve ser negrito
-     */
-    addText(text, fontSize = AppConfig.PDF_CONFIG.fontSize.normal, isBold = false) {
-        this.pdf.setFontSize(fontSize);
-        this.pdf.setFont(undefined, isBold ? 'bold' : 'normal');
-
-        const lines = this.pdf.splitTextToSize(text, AppConfig.PDF_CONFIG.maxWidth);
-        this.pdf.text(lines, AppConfig.PDF_CONFIG.margin, this.yPosition);
-        this.yPosition += lines.length * AppConfig.PDF_CONFIG.lineHeight;
-    }
-
-    /**
-     * Verifica se é necessário adicionar nova página
-     */
-    checkNewPage() {
-        if (this.yPosition > AppConfig.PDF_CONFIG.pageHeight) {
-            this.pdf.addPage();
-            this.yPosition = AppConfig.PDF_CONFIG.margin;
+            if (AppConfig.DEBUG) {
+                console.log('[PDFGenerator] Font metrics initialized:', this.fontMetrics);
+            }
+        } catch (error) {
+            console.error('[PDFGenerator] Failed to initialize font metrics:', error);
         }
     }
 
     /**
-     * Obtém título traduzido de uma seção
-     * @param {string} sectionKey - Chave da seção
-     * @returns {string} Título da seção
+     * Generates complete PDF document from CV data
+     * @param {Object} cvData - Complete CV data object
+     * @param {string} language - Current language for localization
+     * @returns {Promise<void>} Resolves when PDF generation is complete
+     * @throws {Error} If PDF generation fails
      */
-    getSectionTitle(sectionKey) {
-        return this.cvData.secoes?.[sectionKey] || sectionKey;
+    async generatePDF(cvData, language = 'pt') {
+        PerformanceMonitor.start('generatePDF');
+
+        if (!this.isLibraryLoaded) {
+            throw new Error(AppConfig.INTERFACE_TEXTS[language].errors.pdfLibraryNotLoaded);
+        }
+
+        if (!cvData || Object.keys(cvData).length === 0) {
+            throw new Error(AppConfig.INTERFACE_TEXTS[language].errors.dataNotLoaded);
+        }
+
+        try {
+            this.initializeDocument();
+            this.generateHeader(cvData);
+            this.generateContent(cvData, language);
+            this.addFooter(cvData);
+            this.savePDF(cvData.nome || 'CV');
+
+            if (AppConfig.DEBUG) {
+                console.log('[PDFGenerator] PDF generated successfully');
+            }
+
+        } catch (error) {
+            console.error('[PDFGenerator] PDF generation failed:', error);
+            throw new Error(AppConfig.INTERFACE_TEXTS[language].errors.pdfGenerationError);
+        } finally {
+            PerformanceMonitor.end('generatePDF');
+        }
     }
 
     /**
-     * Salva o PDF com nome formatado
+     * Initializes new PDF document with optimal settings
      */
-    savePDF() {
-        const fileName = `CV_${this.cvData.nome.replace(/\s+/g, '_')}_${this.language.toUpperCase()}.pdf`;
-        this.pdf.save(fileName);
-        console.log(`[PDFGenerator] PDF salvo como: ${fileName}`);
+    initializeDocument() {
+        this.pdf = new window.jsPDF('portrait', 'mm', 'a4');
+        this.currentY = this.config.margin;
+        this.currentPage = 1;
+
+        // Set document properties
+        this.pdf.setProperties({
+            title: 'Professional CV',
+            subject: 'Curriculum Vitae',
+            author: 'Angelo Ferdinand Imon Spanó',
+            creator: 'CV Application',
+            producer: 'jsPDF'
+        });
+
+        // Set default font and encoding
+        this.pdf.setFont('helvetica', 'normal');
+        this.pdf.setFontSize(this.config.fontSize.normal);
+    }
+
+    /**
+     * Generates professional document header with contact information
+     * @param {Object} cvData - CV data containing personal information
+     */
+    generateHeader(cvData) {
+        const centerX = this.pdf.internal.pageSize.getWidth() / 2;
+
+        // Main name title
+        this.pdf.setFontSize(this.config.fontSize.title);
+        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setTextColor(this.config.colors.primary);
+
+        const nameText = cvData.nome || 'Professional CV';
+        const nameWidth = this.pdf.getTextWidth(nameText);
+        this.pdf.text(nameText, centerX - nameWidth / 2, this.currentY);
+
+        this.currentY += 12;
+
+        // Contact information
+        this.pdf.setFontSize(this.config.fontSize.normal);
+        this.pdf.setFont('helvetica', 'normal');
+        this.pdf.setTextColor(this.config.colors.text);
+
+        // Email
+        if (cvData.email) {
+            const emailText = `📧 ${cvData.email}`;
+            const emailWidth = this.pdf.getTextWidth(emailText);
+            this.pdf.text(emailText, centerX - emailWidth / 2, this.currentY);
+            this.currentY += 6;
+        }
+
+        // Links
+        if (cvData.links) {
+            let linksText = '';
+
+            if (cvData.links.github) {
+                linksText += `🔗 GitHub: ${cvData.links.github}`;
+            }
+
+            if (cvData.links.linkedin) {
+                if (linksText) linksText += ' | ';
+                linksText += `💼 LinkedIn: ${cvData.links.linkedin}`;
+            }
+
+            if (linksText) {
+                this.pdf.setFontSize(this.config.fontSize.link);
+                const linksWidth = this.pdf.getTextWidth(linksText);
+                this.pdf.text(linksText, centerX - linksWidth / 2, this.currentY);
+                this.currentY += 8;
+            }
+        }
+
+        // Separator line
+        this.pdf.setDrawColor(this.config.colors.primary);
+        this.pdf.setLineWidth(0.5);
+        this.pdf.line(this.config.margin, this.currentY,
+            this.pdf.internal.pageSize.getWidth() - this.config.margin, this.currentY);
+
+        this.currentY += 10;
+    }
+
+    /**
+     * Generates main content sections with proper formatting
+     * @param {Object} cvData - Complete CV data
+     * @param {string} language - Current language
+     */
+    generateContent(cvData, language) {
+        // Professional summary
+        if (cvData.resumo) {
+            this.addSection(cvData.secoes?.resumo || 'Resumo', cvData.resumo);
+        }
+
+        // Professional experience
+        if (cvData.experiencia && cvData.experiencia.length > 0) {
+            this.addExperienceSection(cvData.experiencia, cvData.secoes?.experiencia || 'Experiência Profissional');
+        }
+
+        // Projects
+        if (cvData.projetos && cvData.projetos.length > 0) {
+            this.addProjectsSection(cvData.projetos, cvData.secoes?.projetos || 'Projetos');
+        }
+
+        // Technical skills
+        if (cvData.habilidades && cvData.habilidades.length > 0) {
+            this.addSkillsSection(cvData.habilidades, cvData.secoes?.habilidades || 'Habilidades Técnicas');
+        }
+
+        // Education
+        if (cvData.formacao) {
+            this.addSection(cvData.secoes?.formacao || 'Formação', cvData.formacao);
+        }
+
+        // Certifications
+        if (cvData.certificacoes && cvData.certificacoes.length > 0) {
+            this.addCertificationsSection(cvData.certificacoes, cvData.secoes?.certificacoes || 'Certificações');
+        }
+    }
+
+    /**
+     * Adds a standard section with title and content
+     * @param {string} title - Section title
+     * @param {string} content - Section content
+     */
+    addSection(title, content) {
+        this.checkPageBreak(30);
+
+        // Section title
+        this.pdf.setFontSize(this.config.fontSize.sectionTitle);
+        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setTextColor(this.config.colors.primary);
+        this.pdf.text(title, this.config.margin, this.currentY);
+
+        this.currentY += 8;
+
+        // Section content
+        this.pdf.setFontSize(this.config.fontSize.normal);
+        this.pdf.setFont('helvetica', 'normal');
+        this.pdf.setTextColor(this.config.colors.text);
+
+        const wrappedText = this.wrapText(content, this.config.maxWidth);
+        this.addWrappedText(wrappedText);
+
+        this.currentY += 10;
+    }
+
+    /**
+     * Adds professional experience section with structured formatting
+     * @param {Array} experiences - Array of experience objects
+     * @param {string} title - Section title
+     */
+    addExperienceSection(experiences, title) {
+        this.checkPageBreak(40);
+
+        // Section title
+        this.addSectionTitle(title);
+
+        experiences.forEach((exp, index) => {
+            this.checkPageBreak(25);
+
+            // Job title and company
+            this.pdf.setFontSize(this.config.fontSize.jobTitle);
+            this.pdf.setFont('helvetica', 'bold');
+            this.pdf.setTextColor(this.config.colors.primary);
+
+            const jobTitle = `${exp.cargo} - ${exp.empresa}`;
+            this.pdf.text(jobTitle, this.config.margin, this.currentY);
+            this.currentY += 6;
+
+            // Period
+            if (exp.periodo) {
+                this.pdf.setFontSize(this.config.fontSize.small);
+                this.pdf.setFont('helvetica', 'italic');
+                this.pdf.setTextColor(this.config.colors.secondary);
+                this.pdf.text(exp.periodo, this.config.margin, this.currentY);
+                this.currentY += 6;
+            }
+
+            // Tasks
+            if (exp.tarefas && exp.tarefas.length > 0) {
+                this.pdf.setFontSize(this.config.fontSize.normal);
+                this.pdf.setFont('helvetica', 'normal');
+                this.pdf.setTextColor(this.config.colors.text);
+
+                exp.tarefas.forEach(task => {
+                    this.checkPageBreak(8);
+                    const bulletText = `• ${task}`;
+                    const wrappedBullet = this.wrapText(bulletText, this.config.maxWidth - 5);
+                    this.addWrappedText(wrappedBullet, this.config.margin + 5);
+                });
+            }
+
+            this.currentY += 5;
+        });
+
+        this.currentY += 5;
+    }
+
+    /**
+     * Adds projects section with links and descriptions
+     * @param {Array} projects - Array of project objects
+     * @param {string} title - Section title
+     */
+    addProjectsSection(projects, title) {
+        this.checkPageBreak(30);
+
+        this.addSectionTitle(title);
+
+        projects.forEach((project, index) => {
+            this.checkPageBreak(15);
+
+            // Project name
+            this.pdf.setFontSize(this.config.fontSize.jobTitle);
+            this.pdf.setFont('helvetica', 'bold');
+            this.pdf.setTextColor(this.config.colors.primary);
+            this.pdf.text(project.nome, this.config.margin, this.currentY);
+            this.currentY += 6;
+
+            // Project description
+            if (project.descricao) {
+                this.pdf.setFontSize(this.config.fontSize.normal);
+                this.pdf.setFont('helvetica', 'normal');
+                this.pdf.setTextColor(this.config.colors.text);
+
+                const wrappedDesc = this.wrapText(project.descricao, this.config.maxWidth);
+                this.addWrappedText(wrappedDesc);
+            }
+
+            // Project link
+            if (project.link) {
+                this.pdf.setFontSize(this.config.fontSize.link);
+                this.pdf.setFont('helvetica', 'normal');
+                this.pdf.setTextColor(this.config.colors.primary);
+                this.pdf.text(`🔗 ${project.link}`, this.config.margin, this.currentY);
+                this.currentY += 6;
+            }
+
+            this.currentY += 3;
+        });
+
+        this.currentY += 5;
+    }
+
+    /**
+     * Adds technical skills section with organized layout
+     * @param {Array} skills - Array of skill strings
+     * @param {string} title - Section title
+     */
+    addSkillsSection(skills, title) {
+        this.checkPageBreak(20);
+
+        this.addSectionTitle(title);
+
+        this.pdf.setFontSize(this.config.fontSize.normal);
+        this.pdf.setFont('helvetica', 'normal');
+        this.pdf.setTextColor(this.config.colors.text);
+
+        const skillsText = skills.join(' • ');
+        const wrappedSkills = this.wrapText(skillsText, this.config.maxWidth);
+        this.addWrappedText(wrappedSkills);
+
+        this.currentY += 10;
+    }
+
+    /**
+     * Adds certifications section with bullet points
+     * @param {Array} certifications - Array of certification strings
+     * @param {string} title - Section title
+     */
+    addCertificationsSection(certifications, title) {
+        this.checkPageBreak(20);
+
+        this.addSectionTitle(title);
+
+        this.pdf.setFontSize(this.config.fontSize.normal);
+        this.pdf.setFont('helvetica', 'normal');
+        this.pdf.setTextColor(this.config.colors.text);
+
+        certifications.forEach(cert => {
+            this.checkPageBreak(6);
+            const bulletText = `• ${cert}`;
+            this.pdf.text(bulletText, this.config.margin, this.currentY);
+            this.currentY += 6;
+        });
+
+        this.currentY += 5;
+    }
+
+    /**
+     * Adds formatted section title
+     * @param {string} title - Section title text
+     */
+    addSectionTitle(title) {
+        this.pdf.setFontSize(this.config.fontSize.sectionTitle);
+        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setTextColor(this.config.colors.primary);
+        this.pdf.text(title, this.config.margin, this.currentY);
+        this.currentY += 10;
+    }
+
+    /**
+     * Wraps text to fit within specified width
+     * @param {string} text - Text to wrap
+     * @param {number} maxWidth - Maximum width in mm
+     * @returns {Array<string>} Array of wrapped text lines
+     */
+    wrapText(text, maxWidth) {
+        const words = text.split(' ');
+        const lines = [];
+        let currentLine = '';
+
+        words.forEach(word => {
+            const testLine = currentLine ? `${currentLine} ${word}` : word;
+            const testWidth = this.pdf.getTextWidth(testLine);
+
+            if (testWidth <= maxWidth) {
+                currentLine = testLine;
+            } else {
+                if (currentLine) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    // Word is too long, force break
+                    lines.push(word);
+                    currentLine = '';
+                }
+            }
+        });
+
+        if (currentLine) {
+            lines.push(currentLine);
+        }
+
+        return lines;
+    }
+
+    /**
+     * Adds wrapped text with proper line spacing
+     * @param {Array<string>} lines - Array of text lines
+     * @param {number} leftMargin - Left margin for text
+     */
+    addWrappedText(lines, leftMargin = null) {
+        const margin = leftMargin || this.config.margin;
+
+        lines.forEach(line => {
+            this.checkPageBreak(this.config.lineHeight);
+            this.pdf.text(line, margin, this.currentY);
+            this.currentY += this.config.lineHeight;
+        });
+    }
+
+    /**
+     * Checks if page break is needed and creates new page if necessary
+     * @param {number} requiredSpace - Required space in mm
+     */
+    checkPageBreak(requiredSpace) {
+        const pageHeight = this.pdf.internal.pageSize.getHeight();
+        const bottomMargin = 30;
+
+        if (this.currentY + requiredSpace > pageHeight - bottomMargin) {
+            this.addPageBreak();
+        }
+    }
+
+    /**
+     * Adds a new page with proper initialization
+     */
+    addPageBreak() {
+        this.pdf.addPage();
+        this.currentPage++;
+        this.currentY = this.config.margin;
+
+        if (AppConfig.DEBUG) {
+            console.log(`[PDFGenerator] Added page ${this.currentPage}`);
+        }
+    }
+
+    /**
+     * Adds professional footer to the document
+     * @param {Object} cvData - CV data for footer content
+     */
+    addFooter(cvData) {
+        const pageCount = this.pdf.internal.getNumberOfPages();
+
+        for (let i = 1; i <= pageCount; i++) {
+            this.pdf.setPage(i);
+
+            const pageHeight = this.pdf.internal.pageSize.getHeight();
+            const pageWidth = this.pdf.internal.pageSize.getWidth();
+
+            // Footer text
+            this.pdf.setFontSize(this.config.fontSize.tiny);
+            this.pdf.setFont('helvetica', 'normal');
+            this.pdf.setTextColor(this.config.colors.secondary);
+
+            const footerText = `Generated on ${new Date().toLocaleDateString()} - Page ${i} of ${pageCount}`;
+            const footerWidth = this.pdf.getTextWidth(footerText);
+
+            this.pdf.text(footerText, (pageWidth - footerWidth) / 2, pageHeight - 10);
+        }
+    }
+
+    /**
+     * Saves the generated PDF with appropriate filename
+     * @param {string} name - Base name for the file
+     */
+    savePDF(name) {
+        const sanitizedName = name.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
+        const timestamp = new Date().toISOString().split('T')[0];
+        const filename = `${sanitizedName}_CV_${timestamp}.pdf`;
+
+        this.pdf.save(filename);
+
+        if (AppConfig.DEBUG) {
+            console.log(`[PDFGenerator] PDF saved as: ${filename}`);
+        }
+    }
+
+    /**
+     * Gets PDF generation statistics for debugging
+     * @returns {Object} Generation statistics
+     */
+    getStats() {
+        return {
+            isLibraryLoaded: this.isLibraryLoaded,
+            currentPage: this.currentPage,
+            currentY: this.currentY,
+            fontMetrics: Object.keys(this.fontMetrics),
+            hasActivePDF: !!this.pdf
+        };
+    }
+
+    /**
+     * Cleanup method for resetting generator state
+     */
+    cleanup() {
+        this.pdf = null;
+        this.currentY = this.config.margin;
+        this.currentPage = 1;
+
+        if (AppConfig.DEBUG) {
+            console.log('[PDFGenerator] Cleanup completed');
+        }
     }
 }
 
-// Torna a classe globalmente acessível
+// Export to global scope
 window.PDFGenerator = PDFGenerator;
+
+if (AppConfig.DEBUG) {
+    console.log('[PDFGenerator] Module loaded successfully');
+}
