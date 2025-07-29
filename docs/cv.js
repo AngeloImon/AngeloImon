@@ -1,11 +1,13 @@
 let dadosCV = {};
 let idiomaAtual = 'pt';
 
-// Função para carregar dados do JSON
-async function carregarDadosJSON() {
-  console.log('Tentando carregar cv.json...');
+// Função para carregar dados do JSON baseado no idioma
+async function carregarDadosJSON(idioma = 'pt') {
+  const arquivo = idioma === 'pt' ? 'cv.json' : 'cv.en.json';
+  console.log(`Tentando carregar ${arquivo}...`);
+  
   try {
-    const response = await fetch('cv.json');
+    const response = await fetch(arquivo);
     console.log('Response status:', response.status);
     
     if (!response.ok) {
@@ -20,15 +22,14 @@ async function carregarDadosJSON() {
     atualizarTitulos();
     
   } catch (error) {
-    console.error('Erro ao carregar cv.json:', error);
+    console.error(`Erro ao carregar ${arquivo}:`, error);
   }
 }
 
 // Função para trocar idioma
 function trocarIdioma(idioma) {
   idiomaAtual = idioma;
-  carregarDados();
-  atualizarTitulos();
+  carregarDadosJSON(idioma);
 }
 
 // Função para carregar dados na página
@@ -68,10 +69,20 @@ function carregarDados() {
   });
 }
 
-// Função para atualizar títulos (só português por enquanto)
+// Função para atualizar títulos
 function atualizarTitulos() {
-  // Títulos já estão no HTML
+  if (!dadosCV.secoes) return;
+  
+  const secoes = dadosCV.secoes;
+  const titulos = document.querySelectorAll('main section h2');
+  
+  titulos[0].textContent = secoes.resumo;
+  titulos[1].textContent = secoes.experiencia;
+  titulos[2].textContent = secoes.habilidades;
+  titulos[3].textContent = secoes.formacao;
+  titulos[4].textContent = secoes.certificacoes;
+  titulos[5].textContent = secoes.projetos;
 }
 
 // Inicializar
-document.addEventListener('DOMContentLoaded', carregarDadosJSON);
+document.addEventListener('DOMContentLoaded', () => carregarDadosJSON('pt'));
