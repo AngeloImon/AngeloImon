@@ -96,16 +96,7 @@ class DataManager {
         const fileName = AppConfig.DATA_FILES[language];
 
         return [
-            // Primary production URL
-            `https://angeloimon.github.io/AngeloImon/docs/${fileName}`,
-
-            // Raw GitHub content URLs
-            `https://raw.githubusercontent.com/AngeloImon/AngeloImon/main/docs/${fileName}`,
-
-            // JsDelivr CDN fallback
-            `https://cdn.jsdelivr.net/gh/AngeloImon/AngeloImon@main/docs/${fileName}`,
-
-            // Local development fallback
+            // CORRIGIR: Usar apenas local que funciona
             `./${fileName}`
         ];
     }
