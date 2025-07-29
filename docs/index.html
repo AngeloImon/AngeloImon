@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Currículo de Angelo Ferdinand Imon Spanó - Desenvolvedor em transição para tecnologia">
+  <meta name="description"
+    content="Currículo de Angelo Ferdinand Imon Spanó - Desenvolvedor em transição para tecnologia">
   <title>Angelo Imon - Desenvolvedor</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <!-- Navigation Controls -->
   <nav class="controls" aria-label="Controles da página">
     <div class="language-selector">
-      <button onclick="trocarIdioma('pt')" aria-label="Português">🇧🇷 Português</button>
-      <button onclick="trocarIdioma('en')" aria-label="English">🇺🇸 English</button>
+      <button data-action="language" data-lang="pt" aria-label="Português">
+        🇧🇷 Português
+      </button>
+      <button data-action="language" data-lang="en" aria-label="English">
+        🇺🇸 English
+      </button>
     </div>
     <div class="action-buttons">
-      <button id="export-pdf" onclick="exportarPDF()" aria-label="Exportar PDF">📄 Exportar PDF</button>
-      <button id="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">🌙 Tema Escuro</button>
+      <button id="export-pdf" data-action="export-pdf" aria-label="Exportar PDF">
+        📄 Exportar PDF
+      </button>
+      <button id="theme-toggle" data-action="toggle-theme" aria-label="Alternar tema">
+        🌙 Tema Escuro
+      </button>
     </div>
   </nav>
 
+  <!-- Header Section -->
   <header>
     <h1 id="nome">Angelo Ferdinand Imon Spanó</h1>
     <div class="contact-info">
       <p id="email">angeloimon@outlook.com</p>
       <p class="links">
         <a id="github" href="https://github.com/AngeloImon" target="_blank" rel="noopener">GitHub</a> |
-        <a id="linkedin" href="https://linkedin.com/in/angelo-ferdinand-imon-spano" target="_blank" rel="noopener">LinkedIn</a>
+        <a id="linkedin" href="https://linkedin.com/in/angelo-ferdinand-imon-spano" target="_blank"
+          rel="noopener">LinkedIn</a>
       </p>
     </div>
   </header>
 
-  <!-- Loading principal -->
+  <!-- Loading State -->
   <div id="main-loading" class="main-loading">
     <div class="loading-content">
       <div class="spinner"></div>
@@ -38,15 +52,15 @@
     </div>
   </div>
 
+  <!-- Main Content -->
   <main id="main-content" style="display: none;">
-    <!-- Coluna Principal (Esquerda) -->
+    <!-- Left Column - Primary Content -->
     <div class="main-column">
       <section aria-labelledby="resumo-title">
         <h2 id="resumo-title">Resumo</h2>
         <p id="resumo"></p>
       </section>
 
-      <!-- ALTERADO: Projetos agora vem antes da Experiência -->
       <section aria-labelledby="projetos-title">
         <h2 id="projetos-title">Projetos</h2>
         <ul id="projetos"></ul>
@@ -58,7 +72,7 @@
       </section>
     </div>
 
-    <!-- Sidebar (Direita) -->
+    <!-- Right Column - Sidebar -->
     <div class="sidebar-column">
       <section aria-labelledby="formacao-title">
         <h2 id="formacao-title">Formação</h2>
@@ -76,186 +90,16 @@
       </section>
     </div>
   </main>
-  
-  <!-- Scripts -->
+
+  <!-- External Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="cv.js"></script>
-  <script>
-    let idiomaInterfaceAtual = 'pt';
 
-    // Textos do botão de tema e exportar
-    const interfaceTexts = {
-      pt: {
-        darkTheme: '🌙 Tema Escuro',
-        lightTheme: '☀️ Tema Claro',
-        exportPdf: '📄 Exportar PDF'
-      },
-      en: {
-        darkTheme: '🌙 Dark Theme',
-        lightTheme: '☀️ Light Theme',
-        exportPdf: '📄 Export PDF'
-      }
-    };
-
-    // Função para exportar PDF
-    function exportarPDF() {
-      const { jsPDF } = window.jspdf;
-      const pdf = new jsPDF();
-      
-      // Configurações
-      const margin = 20;
-      let yPosition = margin;
-      const lineHeight = 7;
-      const maxWidth = 170;
-      
-      // Função auxiliar para adicionar texto
-      function addText(text, fontSize = 12, isBold = false) {
-        pdf.setFontSize(fontSize);
-        if (isBold) pdf.setFont(undefined, 'bold');
-        else pdf.setFont(undefined, 'normal');
-        
-        const lines = pdf.splitTextToSize(text, maxWidth);
-        pdf.text(lines, margin, yPosition);
-        yPosition += lines.length * lineHeight;
-        return yPosition;
-      }
-      
-      // Função para adicionar nova página se necessário
-      function checkNewPage() {
-        if (yPosition > 270) {
-          pdf.addPage();
-          yPosition = margin;
-        }
-      }
-      
-      try {
-        // Título
-        addText(dadosCV.nome, 20, true);
-        yPosition += 5;
-        
-        // Contato
-        addText(`Email: ${dadosCV.email}`);
-        addText(`GitHub: ${dadosCV.links.github}`);
-        addText(`LinkedIn: ${dadosCV.links.linkedin}`);
-        yPosition += 10;
-        
-        // Resumo
-        checkNewPage();
-        addText(dadosCV.secoes?.resumo || 'Resumo', 16, true);
-        yPosition += 3;
-        addText(dadosCV.resumo);
-        yPosition += 10;
-        
-        // ALTERADO: Projetos antes da Experiência no PDF também
-        checkNewPage();
-        addText(dadosCV.secoes?.projetos || 'Projetos', 16, true);
-        yPosition += 3;
-        dadosCV.projetos.forEach(projeto => {
-          if (typeof projeto === 'object') {
-            addText(`• ${projeto.nome}`, 10, true);
-            if (projeto.descricao) {
-              addText(`  ${projeto.descricao}`, 9);
-            }
-            if (projeto.link) {
-              addText(`  Link: ${projeto.link}`, 8);
-            }
-          } else {
-            addText(`• ${projeto}`, 10);
-          }
-          yPosition += 2;
-        });
-        yPosition += 10;
-        
-        // Experiência
-        checkNewPage();
-        addText(dadosCV.secoes?.experiencia || 'Experiência Profissional', 16, true);
-        yPosition += 3;
-        
-        dadosCV.experiencia.forEach(exp => {
-          checkNewPage();
-          addText(`${exp.cargo} - ${exp.empresa}`, 14, true);
-          addText(exp.periodo, 10);
-          exp.tarefas.forEach(tarefa => {
-            addText(`• ${tarefa}`, 10);
-          });
-          yPosition += 5;
-        });
-        
-        // Habilidades
-        checkNewPage();
-        addText(dadosCV.secoes?.habilidades || 'Habilidades Técnicas', 16, true);
-        yPosition += 3;
-        addText(dadosCV.habilidades.join(', '));
-        yPosition += 10;
-        
-        // Formação
-        checkNewPage();
-        addText(dadosCV.secoes?.formacao || 'Formação', 16, true);
-        yPosition += 3;
-        addText(dadosCV.formacao);
-        yPosition += 10;
-        
-        // Certificações
-        checkNewPage();
-        addText(dadosCV.secoes?.certificacoes || 'Certificações', 16, true);
-        yPosition += 3;
-        dadosCV.certificacoes.forEach(cert => {
-          addText(`• ${cert}`, 10);
-        });
-        
-        // Salvar PDF
-        const nomeArquivo = `CV_${dadosCV.nome.replace(/\s+/g, '_')}_${idiomaInterfaceAtual.toUpperCase()}.pdf`;
-        pdf.save(nomeArquivo);
-        
-      } catch (error) {
-        console.error('Erro ao gerar PDF:', error);
-        alert('Erro ao gerar PDF. Tente novamente.');
-      }
-    }
-
-    // Função para atualizar textos da interface
-    function atualizarTextosInterface() {
-      const themeButton = document.getElementById('theme-toggle');
-      const exportButton = document.getElementById('export-pdf');
-      const isDarkTheme = document.body.classList.contains('dark-theme');
-      
-      // Atualizar botão de tema
-      if (isDarkTheme) {
-        themeButton.textContent = interfaceTexts[idiomaInterfaceAtual].lightTheme;
-      } else {
-        themeButton.textContent = interfaceTexts[idiomaInterfaceAtual].darkTheme;
-      }
-      
-      // Atualizar botão de exportar
-      exportButton.textContent = interfaceTexts[idiomaInterfaceAtual].exportPdf;
-    }
-
-    // Função para alternar tema
-    function toggleTheme() {
-      const body = document.body;
-      body.classList.toggle('dark-theme');
-      localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
-      atualizarTextosInterface();
-    }
-
-    // Função para trocar idioma da interface
-    function trocarIdiomaInterface(idioma) {
-      idiomaInterfaceAtual = idioma;
-      atualizarTextosInterface();
-    }
-    
-    // Carregar tema salvo
-    document.addEventListener('DOMContentLoaded', function() {
-      const savedTheme = localStorage.getItem('theme');
-      
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark-theme');
-      }
-      
-      atualizarTextosInterface();
-      
-      console.log('DOM carregado, iniciando aplicação...');
-    });
-  </script>
+  <!-- Application Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/data-manager.js"></script>
+  <script src="js/ui-manager.js"></script>
+  <script src="js/pdf-generator.js"></script>
+  <script src="js/app.js"></script>
 </body>
+
 </html>
