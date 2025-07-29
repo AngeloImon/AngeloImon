@@ -1,7 +1,7 @@
 function carregarCV(data) {
   // Campos simples
   document.getElementById('nome').textContent = data.nome || '';
-  document.getElementById('contato').textContent = data.contato || '';
+  document.getElementById('email').textContent = data.contato || '';
   document.getElementById('resumo').textContent = data.resumo || '';
   document.getElementById('formacao').textContent = data.formacao || '';
   document.getElementById('github').href = data.links?.github || '#';
