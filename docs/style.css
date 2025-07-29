@@ -140,3 +140,27 @@ button:hover {
   background-color: var(--section-bg);
   color: var(--text-color);
 }
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--section-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#export-pdf {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+}
+
+#export-pdf:hover {
+  background-color: #229954;
+}
