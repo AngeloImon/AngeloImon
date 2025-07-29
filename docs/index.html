@@ -1,73 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Currículo - Angelo Imon</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Currículo de Angelo Ferdinand Imon Spanó - Desenvolvedor em transição para tecnologia">
+  <title>Angelo Imon - Desenvolvedor</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div style="text-align:right; padding:10px;">
-    <button onclick="trocarIdioma('pt')">🇧🇷 Português</button>
-    <button onclick="trocarIdioma('en')">🇺🇸 English</button>
-  </div>
+  <!-- Controles de idioma -->
+  <nav class="language-selector" aria-label="Seletor de idioma">
+    <button onclick="trocarIdioma('pt')" aria-label="Português">🇧🇷 Português</button>
+    <button onclick="trocarIdioma('en')" aria-label="English">🇺🇸 English</button>
+  </nav>
 
   <header>
-    <h1 id="nome"></h1>
-    <p id="email"></p>
-    <p>
-      <a id="github" href="#" target="_blank">GitHub</a> |
-      <a id="linkedin" href="#" target="_blank">LinkedIn</a>
-    </p>
+    <h1 id="nome">Angelo Ferdinand Imon Spanó</h1>
+    <div class="contact-info">
+      <p id="email">angeloimon@outlook.com</p>
+      <p class="links">
+        <a id="github" href="https://github.com/AngeloImon" target="_blank" rel="noopener">GitHub</a> |
+        <a id="linkedin" href="https://linkedin.com/in/angelo-ferdinand-imon-spano" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
+    </div>
   </header>
 
   <main>
-    <section>
-      <h2>Resumo</h2>
-      <p id="resumo"></p>
+    <section aria-labelledby="resumo-title">
+      <h2 id="resumo-title">Resumo</h2>
+      <p id="resumo">Carregando...</p>
     </section>
 
-    <section>
-      <h2>Experiência Profissional</h2>
-      <div id="experiencia"></div>
+    <section aria-labelledby="experiencia-title">
+      <h2 id="experiencia-title">Experiência Profissional</h2>
+      <div id="experiencia">Carregando...</div>
     </section>
 
-    <section>
-      <h2>Habilidades Técnicas</h2>
-      <ul id="habilidades"></ul>
+    <section aria-labelledby="habilidades-title">
+      <h2 id="habilidades-title">Habilidades Técnicas</h2>
+      <ul id="habilidades">
+        <li>Carregando...</li>
+      </ul>
     </section>
 
-    <section>
-      <h2>Formação</h2>
-      <p id="formacao"></p>
+    <section aria-labelledby="formacao-title">
+      <h2 id="formacao-title">Formação</h2>
+      <p id="formacao">Carregando...</p>
     </section>
 
-    <section>
-      <h2>Certificações</h2>
-      <ul id="certificacoes"></ul>
+    <section aria-labelledby="certificacoes-title">
+      <h2 id="certificacoes-title">Certificações</h2>
+      <ul id="certificacoes">
+        <li>Carregando...</li>
+      </ul>
     </section>
 
-    <section>
-      <h2>Projetos</h2>
-      <ul id="projetos"></ul>
+    <section aria-labelledby="projetos-title">
+      <h2 id="projetos-title">Projetos</h2>
+      <ul id="projetos">
+        <li>Carregando...</li>
+      </ul>
     </section>
   </main>
 
-<!-- Scripts no final para garantir carregamento -->
+  <!-- Loading indicator -->
+  <div id="loading" class="loading" style="display: none;">
+    <p>Carregando dados...</p>
+  </div>
+
+  <!-- Scripts -->
   <script src="cv.js"></script>
   <script>
-    // Debug: verificar se o script foi carregado
-    console.log('Script carregado!');
-    
-    // Verificação adicional se algo não funcionar
-    setTimeout(function() {
-      if (!document.getElementById('nome').textContent) {
-        console.log('Dados não carregados, tentando novamente...');
-        if (typeof carregarDados === 'function') {
-          carregarDados();
-          atualizarTitulos();
+    // Verificação de carregamento melhorada
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM carregado, iniciando aplicação...');
+      
+      // Timeout para debug se algo falhar
+      setTimeout(function() {
+        if (!document.getElementById('nome').textContent || 
+            document.getElementById('nome').textContent === 'Angelo Ferdinand Imon Spanó') {
+          console.warn('Dados ainda não foram carregados do JSON');
         }
-      }
-    }, 1000);
+      }, 2000);
+    });
   </script>
 </body>
 </html>
