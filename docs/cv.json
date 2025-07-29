@@ -5,7 +5,7 @@
     "github": "https://github.com/AngeloImon",
     "linkedin": "https://linkedin.com/in/angelo-ferdinand-imon-spano"
   },
-  "resumo": "Desenvolvedor em transição para tecnologia, cursando ADS pela FATEC-RP. Fluente em inglês (TOEIC 945). Experiência em suporte técnico, atendimento e crédito. Projetos com Python, SQL, OpenCV e Git. Entrego soluções empáticas e com foco em valor.",
+  "resumo": "Desenvolvedor em transição para a área de tecnologia, atualmente cursando Análise e Desenvolvimento de Sistemas pela FATEC-RP. Fluente em inglês (TOEIC 945) e com sólida experiência em suporte técnico, atendimento ao cliente e análise de crédito. Desenvolvi projetos práticos com foco em lógica, estrutura de dados, automações e visão computacional — aplicando Python, SQL, C++, Oracle BD e OpenCV. Integro Git/GitHub e metodologias ágeis no versionamento e organização dos projetos. Minhas experiências com usuários finais, gestão de setores e comunicação contribuem para soluções tecnológicas empáticas, claras e voltadas à entrega de valor. Estou pronto para crescer e colaborar em times que valorizem iniciativa, aprendizado contínuo e impacto com propósito.",
   "formacao": "Tecnólogo em Análise e Desenvolvimento de Sistemas – FATEC-RP (2022–2025)",
   "habilidades": ["Python", "C++", "PL/SQL", "Oracle DB", "Git/GitHub", "VS Code", "Google Colab"],
   "certificacoes": [
@@ -13,30 +13,30 @@
     "SAP/ABAP",
     "Oracle BD Design",
     "Oracle SQL",
-    "Soft Skills fot IT professionals",
-    "Emotional Management & Self-Control",
-    "Autonomous Vehicles Mini-Course",
-    "Computer Vision with OpenCV"
+    "Soft Skills para profissionais de TI",
+    "Controle de Impulso e Manejo Emocional",
+    "Mini-Curso Veículos Autônomos",
+    "Visão Computacional com OpenCV"
   ],
   "experiencia": [
     {
       "empresa": "Foxtime",
-      "cargo": "Administrative Assistant I",
+      "cargo": "Assistente Administrativo I",
       "periodo": "mai/2021 – mai/2022",
       "tarefas": [
-        "Analyzed credit and documentation for financing approval.",
-        "Maintained internal databases using spreadsheets and enterprise systems.",
-        "Developed commercial partnerships and led consultative insurance sales."
+        "Analisei crédito e documentos para aprovação de financiamentos.",
+        "Mantive atualizados os bancos de dados internos via planilhas e sistemas corporativos.",
+        "Estabeleci parcerias comerciais e conduzi vendas consultivas de seguros."
       ]
     },
     {
       "empresa": "Museu da Gula",
-      "cargo": "Sales Associate / Department Lead",
+      "cargo": "Atendente / Especialista responsável de setor",
       "periodo": "dez/2014 – fev/2020",
       "tarefas": [
-        "Managed the spirits department, handling restocking, display, and inventory supervision.",
-        "Delivered personalized service, increasing sales through direct recommendation.",
-        "Trained staff, coordinated schedules, and supported leadership with goals and sales KPIs."
+        "Gerenciei o setor de destilados, incluindo reposição, vitrine e supervisão de estoque.",
+        "Realizei atendimento personalizado, contribuindo para o aumento das vendas por recomendação direta.",
+        "Treinei atendentes, organizei escalas e apoiei a liderança com foco em metas e KPIs de vendas."
       ]
     },
     {
@@ -44,9 +44,9 @@
       "cargo": "Document Technician ",
       "periodo": "nov/2013 – dez/2014",
       "tarefas": [
-        "Digitized and classified official documents with accuracy and data integrity.",
-        "Provided internal tech support for digital archive management.",
-        "Structured files for indexing in internal systems, optimizing data retrieval."
+        "Digitalizei e classifiquei documentos cartoriais com foco em acurácia e integridade de dados.",
+        "Prestei suporte técnico interno na manutenção e organização dos arquivos digitais.",
+        "Estruturei arquivos digitais para indexação em sistema interno de dados, otimizando resultados."
       ]
     }
   ],
