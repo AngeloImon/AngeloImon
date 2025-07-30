@@ -21,13 +21,21 @@ const Config = {
             loading: 'Carregando currículo...',
             darkTheme: '🌙 Tema Escuro',
             lightTheme: '☀️ Tema Claro',
-            exportPdf: '📄 Exportar PDF'
+            exportPdf: '📄 Exportar PDF',
+            footerRights: 'Todos os direitos reservados.',
+            footerUpdated: 'Última atualização:',
+            footerDate: '29 de Janeiro de 2025',
+            analyticsNotice: '📊 Este site utiliza Google Analytics para coleta de dados estatísticos anônimos - sem fins lucrativos.'
         },
         en: {
             loading: 'Loading resume...',
             darkTheme: '🌙 Dark Theme',
             lightTheme: '☀️ Light Theme',
-            exportPdf: '📄 Export PDF'
+            exportPdf: '📄 Export PDF',
+            footerRights: 'All rights reserved.',
+            footerUpdated: 'Last updated:',
+            footerDate: 'January 29, 2025',
+            analyticsNotice: '📊 This site uses Google Analytics for anonymous statistical data collection - non-profit purposes.'
         }
     }
 };
