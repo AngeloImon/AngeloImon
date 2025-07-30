@@ -13,10 +13,42 @@
         "Python",
         "C++",
         "PL/SQL",
+        "Dart",
+        "HTML5",
+        "CSS",
+        "JavaScript",
+        "VBA",
         "Oracle DB",
         "Git/GitHub",
         "VS Code",
-        "Google Colab"
+        "Google Colab",
+        "Linux",
+        "Windows Server",
+        "Microsoft Office",
+        "Application Development",
+        "Agile Methodologies",
+        "Quality Control",
+        "Team Management",
+        "Databases",
+        "Data Structures",
+        "Database Design",
+        "Algorithms",
+        "Logical Reasoning",
+        "Computer Science",
+        "Communication",
+        "Adaptability",
+        "Commitment",
+        "Teamwork",
+        "Client Relations",
+        "Problem Solving",
+        "Analytical Skills",
+        "Requirements Gathering",
+        "Reporting",
+        "Technical Support",
+        "IT Skills",
+        "Remote Work",
+        "Information Technology",
+        "Computer Assembly"
     ],
     "certificacoes": [
         "TOEIC - 945 points (2025)",
@@ -62,6 +94,16 @@
     ],
     "projetos": [
         {
+            "name": "Perceptron & MLP – Neural Network Fundamentals in Action",
+            "description": "Implements a simple Perceptron from scratch and applies a Multilayer Perceptron (MLP) on synthetic and real datasets. Includes hyperparameter tuning and evaluation with scikit-learn.",
+            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Aula_IA_3_Perceptron.ipynb"
+        },
+        {
+            "name": "Strategic ML Pipeline for Real Campaign Data",
+            "description": "Executes a full pipeline combining clustering and supervised classification on the 'Marketing Campaign' dataset. Covers preprocessing, PCA, K-Means, pseudo-labeling, and logistic regression.",
+            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
+        },
+        {
             "nome": "Titanic Survival Classifier – Machine Learning with Scikit-learn",
             "descricao": "Supervised model predicting passenger survival using the Titanic Dataset",
             "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
@@ -77,9 +119,24 @@
             "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
         },
         {
+            "name": "Vehicle Load Optimization – Integer Programming with Logistics Constraints",
+            "description": "Solves a constrained loading problem using Integer Linear Programming in Python with Gurobi. Considers vehicle weight limit, item value and quantity, and incompatibility pairs to maximize total cargo value.",
+            "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_carga_veiculo.ipynb"
+        },
+        {
             "nome": "Workforce Optimization – Linear Programming with Python + Gurobi",
             "descricao": "Designed models to optimize shift schedules and reduce payroll costs across scenarios",
             "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
+        },
+        {
+          "name": "Study Planner Web App with NiceGUI",
+          "description": "Responsive and intuitive web application developed in Python using NiceGUI. Helps users create personalized study plans through calendar and weekly scheduling. Features include user authentication, dashboard with usage metrics, data import/export, and cloud integration via Firebase Firestore.",
+          "link": "https://github.com/AngeloImon/Projeto_P2_TEI"
+        },
+        {
+          "name": "Personal Finance Management App — Flutter + Firebase",
+          "description": "Cross-platform mobile app built with Flutter and integrated with Firebase for real-time personal financial control. Allows users to log income and expenses, view consolidated balance, organize monthly spreadsheets, and access detailed reports. Features secure authentication, dynamic updates, and modular architecture with dedicated screens for login, entries, and visualizations.",
+          "link": "https://github.com/MariTaba/projeto_gerenciamento_financas"
         }
     ],
     "secoes": {
