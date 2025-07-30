@@ -6,10 +6,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Security enhancement -->
-  <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';">
-
   <!-- SEO optimization meta tags -->
   <meta name="description"
     content="Currículo de Angelo Ferdinand Imon Spanó - Desenvolvedor em transição para tecnologia, especialista em otimização e análise de dados">
@@ -32,90 +28,44 @@
   <meta name="twitter:title" content="Angelo Imon - Desenvolvedor">
   <meta name="twitter:description" content="Desenvolvedor em transição para tecnologia">
 
-  <!-- Progressive Web App support -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#2c3e50">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Angelo Imon CV">
-
-  <!-- Enhanced performance optimization through resource preloading -->
+  <!-- Performance optimization through resource preloading -->
   <link rel="preload" href="style.css" as="style">
   <link rel="preload" href="js/app.js" as="script">
-  <link rel="preload" href="data/cv-data.json" as="fetch" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-
-  <!-- External libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
-    integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNhh/AGTZ7k4Z9zt4Uk8L8pWuVTKT1h7F7vP9lYQlw9bI9ZWQM19Y6Z6g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <!-- Page title and styling -->
   <title>Angelo Imon - Desenvolvedor</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Enhanced favicon configuration for all platforms -->
-  <link rel="icon" type="image/svg+xml"
+  <!-- Favicon using inline SVG with emoji for cross-platform compatibility -->
+  <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
-  <link rel="apple-touch-icon" sizes="180x180"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
-
-  <!-- Enhanced meta tags for better SEO and social sharing -->
-  <meta name="application-name" content="Angelo Imon CV">
-  <meta name="msapplication-TileColor" content="#2c3e50">
-  <meta name="msapplication-config" content="browserconfig.xml">
-
-  <!-- Structured data for search engines -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Angelo Ferdinand Imon Spanó",
-    "jobTitle": "Desenvolvedor",
-    "email": "angeloimon@outlook.com",
-    "url": "https://angeloimon.github.io/AngeloImon/",
-    "sameAs": [
-      "https://github.com/AngeloImon",
-      "https://linkedin.com/in/angelo-ferdinand-imon-spano"
-    ],
-    "knowsAbout": ["Python", "Análise de Dados", "Machine Learning", "OpenCV"],
-    "alumniOf": {
-      "@type": "EducationalOrganization",
-      "name": "Instituição de Ensino"
-    }
-  }
-  </script>
 </head>
 
 <body>
   <!-- Skip navigation link for screen reader accessibility -->
-  <a href="#main-content" class="skip-link" aria-label="Pular para o conteúdo principal">
-    Pular para o conteúdo principal
-  </a>
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
   <!-- Primary navigation controls for user interactions -->
   <nav class="controls" role="navigation" aria-label="Controles da página">
     <!-- Language selection controls -->
     <div class="language-selector" role="group" aria-label="Seleção de idioma">
-      <button data-action="language" data-lang="pt" aria-label="Alterar idioma para Português" aria-pressed="true"
-        type="button">
-        <span aria-hidden="true">🇧🇷</span> Português
+      <button data-action="language" data-lang="pt" aria-label="Alterar idioma para Português" aria-pressed="true">
+        🇧🇷 Português
       </button>
-      <button data-action="language" data-lang="en" aria-label="Change language to English" aria-pressed="false"
-        type="button">
-        <span aria-hidden="true">🇺🇸</span> English
+      <button data-action="language" data-lang="en" aria-label="Change language to English" aria-pressed="false">
+        🇺🇸 English
       </button>
     </div>
 
     <!-- Action buttons for page functionality -->
     <div class="action-buttons" role="group" aria-label="Ações da página">
-      <button id="export-pdf" data-action="export-pdf" aria-label="Exportar currículo em formato PDF" type="button">
-        <span aria-hidden="true">📄</span> Exportar PDF
+      <button id="export-pdf" data-action="export-pdf" aria-label="Exportar currículo em formato PDF">
+        📄 Exportar PDF
       </button>
-      <button id="theme-toggle" data-action="toggle-theme" aria-label="Alternar entre tema claro e escuro"
-        type="button">
-        <span aria-hidden="true">🌙</span> Tema Escuro
+      <button id="theme-toggle" data-action="toggle-theme" aria-label="Alternar entre tema claro e escuro">
+        🌙 Tema Escuro
       </button>
     </div>
   </nav>
@@ -124,19 +74,15 @@
   <header role="banner">
     <h1 id="nome">Angelo Ferdinand Imon Spanó</h1>
     <address class="contact-info">
-      <p id="email" aria-label="Email de contato">
-        <a href="mailto:angeloimon@outlook.com" aria-label="Enviar email para angeloimon@outlook.com">
-          angeloimon@outlook.com
-        </a>
-      </p>
+      <p id="email" aria-label="Email de contato">angeloimon@outlook.com</p>
       <p class="links">
-        <a id="github" href="https://github.com/AngeloImon" target="_blank" rel="noopener noreferrer"
+        <a id="github" href="https://github.com/AngeloImon" target="_blank" rel="noopener"
           aria-label="Perfil no GitHub - abre em nova aba">
           GitHub
         </a>
         <span aria-hidden="true"> | </span>
-        <a id="linkedin" href="https://linkedin.com/in/angelo-ferdinand-imon-spano" target="_blank"
-          rel="noopener noreferrer" aria-label="Perfil no LinkedIn - abre em nova aba">
+        <a id="linkedin" href="https://linkedin.com/in/angelo-ferdinand-imon-spano" target="_blank" rel="noopener"
+          aria-label="Perfil no LinkedIn - abre em nova aba">
           LinkedIn
         </a>
       </p>
@@ -144,7 +90,7 @@
   </header>
 
   <!-- Loading state display with accessibility attributes -->
-  <div id="main-loading" class="main-loading" role="status" aria-live="polite" aria-label="Estado de carregamento">
+  <div id="main-loading" class="main-loading" role="status" aria-live="polite">
     <div class="loading-content">
       <div class="spinner" aria-hidden="true"></div>
       <p>Carregando currículo...</p>
@@ -152,7 +98,7 @@
   </div>
 
   <!-- Main content area with responsive layout structure -->
-  <main id="main-content" role="main" style="display: none;" aria-busy="false">
+  <main id="main-content" role="main" style="display: none;">
     <!-- Primary content column containing core CV sections -->
     <div class="main-column">
       <!-- Professional summary section -->
@@ -160,7 +106,7 @@
         <header>
           <h2 id="resumo-title">Resumo</h2>
         </header>
-        <p id="resumo" aria-live="polite"></p>
+        <p id="resumo"></p>
       </article>
 
       <!-- Featured projects showcase -->
@@ -168,7 +114,7 @@
         <header>
           <h2 id="projetos-title">Projetos</h2>
         </header>
-        <ul id="projetos" role="list" aria-live="polite"></ul>
+        <ul id="projetos" role="list"></ul>
       </section>
 
       <!-- Professional experience timeline -->
@@ -176,18 +122,18 @@
         <header>
           <h2 id="experiencia-title">Experiência Profissional</h2>
         </header>
-        <div id="experiencia" role="list" aria-live="polite"></div>
+        <div id="experiencia" role="list"></div>
       </section>
     </div>
 
     <!-- Sidebar column containing supplementary information -->
-    <aside class="sidebar-column" role="complementary" aria-label="Informações complementares">
+    <aside class="sidebar-column" role="complementary">
       <!-- Educational background -->
       <section aria-labelledby="formacao-title">
         <header>
           <h2 id="formacao-title">Formação</h2>
         </header>
-        <p id="formacao" aria-live="polite"></p>
+        <p id="formacao"></p>
       </section>
 
       <!-- Technical skills inventory -->
@@ -195,7 +141,7 @@
         <header>
           <h2 id="habilidades-title">Habilidades Técnicas</h2>
         </header>
-        <ul id="habilidades" role="list" aria-live="polite"></ul>
+        <ul id="habilidades" role="list"></ul>
       </section>
 
       <!-- Professional certifications -->
@@ -203,7 +149,7 @@
         <header>
           <h2 id="certificacoes-title">Certificações</h2>
         </header>
-        <ul id="certificacoes" role="list" aria-live="polite"></ul>
+        <ul id="certificacoes" role="list"></ul>
       </section>
     </aside>
   </main>
@@ -211,34 +157,15 @@
   <!-- Page footer with copyright and update information -->
   <footer role="contentinfo">
     <p>&copy; 2025 Angelo Ferdinand Imon Spanó. Todos os direitos reservados.</p>
-    <p>Última atualização:
-      <time datetime="2025-01-29" aria-label="29 de Janeiro de 2025">
-        29 de Janeiro de 2025
-      </time>
-    </p>
+    <p>Última atualização: <time datetime="2025-01-29">29 de Janeiro de 2025</time></p>
   </footer>
 
-  <!-- Application modules loaded in dependency order with enhanced attributes -->
-  <script src="js/config.js" defer crossorigin="anonymous"></script>
-  <script src="js/data-manager.js" defer crossorigin="anonymous"></script>
-  <script src="js/ui-manager.js" defer crossorigin="anonymous"></script>
-  <script src="js/pdf-generator.js" defer crossorigin="anonymous"></script>
-  <script src="js/app.js" defer crossorigin="anonymous"></script>
-
-  <!-- Service Worker registration for PWA functionality -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(registration => {
-            console.log('SW registered: ', registration);
-          })
-          .catch(registrationError => {
-            console.log('SW registration failed: ', registrationError);
-          });
-      });
-    }
-  </script>
+  <!-- Application modules loaded in dependency order -->
+  <script src="js/config.js" defer></script>
+  <script src="js/data-manager.js" defer></script>
+  <script src="js/ui-manager.js" defer></script>
+  <script src="js/pdf-generator.js" defer></script>
+  <script src="js/app.js" defer></script>
 </body>
 
 </html>
