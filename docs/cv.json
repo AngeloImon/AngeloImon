@@ -13,6 +13,7 @@
     "Python",
     "C++",
     "PL/SQL",
+    "NoSql",
     "Dart",
     "HTML5",
     "CSS",
@@ -94,18 +95,18 @@
   ],
   "projetos": [
     {
-      "nome": "Estratégia de Machine Learning aplicada a campanhas reais",
-      "descricao": "Executa um pipeline completo de clustering e classificação supervisionada no dataset 'Marketing Campaign'. Inclui pré-processamento, uso de PCA, definição de clusters com K-Means e treinamento de modelo com regressão logística.",
+      "nome": "Estratégia de Machine Learning aplicada a campanhas reais - PCA + K-Means + logitic regression",
+      "descricao": "Executa um pipeline completo de clustering e classificação supervisionada.",
       "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
     },
     {
       "nome": "Classificador de sobrevivência do Titanic – Machine learning com Scikit-learn ",
-      "descricao": "Executa uma classificação supervisionada para prever a sobrevivência de passageiros a partir do Titanic Dataset, utilizando técnicas estatísticas e modelos de machine learning.",
+      "descricao": "Executa uma classificação supervisionada para prever a sobrevivência de passageiros a partir do Titanic Dataset.",
       "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
     },
     {
       "nome": "Processamento de Imagens Digitais – Segmentação e manipulação com OpenCV + Matplotlib",
-      "descricao": "Explora técnicas fundamentais de processamento de imagem usando OpenCV em ambiente Google Colab, com aplicação em imagens reais e sintéticas.",
+      "descricao": "Explora técnicas fundamentais de processamento de imagem, com aplicação em imagens reais e sintéticas.",
       "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
     },
     {
@@ -114,8 +115,8 @@
       "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
     },
     {
-      "nome": "Otimização de Carga Veicular com Gurobi",
-      "descricao": "Resolve um problema de carga de veículo utilizando programação linear inteira, considerando peso máximo, valor dos produtos, quantidades disponíveis e restrições de incompatibilidade entre itens. Retorna a solução ótima com lista dos itens selecionados e peso total carregado.",
+      "nome": "Otimização de Carga Veicular com Gurobi – Programação Linear Inteira com Restrições Logísticas + Gurobi",
+      "descricao": "Resolve um problema de carga. Considera peso máximo, valor dos produtos, quantidades disponíveis e restrições de incompatibilidade entre itens, para maximizar o valor total.",
       "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_carga_veiculo.ipynb"
     },
     {
@@ -124,13 +125,13 @@
       "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
     },
     {
-      "nome": "Aplicativo de Organização de Estudos com NiceGUI",
-      "descricao": "Aplicativo web desenvolvido em Python com a biblioteca NiceGUI, focado em auxiliar usuários na criação de planos de estudo personalizados, gerenciamento visual de cronogramas semanais e exportação de dados. Possui sistema de autenticação, dashboard com métricas, planejamento por dias da semana e calendário, além de integração com Firebase para armazenamento em nuvem.",
+      "nome": "Aplicativo de Organização de Estudos - Python + NiceGUI + Firebase + NoSQL",
+      "descricao": "Aplicativo web intuitivo, focado em criar planos de estudo personalizados, visualizar cronogramas semanais e exportar dados.",
       "link": "https://github.com/AngeloImon/Projeto_P2_TEI"
     },
     {
-      "nome": "Aplicativo de Gerenciamento Financeiro Pessoal — Flutter + Firebase",
-      "descricao": "Aplicativo mobile multiplataforma criado com Flutter e integrado ao Firebase, voltado para o controle financeiro pessoal. Permite registrar receitas e despesas, visualizar saldo consolidado, organizar movimentações em planilhas mensais e acessar relatórios detalhados. Conta com autenticação segura, atualização em tempo real e arquitetura modular com telas específicas para login, entradas e visualizações.",
+      "nome": "Aplicativo de Gerenciamento Financeiro Pessoal — Flutter/Dart + Firebase + NoSQL",
+      "descricao": "App multiplataforma para controle financeiro pessoal com autenticação, atualização em tempo real e visualização por telas modulares.",
       "link": "https://github.com/MariTaba/projeto_gerenciamento_financas"
     }
   ],
