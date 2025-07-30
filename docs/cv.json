@@ -143,7 +143,7 @@
     ],
     "projetos": [
         {
-            "nome": "Estratégia de Machine Learning aplicada a campanhas reais - PCA + K-Means + logitic regression",
+            "nome": "Estratégia de Machine Learning aplicada a campanhas reais – PCA + K-Means + regressão logística",
             "descricao": "Executa um pipeline completo de clustering e classificação supervisionada.",
             "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
         },
@@ -153,32 +153,32 @@
             "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
         },
         {
-            "nome": "Processamento de Imagens Digitais – Segmentação e manipulação com OpenCV + Matplotlib",
+            "nome": "Processamento de Imagens Digitais – OpenCV + Matplotlib",
             "descricao": "Explora técnicas fundamentais de processamento de imagem, com aplicação em imagens reais e sintéticas.",
             "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
         },
         {
-            "nome": "Criptosistema RSA - Aritmética Modular + Python",
+            "nome": "Criptosistema RSA – Aritmética Modular + Python",
             "descricao": "Implementa o algoritmo de criptografia RSA do zero usando aritmética modular, incluindo geração de chaves públicas e privadas.",
             "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
         },
         {
-            "nome": "Otimização de Carga Veicular – Programação Linear Inteira com Restrições Logísticas + Gurobi",
+            "nome": "Otimização de Carga Veicular – Programação Linear com Gurobi",
             "descricao": "Resolve um problema de carga. Considera peso máximo, valor dos produtos, quantidades disponíveis e restrições de incompatibilidade entre itens, para maximizar o valor total.",
             "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_carga_veiculo.ipynb"
         },
         {
-            "nome": "Otimização da Força de Trabalho – Modelagem com Programação Linear usando Python + Gurobi",
+            "nome": "Otimização da Força de Trabalho – Programação Linear com Gurobi",
             "descricao": "Otimização de escalas de trabalho, minimizando os custos salarias em diferentes cenários.",
             "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
         },
         {
-            "nome": "Aplicativo de Organização de Estudos - Python + NiceGUI + Firebase + NoSQL",
+            "nome": "Aplicativo de Organização de Estudos – Python + NiceGUI + Firebase + NoSQL",
             "descricao": "Aplicativo web intuitivo, focado em criar planos de estudo personalizados, visualizar cronogramas semanais e exportar dados.",
             "link": "https://github.com/AngeloImon/Projeto_P2_TEI"
         },
         {
-            "nome": "Aplicativo de Gerenciamento Financeiro Pessoal — Flutter/Dart + Firebase + NoSQL",
+            "nome": "Aplicativo de Gerenciamento Financeiro Pessoal – Flutter/Dart + Firebase + NoSQL",
             "descricao": "App multiplataforma para controle financeiro pessoal com autenticação, atualização em tempo real e visualização por telas modulares.",
             "link": "https://github.com/MariTaba/projeto_gerenciamento_financas"
         }
