@@ -94,26 +94,6 @@
   ],
   "projetos": [
     {
-      "nome": "Classificador Iris – Análise exploratória e machine learning com Scikit-learn",
-      "descricao": "Realiza uma análise completa do Iris Dataset com visualizações, estatísticas descritivas e aplicação de um modelo de classificação supervisionada usando Regressão Logística.",
-      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Aula_IA_1_Iris_DataSet.ipynb"
-    },
-    {
-      "nome": "Engenharia de Dados em Ambiente Biomédico",
-      "descricao": "Aplica técnicas de engenharia de dados em um dataset sintético relacionado à saúde. Realiza discretização, criação de dummies, normalização e transformação de variáveis para preparar os dados para modelos de IA.",
-      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Aula_IA_2_Engenharia_de_Dados.ipynb"
-    },
-    {
-      "nome": "Perceptron e Redes Neurais – Do Algoritmo Simples à MLP",
-      "descricao": "Implementa o algoritmo de Perceptron com visualização da fronteira de decisão e aplica uma rede neural multicamadas (MLP) em um problema real de classificação, incluindo ajuste de hiperparâmetros com GridSearch.",
-      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Aula_IA_3_Perceptron.ipynb"
-    },
-    {
-      "nome": "Clustering com K-Means – Descobrindo Padrões no Wine Dataset",
-      "descricao": "Utiliza o algoritmo de agrupamento K-Means para identificar grupos naturais em dados químicos de vinhos. Avalia a qualidade dos clusters com Silhouette Score e visualiza resultados com PCA.",
-      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Aula_IA_4_Kmeans.ipynb"
-    },
-    {
       "nome": "Estratégia de Machine Learning aplicada a campanhas reais",
       "descricao": "Executa um pipeline completo de clustering e classificação supervisionada no dataset 'Marketing Campaign'. Inclui pré-processamento, uso de PCA, definição de clusters com K-Means e treinamento de modelo com regressão logística.",
       "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
@@ -137,11 +117,6 @@
       "nome": "Otimização de Carga Veicular com Gurobi",
       "descricao": "Resolve um problema de carga de veículo utilizando programação linear inteira, considerando peso máximo, valor dos produtos, quantidades disponíveis e restrições de incompatibilidade entre itens. Retorna a solução ótima com lista dos itens selecionados e peso total carregado.",
       "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_carga_veiculo.ipynb"
-    },
-    {
-      "nome": "Otimização de Distribuição Fábrica-Cliente com Gurobi",
-      "descricao": "Executa um modelo de programação linear contínua para minimizar o custo de envio de produtos entre múltiplas fábricas e clientes, respeitando limites de estoque, demandas e custos logísticos. Retorna a quantidade a ser enviada por fábrica, cliente e produto, junto ao custo ótimo de distribuição.",
-      "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_envio_produtos.ipynb"
     },
     {
       "nome": "Otimização da Força de Trabalho – Modelagem com Programação Linear usando Python + Gurobi",
