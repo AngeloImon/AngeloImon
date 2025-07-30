@@ -7,13 +7,13 @@
         "github": "https://github.com/AngeloImon",
         "linkedin": "https://www.linkedin.com/in/angelo-ferdinand-imon-spano-73386b197"
     },
-    "resumo": "Developer transitioning into tech, currently pursuing a degree in Systems Analysis and Development at FATEC-RP. Fluent in English (TOEIC 945) with solid experience in technical support, customer service, and credit analysis. Hands-on with projects focused on logic, data structures, automation, and computer vision — applying Python, SQL, C++, Oracle DB, and OpenCV. I integrate Git/GitHub and agile methodologies for version control and project organization. My background with end-users, team management, and clear communication supports empathetic, value-driven tech solutions. Ready to grow and collaborate in teams that foster initiative, continuous learning, and purpose-driven impact.",
+    "resumo": "Tech developer in transition, studying Systems Analysis and Development (FATEC-RP). Fluent in English (TOEIC 945) and experienced in customer service and credit analysis. Developed cloud-based apps using Python and Firebase REST APIs (Auth, NoSQL). Hands on with mobile development with Flutter/Dart and data-driven solutions using RSA cryptography, Scikit-learn ML, and Gurobi optimization. Delivered projects in computer vision with OpenCV. Applies Git/GitHub and Agile for collaboration and version control. Driven by empathy, autonomy and purpose — ready to add value to impact-driven tech teams.",
     "formacao": "Technology Degree in Systems Analysis and Development – FATEC-RP (2022–2025)",
     "habilidades": [
         "Python",
         "C++",
         "PL/SQL",
-        "NoSql",
+        "NoSQL",
         "Dart",
         "HTML5",
         "CSS",
