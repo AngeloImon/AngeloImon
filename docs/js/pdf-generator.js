@@ -300,11 +300,6 @@ class PDFGenerator {
             this.addSection(this.getTitle('SUMMARY'), cvData.resumo);
         }
 
-        // Experience
-        if (cvData.experiencia?.length > 0) {
-            this.addExperience(cvData.experiencia);
-        }
-
         // Projects
         if (cvData.projetos?.length > 0) {
             this.addProjects(cvData.projetos);
@@ -323,6 +318,11 @@ class PDFGenerator {
         // Certifications
         if (cvData.certificacoes?.length > 0) {
             this.addCertifications(cvData.certificacoes);
+        }
+
+        // Experience
+        if (cvData.experiencia?.length > 0) {
+            this.addExperience(cvData.experiencia);
         }
     }
 

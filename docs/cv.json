@@ -99,9 +99,9 @@
     },
     "certificacoes": [
         "TOEIC - 945 pontos (2025)",
-        "SAP/ABAP (Fatec - 2024)" ,
-        "Oracle Database Design (Oracle - 2024)",
         "Oracle Programming with SQL (Oracle - 2025)",
+        "Oracle Database Design (Oracle - 2024)",
+        "SAP/ABAP (Fatec - 2024)",
         "Soft Skills para profissionais de TI (Fatec - 2022)",
         "Controle de Impulso e Manejo Emocional (Fundação Bradesco - 2022)",
         "Mini-Curso Veículos Autônomos (Fatec - 2022)",
@@ -158,7 +158,7 @@
             "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
         },
         {
-            "nome": "Criptosistema RSA com Aritmética Modular – Algoritmo de criptografia em Python",
+            "nome": "Criptosistema RSA - Aritmética Modular + Python",
             "descricao": "Implementa o algoritmo de criptografia RSA do zero usando aritmética modular, incluindo geração de chaves públicas e privadas.",
             "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
         },
