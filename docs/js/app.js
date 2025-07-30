@@ -146,6 +146,7 @@ class CVApp {
      */
     updateUI() {
         const d = this.data;
+        this.setText('#subtitulo', d.subtitulo);
 
         // Basic personal information
         this.setText('#nome', d.nome);
