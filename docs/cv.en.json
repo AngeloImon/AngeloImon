@@ -14,14 +14,14 @@
             "curso": "Technology in Systems Analysis and Development",
             "periodo": "2022–2025",
             "status": "In Progress",
-            "descricao": "Training focused on software development, databases, software engineering and agile methodologies."
+            "descricao": "Technical education in software development, database systems, software engineering and systems analysis — with emphasis on programming logic and project-based learning."
         },
         {
             "instituicao": "Universidade de São Paulo - RP",
-            "curso": "Bachelor in Information Science",
+            "curso": "Bachelor’s degree in Information Science",
             "periodo": "2012–2015",
             "status": "Incomplete",
-            "descricao": "Training focused on management, organization and mediation of information in physical and digital environments, with critical, ethical and interdisciplinary approach."
+            "descricao": "Information management and mediation across physical and digital environments."
         }
     ],
     "habilidades": {
