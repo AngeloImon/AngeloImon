@@ -146,13 +146,13 @@ class CVApp {
      */
     updateUI() {
         const d = this.data;
-        this.setText('#subtitulo', d.subtitulo);
 
         // Basic personal information
         this.setText('#nome', d.nome);
-        this.setLink('#email', `mailto:${d.email}`, 'Email');
-        this.setLink('#github', d.links?.github, 'GitHub');
-        this.setLink('#linkedin', d.links?.linkedin, 'LinkedIn');
+        this.setText('#subtitulo', d.subtitulo); // ✅ ADICIONAR SE NÃO EXISTE
+        this.setLink('#email', `mailto:${d.email}`, 'Email', 'email_click');
+        this.setLink('#github', d.links?.github, 'GitHub', 'github_click');
+        this.setLink('#linkedin', d.links?.linkedin, 'LinkedIn', 'linkedin_click');
         this.setText('#resumo', d.resumo);
         this.setText('#formacao', d.formacao);
 
@@ -195,12 +195,13 @@ class CVApp {
     }
 
     /**
-     * Set link content with title text
+     * Set link content with title text + Google Analytics tracking
      * @param {string} selector - CSS selector
      * @param {string} href - Link URL
      * @param {string} title - Link title text
+     * @param {string} eventName - GA4 event name
      */
-    setLink(selector, href, title) {
+    setLink(selector, href, title, eventName) {
         const el = $(selector);
         if (el && href) {
             if (el.tagName === 'A') {
@@ -208,9 +209,27 @@ class CVApp {
                 el.textContent = title;
                 el.setAttribute('target', '_blank');
                 el.setAttribute('rel', 'noopener');
+                // ✅ ADICIONAR: Google Analytics tracking
+                el.addEventListener('click', () => this.trackEvent(eventName, { link_url: href }));
             } else {
-                el.innerHTML = `<a href="${href}" target="_blank" rel="noopener">${title}</a>`;
+                el.innerHTML = `<a href="${href}" target="_blank" rel="noopener" onclick="window.cvApp.trackEvent('${eventName}', {link_url: '${href}'})">${title}</a>`;
             }
+        }
+    }
+
+    /**
+     * Track Google Analytics events
+     * @param {string} eventName - Event name
+     * @param {object} parameters - Event parameters
+     */
+    trackEvent(eventName, parameters = {}) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', eventName, {
+                ...parameters,
+                language: this.lang,
+                timestamp: new Date().toISOString()
+            });
+            log(`📊 GA Event: ${eventName}`, parameters);
         }
     }
 
@@ -252,7 +271,7 @@ class CVApp {
                     <div class="project-item">
                         <h3>${proj.nome}</h3>
                         <p>${proj.descricao}</p>
-                        ${proj.link ? `<a href="${proj.link}" target="_blank" rel="noopener">${this.lang === 'pt' ? 'Ver projeto' : 'View project'}</a>` : ''}
+                        ${proj.link ? `<a href="${proj.link}" target="_blank" rel="noopener" onclick="window.cvApp.trackEvent('project_click', {project_name: '${proj.nome}', project_url: '${proj.link}'})">${this.lang === 'pt' ? 'Ver projeto' : 'View project'}</a>` : ''}
                     </div>
                 `).join('');
                 break;
@@ -303,6 +322,8 @@ class CVApp {
     async switchLanguage(lang) {
         if (lang === this.lang) return;
 
+        this.trackEvent('language_switch', { from: this.lang, to: lang });
+
         log(`Switching to ${lang}`);
         await this.loadData(lang);
 
@@ -319,6 +340,9 @@ class CVApp {
      */
     toggleTheme() {
         const isDark = document.body.classList.toggle('dark-theme');
+
+        this.trackEvent('theme_toggle', { theme: isDark ? 'dark' : 'light' });
+
         localStorage.setItem('cv-theme', isDark ? 'dark' : 'light');
         this.updateTexts();
         log(`Theme switched to: ${isDark ? 'dark' : 'light'}`);
@@ -388,6 +412,8 @@ class CVApp {
             return;
         }
 
+        this.trackEvent('pdf_download_start', { language: this.lang });
+
         const btn = $('#export-pdf');
         const originalText = btn?.textContent;
 
@@ -400,6 +426,8 @@ class CVApp {
             const generator = new PDFGenerator();
             await generator.generatePDF(this.data, this.lang);
 
+            this.trackEvent('pdf_download_complete', { language: this.lang, success: true });
+
             if (btn) {
                 btn.textContent = this.lang === 'pt' ? '✅ Gerado!' : '✅ Generated!';
                 setTimeout(() => {
@@ -411,6 +439,8 @@ class CVApp {
         } catch (error) {
             console.error('PDF generation error:', error);
             this.showError(this.lang === 'pt' ? 'Erro ao gerar PDF' : 'Error generating PDF');
+
+            this.trackEvent('pdf_download_error', { language: this.lang, error: error.message });
 
             if (btn) {
                 btn.textContent = this.lang === 'pt' ? '❌ Erro' : '❌ Error';
