@@ -145,7 +145,7 @@ class CVApp {
         if (type === 'simple') {
             el.innerHTML = items.map(item => `<li>${item}</li>`).join('');
         } else if (type === 'skills') {
-            el.innerHTML = items.join(', ');
+            el.innerHTML = items.map(skill => `<li>${skill}</li>`).join('');
         } else if (type === 'experience') {
             el.innerHTML = items.map(exp => `
                 <div class="experience-item">
