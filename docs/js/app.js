@@ -24,7 +24,6 @@ const Config = {
             exportPdf: '📄 Exportar PDF',
             footerRights: 'Todos os direitos reservados.',
             footerUpdated: 'Última atualização:',
-            footerDate: '29 de Janeiro de 2025',
             analyticsNotice: '📊 Este site utiliza Google Analytics para coleta de dados estatísticos anônimos - sem fins lucrativos.'
         },
         en: {
@@ -34,7 +33,6 @@ const Config = {
             exportPdf: '📄 Export PDF',
             footerRights: 'All rights reserved.',
             footerUpdated: 'Last updated:',
-            footerDate: 'January 29, 2025',
             analyticsNotice: '📊 This site uses Google Analytics for anonymous statistical data collection - non-profit purposes.'
         }
     }
@@ -163,6 +161,7 @@ class CVApp {
         this.setLink('#linkedin', d.links?.linkedin, 'LinkedIn', 'linkedin_click');
         this.setText('#resumo', d.resumo);
         this.setText('#formacao', d.formacao);
+        this.setText('#footer-date', d.lastUpdated);
 
         // Update section titles based on language
         this.updateSectionTitles();
@@ -319,11 +318,6 @@ class CVApp {
         const footerUpdated = $('#footer-updated');
         if (footerUpdated) {
             footerUpdated.textContent = texts.footerUpdated;
-        }
-
-        const footerDate = $('#footer-date');
-        if (footerDate) {
-            footerDate.textContent = texts.footerDate;
         }
 
         const analyticsNotice = $('#analytics-notice');
