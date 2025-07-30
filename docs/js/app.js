@@ -310,6 +310,26 @@ class CVApp {
         if (loadingText) {
             loadingText.textContent = texts.loading;
         }
+
+        const footerRights = $('#footer-rights');
+        if (footerRights) {
+            footerRights.textContent = texts.footerRights;
+        }
+
+        const footerUpdated = $('#footer-updated');
+        if (footerUpdated) {
+            footerUpdated.textContent = texts.footerUpdated;
+        }
+
+        const footerDate = $('#footer-date');
+        if (footerDate) {
+            footerDate.textContent = texts.footerDate;
+        }
+
+        const analyticsNotice = $('#analytics-notice');
+        if (analyticsNotice) {
+            analyticsNotice.textContent = texts.analyticsNotice;
+        }
     }
 
     /**
