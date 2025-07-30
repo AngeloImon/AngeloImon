@@ -6,7 +6,7 @@
  * recognition while maintaining professional visual appeal.
  * 
  * @author Angelo Ferdinand Imon Spanó
- * @version 6.0.0 - ATS Optimized
+ * @version 6.1.0 - ATS Optimized
  * @since 2025-01-29
  */
 
@@ -50,6 +50,26 @@ class PDFGenerator {
             BOTTOM: 20,
             LEFT: 20,
             RIGHT: 20
+        },
+
+        // Multilingual section titles for ATS optimization
+        SECTION_TITLES: {
+            pt: {
+                PROFESSIONAL_SUMMARY: 'RESUMO PROFISSIONAL',
+                WORK_EXPERIENCE: 'EXPERIENCIA PROFISSIONAL',
+                PROJECTS: 'PROJETOS DESTACADOS',
+                TECHNICAL_SKILLS: 'HABILIDADES TECNICAS',
+                EDUCATION: 'FORMACAO ACADEMICA',
+                CERTIFICATIONS: 'CERTIFICACOES'
+            },
+            en: {
+                PROFESSIONAL_SUMMARY: 'PROFESSIONAL SUMMARY',
+                WORK_EXPERIENCE: 'WORK EXPERIENCE',
+                PROJECTS: 'FEATURED PROJECTS',
+                TECHNICAL_SKILLS: 'TECHNICAL SKILLS',
+                EDUCATION: 'EDUCATION',
+                CERTIFICATIONS: 'CERTIFICATIONS'
+            }
         }
     };
 
@@ -71,6 +91,9 @@ class PDFGenerator {
 
         /** @type {Object} Page dimension calculations */
         this.pageInfo = {};
+
+        /** @type {string} Current document language */
+        this.currentLanguage = 'pt';
 
         this.checkLibraryAvailability();
     }
@@ -98,6 +121,15 @@ class PDFGenerator {
                 return 210 - this.margins.LEFT - this.margins.RIGHT; // A4 width minus margins
             }
         };
+    }
+
+    /**
+     * Gets localized section title based on current language
+     * @param {string} sectionKey - Section identifier
+     * @returns {string} Localized section title
+     */
+    getSectionTitle(sectionKey) {
+        return PDFGenerator.CONSTANTS.SECTION_TITLES[this.currentLanguage][sectionKey] || sectionKey;
     }
 
     /**
@@ -189,6 +221,9 @@ class PDFGenerator {
         }
 
         try {
+            // Set current language for section titles
+            this.currentLanguage = language;
+
             this.initializeATSDocument();
             this.generateATSHeader(cvData);
             this.generateATSContent(cvData, language);
@@ -223,7 +258,7 @@ class PDFGenerator {
             title: 'Resume - Curriculum Vitae',
             subject: 'Professional Resume',
             author: 'Angelo Ferdinand Imon Spanó',
-            creator: 'ATS-Optimized CV Generator v6.0',
+            creator: 'ATS-Optimized CV Generator v6.1',
             producer: 'jsPDF ATS Generator'
         });
 
@@ -311,7 +346,7 @@ class PDFGenerator {
     generateATSContent(cvData, language) {
         // Professional summary
         if (cvData.resumo) {
-            this.addATSSection('RESUMO PROFISSIONAL', cvData.resumo);
+            this.addATSSection(this.getSectionTitle('PROFESSIONAL_SUMMARY'), cvData.resumo);
         }
 
         // Work experience
@@ -331,7 +366,7 @@ class PDFGenerator {
 
         // Education
         if (cvData.formacao) {
-            this.addATSSection('FORMACAO ACADEMICA', cvData.formacao);
+            this.addATSSection(this.getSectionTitle('EDUCATION'), cvData.formacao);
         }
 
         // Certifications
@@ -363,14 +398,14 @@ class PDFGenerator {
     }
 
     /**
-     * ATS-optimized section header with clear visual hierarchy
+     * ATS-optimized section header with clean visual hierarchy (NO LINES)
      * @param {string} title - Section title
      */
     addATSSectionHeader(title) {
         // Add some space before section
         this.currentY += this.config.spacing.SECTION_MARGIN;
 
-        // Section title in bold black
+        // Section title in bold black (clean, no underlines)
         this.pdf.setFontSize(this.config.fontSize.SECTION);
         this.pdf.setFont('helvetica', 'bold');
         this.pdf.setTextColor(0, 0, 0);
@@ -378,15 +413,7 @@ class PDFGenerator {
         this.pdf.text(title, this.config.margins.LEFT, this.currentY);
         this.currentY += this.config.spacing.HEADER_SPACING;
 
-        // Subtle underline for visual separation (ATS-friendly)
-        this.pdf.setLineWidth(0.2);
-        this.pdf.setDrawColor(0, 0, 0);
-        this.pdf.line(
-            this.config.margins.LEFT,
-            this.currentY - 3,
-            this.config.margins.LEFT + this.config.contentWidth,
-            this.currentY - 3
-        );
+        // NO LINES - removed for clean ATS-friendly appearance
     }
 
     /**
@@ -394,7 +421,7 @@ class PDFGenerator {
      * @param {Array} experiences - Work experience data
      */
     addATSExperienceSection(experiences) {
-        this.addATSSectionHeader('EXPERIENCIA PROFISSIONAL');
+        this.addATSSectionHeader(this.getSectionTitle('WORK_EXPERIENCE'));
 
         experiences.forEach((exp, index) => {
             this.checkPageBreak(25);
@@ -433,7 +460,7 @@ class PDFGenerator {
      * @param {Array} projects - Project data
      */
     addATSProjectsSection(projects) {
-        this.addATSSectionHeader('PROJETOS DESTACADOS');
+        this.addATSSectionHeader(this.getSectionTitle('PROJECTS'));
 
         projects.forEach((project, index) => {
             this.checkPageBreak(15);
@@ -470,7 +497,7 @@ class PDFGenerator {
      * @param {Array} skills - Technical skills
      */
     addATSSkillsSection(skills) {
-        this.addATSSectionHeader('HABILIDADES TECNICAS');
+        this.addATSSectionHeader(this.getSectionTitle('TECHNICAL_SKILLS'));
 
         this.pdf.setFontSize(this.config.fontSize.BODY);
         this.pdf.setFont('helvetica', 'normal');
@@ -489,7 +516,7 @@ class PDFGenerator {
      * @param {Array} certifications - Certifications data
      */
     addATSCertificationsSection(certifications) {
-        this.addATSSectionHeader('CERTIFICACOES');
+        this.addATSSectionHeader(this.getSectionTitle('CERTIFICATIONS'));
 
         this.pdf.setFontSize(this.config.fontSize.BODY);
         this.pdf.setFont('helvetica', 'normal');
@@ -577,7 +604,7 @@ class PDFGenerator {
     }
 
     /**
-     * Adds visual separator line
+     * Adds clean visual separator line (only for header)
      */
     addSeparatorLine() {
         this.pdf.setLineWidth(0.3);
@@ -605,8 +632,9 @@ class PDFGenerator {
             this.pdf.setFont('helvetica', 'normal');
             this.pdf.setTextColor(100, 100, 100);
 
-            // Simple footer
-            const footerText = `${cvData.nome || 'Angelo Ferdinand Imon Spanó'} - Página ${i} de ${pageCount}`;
+            // Simple footer with language-appropriate page text
+            const pageText = this.currentLanguage === 'en' ? 'Page' : 'Página';
+            const footerText = `${cvData.nome || 'Angelo Ferdinand Imon Spanó'} - ${pageText} ${i} ${this.currentLanguage === 'en' ? 'of' : 'de'} ${pageCount}`;
             const footerWidth = this.pdf.getTextWidth(footerText);
             const footerX = (this.pageInfo.width - footerWidth) / 2;
             this.pdf.text(footerText, footerX, this.pageInfo.height - 10);
@@ -620,7 +648,8 @@ class PDFGenerator {
     saveATSPDF(name) {
         const sanitizedName = name.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
         const timestamp = new Date().toISOString().split('T')[0];
-        const filename = `${sanitizedName}_Resume_ATS_${timestamp}.pdf`;
+        const languageSuffix = this.currentLanguage === 'en' ? 'EN' : 'PT';
+        const filename = `${sanitizedName}_Resume_ATS_${languageSuffix}_${timestamp}.pdf`;
         this.pdf.save(filename);
     }
 
@@ -693,4 +722,4 @@ class PDFGenerator {
 
 // Enhanced global export
 window.PDFGenerator = PDFGenerator;
-console.log('[PDFGenerator] ATS-Optimized Professional PDF Generator v6.0.0 loaded successfully');
+console.log('[PDFGenerator] ATS-Optimized Professional PDF Generator v6.1.0 loaded successfully');
