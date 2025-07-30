@@ -7,13 +7,13 @@
     "github": "https://github.com/AngeloImon",
     "linkedin": "https://www.linkedin.com/in/angelo-ferdinand-imon-spano-73386b197"
   },
-  "resumo": "Desenvolvedor em transição para a área de tecnologia, atualmente cursando Análise e Desenvolvimento de Sistemas pela FATEC-RP. Fluente em inglês (TOEIC 945) e com sólida experiência em suporte técnico, atendimento ao cliente e análise de crédito. Desenvolvi projetos práticos com foco em lógica, estrutura de dados, automações e visão computacional — aplicando Python, SQL, C++, Oracle BD e OpenCV. Integro Git/GitHub e metodologias ágeis no versionamento e organização dos projetos. Minhas experiências com usuários finais, gestão de setores e comunicação contribuem para soluções tecnológicas empáticas, claras e voltadas à entrega de valor. Estou pronto para crescer e colaborar em times que valorizem iniciativa, aprendizado contínuo e impacto com propósito.",
+  "resumo": "Desenvolvedor em transição para a área de tecnologia, cursando Análise e Desenvolvimento de Sistemas (FATEC-RP). Fluente em inglês (TOEIC 945) e com experiência em atendimento ao cliente e análise de crédito. Desenvolvi aplicações em nuvem usando Python e APIs REST do Firebase (Auth, NoSQL). Experiência prática em desenvolvimento mobile com Flutter/Dart e soluções orientadas por dados utilizando criptografia RSA, aprendizado de máquina com Scikit-learn e otimização com Gurobi. Entreguei projetos em visão computacional com OpenCV. Aplico Git/GitHub e metodologias ágeis para colaboração e controle de versão. Movido por empatia, autonomia e propósito — pronto para gerar valor em equipes de tecnologia com foco em impacto.",
   "formacao": "Tecnólogo em Análise e Desenvolvimento de Sistemas – FATEC-RP (2022–2025)",
   "habilidades": [
     "Python",
     "C++",
     "PL/SQL",
-    "NoSql",
+    "NoSQL",
     "Dart",
     "HTML5",
     "CSS",
