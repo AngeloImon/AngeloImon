@@ -32,10 +32,10 @@
             "Microsoft Office"
         ],
         "bancoDados": [
+            "Data modeling",
+            "Database design",
             "Database",
             "Oracle Database",
-            "Database design",
-            "Data modeling",
             "NoSQL"
         ],
         "infraestrutura": [
@@ -84,13 +84,15 @@
     },
     "certificacoes": [
         "TOEIC - 945 points (2025)",
-        "SAP/ABAP",
-        "Oracle DB Design",
-        "Oracle SQL",
-        "Soft Skills for IT professionals",
-        "Emotional Management & Self-Control",
-        "Autonomous Vehicles Mini-Course",
-        "Computer Vision with OpenCV"
+        "SAP/ABAP (Fatec - 2024)",
+        "Oracle Database Design (Oracle - 2024)",
+        "Oracle Programming with SQL (Oracle - 2025)",
+        "Soft Skills for IT professionals (Fatec - 2022)",
+        "Emotional Management & Self-Control (Fundação Bradesco - 2022)",
+        "Autonomous Vehicles Mini-Course (Fatec - 2022)",
+        "Computer Vision with OpenCV (Fatec - 2022)",
+        "Logistics Fundamentals (Senai - 2021)",
+        "Excel (Senai - 2021)"
     ],
     "experiencia": [
         {
