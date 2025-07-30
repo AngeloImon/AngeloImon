@@ -13,10 +13,42 @@
     "Python",
     "C++",
     "PL/SQL",
+    "Dart",
+    "HTML5",
+    "CSS",
+    "JS",
+    "VBA",
     "Oracle DB",
     "Git/GitHub",
     "VS Code",
-    "Google Colab"
+    "Google Colab",
+    "Linux",
+    "Servidor Windows",
+    "Microsoft Office",
+    "Desenvolvimento de aplicativos",
+    "Metodologias ágeis",
+    "Controle de qualidade",
+    "Gestão de equipes",
+    "Banco de dados",
+    "Estrutura de dados",
+    "Database Design",
+    "Algoritmos",
+    "Abordagem lógica",
+    "Ciência da computação",
+    "Comunicação",
+    "Capacidade de adaptação",
+    "Comprometimento",
+    "Trabalho em equipe",
+    "Relacionamento com clientes",
+    "Resolução de problemas",
+    "Habilidades analíticas",
+    "Levantamento de requisitos",
+    "Relatório",
+    "Suporte técnico",
+    "Informática",
+    "Trabalho remoto",
+    "Tecnologia da informação",
+    "Montagem de computadores"
   ],
   "certificacoes": [
     "TOEIC - 945 pontos (2025)",
@@ -102,9 +134,29 @@
       "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
     },
     {
+      "nome": "Otimização de Carga Veicular com Gurobi",
+      "descricao": "Resolve um problema de carga de veículo utilizando programação linear inteira, considerando peso máximo, valor dos produtos, quantidades disponíveis e restrições de incompatibilidade entre itens. Retorna a solução ótima com lista dos itens selecionados e peso total carregado.",
+      "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_carga_veiculo.ipynb"
+    },
+    {
+      "nome": "Otimização de Distribuição Fábrica-Cliente com Gurobi",
+      "descricao": "Executa um modelo de programação linear contínua para minimizar o custo de envio de produtos entre múltiplas fábricas e clientes, respeitando limites de estoque, demandas e custos logísticos. Retorna a quantidade a ser enviada por fábrica, cliente e produto, junto ao custo ótimo de distribuição.",
+      "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_envio_produtos.ipynb"
+    },
+    {
       "nome": "Otimização da Força de Trabalho – Modelagem com Programação Linear usando Python + Gurobi",
       "descricao": "Otimização de escalas de trabalho, minimizando os custos salarias em diferentes cenários.",
       "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
+    },
+    {
+      "nome": "Aplicativo de Organização de Estudos com NiceGUI",
+      "descricao": "Aplicativo web desenvolvido em Python com a biblioteca NiceGUI, focado em auxiliar usuários na criação de planos de estudo personalizados, gerenciamento visual de cronogramas semanais e exportação de dados. Possui sistema de autenticação, dashboard com métricas, planejamento por dias da semana e calendário, além de integração com Firebase para armazenamento em nuvem.",
+      "link": "https://github.com/AngeloImon/Projeto_P2_TEI"
+    },
+    {
+      "nome": "Aplicativo de Gerenciamento Financeiro Pessoal — Flutter + Firebase",
+      "descricao": "Aplicativo mobile multiplataforma criado com Flutter e integrado ao Firebase, voltado para o controle financeiro pessoal. Permite registrar receitas e despesas, visualizar saldo consolidado, organizar movimentações em planilhas mensais e acessar relatórios detalhados. Conta com autenticação segura, atualização em tempo real e arquitetura modular com telas específicas para login, entradas e visualizações.",
+      "link": "https://github.com/MariTaba/projeto_gerenciamento_financas"
     }
   ],
   "secoes": {
