@@ -279,9 +279,6 @@ main#main-content[style*="display: grid"] {
   flex-direction: column;
   gap: var(--space-lg);
   padding: var(--space-md);
-  background: rgba(248, 249, 250, 0.3);
-  border-radius: 8px;
-  border: 1px solid var(--border);
 }
 
 .sidebar-column {
@@ -289,9 +286,6 @@ main#main-content[style*="display: grid"] {
   flex-direction: column;
   gap: var(--space-md);
   padding: var(--space-md);
-  background: rgba(233, 236, 239, 0.3);
-  border-radius: 8px;
-  border: 1px solid var(--border);
 }
 
 /* ===== SECTIONS ===== */
