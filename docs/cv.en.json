@@ -13,6 +13,7 @@
         "Python",
         "C++",
         "PL/SQL",
+        "NoSql",
         "Dart",
         "HTML5",
         "CSS",
@@ -94,8 +95,8 @@
     ],
     "projetos": [
         {
-            "nome": "Strategic ML Pipeline for Real Campaign Data",
-            "descricao": "Executes a full pipeline combining clustering and supervised classification on the 'Marketing Campaign' dataset. Covers preprocessing, PCA, K-Means, pseudo-labeling, and logistic regression.",
+            "nome": "Strategic ML Pipeline for Real Campaign Data - PCA + K-Means + logistic regression",
+            "descricao": "Executes a full pipeline combining clustering and supervised classification.",
             "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
         },
         {
@@ -114,8 +115,8 @@
             "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
         },
         {
-            "nome": "Vehicle Load Optimization – Integer Programming with Logistics Constraints",
-            "descricao": "Solves a constrained loading problem using Integer Linear Programming in Python with Gurobi. Considers vehicle weight limit, item value and quantity, and incompatibility pairs to maximize total cargo value.",
+            "nome": "Vehicle Load Optimization – Integer Linear Programming with Logistics Constraints + Gurobi",
+            "descricao": "Solves a constrained loading problem. Considers vehicle weight limit, item value and quantity, and incompatibility pairs to maximize total cargo value.",
             "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_carga_veiculo.ipynb"
         },
         {
@@ -124,15 +125,16 @@
             "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
         },
         {
-            "nome": "Study Planner Web App with NiceGUI",
-            "descricao": "Responsive and intuitive web application developed in Python using NiceGUI. Helps users create personalized study plans through calendar and weekly scheduling. Features include user authentication, dashboard with usage metrics, data import/export, and cloud integration via Firebase Firestore.",
+            "nome": "Study Planner Web App - Python + NiceGUI + Firebase + NoSQL",
+            "descricao": "Intuitive web application, focused on personalized study plans, with weekly schedule and data exportation.",
             "link": "https://github.com/AngeloImon/Projeto_P2_TEI"
         },
         {
-            "nome": "Personal Finance Management App — Flutter + Firebase",
-            "descricao": "Cross-platform mobile app built with Flutter and integrated with Firebase for real-time personal financial control. Allows users to log income and expenses, view consolidated balance, organize monthly spreadsheets, and access detailed reports. Features secure authentication, dynamic updates, and modular architecture with dedicated screens for login, entries, and visualizations.",
+            "nome": "Personal Finance Management App — Flutter + Firebase + NoSQL",
+            "descricao": "Cross-platform, modular app with real-time tracking for personal financial management.",
             "link": "https://github.com/MariTaba/projeto_gerenciamento_financas"
         }
+
     ],
     "secoes": {
         "resumo": "Summary",
