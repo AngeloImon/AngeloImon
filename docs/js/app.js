@@ -287,3 +287,40 @@ if (Config.isDev) {
         lang: window.cvApp?.lang
     });
 }
+
+updateUI() {
+    const d = this.data;
+
+    // Basic info
+    this.setText('#nome', d.nome);
+    this.setText('#email', d.email);
+    this.setText('#github', d.links?.github);
+    this.setText('#linkedin', d.links?.linkedin);
+    this.setText('#resumo', d.resumo);
+    this.setText('#formacao', d.formacao);
+
+    // ✅ ADICIONAR: Update section titles
+    this.updateSectionTitles();
+
+    // Lists
+    this.updateList('#experiencia', d.experiencia, 'experience');
+    this.updateList('#habilidades', d.habilidades, 'skills');
+    this.updateList('#certificacoes', d.certificacoes, 'simple');
+    this.updateList('#projetos', d.projetos, 'projects');
+
+    // Update UI texts
+    this.updateTexts();
+}
+
+// ✅ ADICIONAR: Nova função para títulos das seções
+updateSectionTitles() {
+    const titles = this.data.titles || {};
+
+    // Update section titles if they exist in JSON
+    this.setText('#resumo-title', titles.resumo || (this.lang === 'pt' ? 'Resumo' : 'Summary'));
+    this.setText('#experiencia-title', titles.experiencia || (this.lang === 'pt' ? 'Experiência Profissional' : 'Professional Experience'));
+    this.setText('#habilidades-title', titles.habilidades || (this.lang === 'pt' ? 'Habilidades Técnicas' : 'Technical Skills'));
+    this.setText('#formacao-title', titles.formacao || (this.lang === 'pt' ? 'Formação' : 'Education'));
+    this.setText('#certificacoes-title', titles.certificacoes || (this.lang === 'pt' ? 'Certificações' : 'Certifications'));
+    this.setText('#projetos-title', titles.projetos || (this.lang === 'pt' ? 'Projetos' : 'Projects'));
+}
