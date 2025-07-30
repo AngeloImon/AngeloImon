@@ -311,7 +311,7 @@ class PDFGenerator {
         }
 
         // Skills
-        if (cvData.habilidades?.length > 0) {
+        if (cvData.habilidades && Object.keys(cvData.habilidades).length > 0) {
             this.addSkills(cvData.habilidades);
         }
 
@@ -547,10 +547,8 @@ class PDFGenerator {
      * Save PDF
      */
     savePDF(name) {
-        const cleanName = name.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
-        const date = new Date().toISOString().split('T')[0];
-        const lang = this.language.toUpperCase();
-        const filename = `${cleanName}_Resume_ATS_${lang}_${date}.pdf`;
+        const lang = this.language === 'pt' ? 'Pt' : 'En';
+        const filename = `${name} - ${lang}.pdf`;
         this.pdf.save(filename);
     }
 
