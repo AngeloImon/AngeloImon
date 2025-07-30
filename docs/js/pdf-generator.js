@@ -1,725 +1,585 @@
 /**
- * ATS-Optimized Professional PDF Generation Module
+ * ATS-Optimized Professional PDF Generator
  * 
- * Creates ATS-compliant PDF resumes with clean design, plain text formatting,
- * and machine-readable structure. Prioritizes text extractability and keyword
- * recognition while maintaining professional visual appeal.
+ * Clean, machine-readable CV generation with perfect ATS compatibility.
+ * No visual interference, pure text structure, intelligent pagination.
  * 
  * @author Angelo Ferdinand Imon Spanó
- * @version 6.1.0 - ATS Optimized
+ * @version 7.0.0 - Complete Rebuild for ATS Excellence
  * @since 2025-01-29
  */
 
 class PDFGenerator {
     /**
-     * Static constants optimized for ATS parsing and professional presentation
+     * Configuration constants for ATS optimization
      */
-    static CONSTANTS = {
-        // Library loading configuration
-        MAX_LOAD_ATTEMPTS: 50,
-        LOAD_CHECK_INTERVAL: 200,
+    static CONFIG = {
+        // Page settings
+        MARGINS: { TOP: 20, BOTTOM: 20, LEFT: 20, RIGHT: 20 },
 
-        // ATS-optimized spacing for clear section separation
+        // Typography (ATS-friendly sizes)
+        FONTS: {
+            NAME: 18,
+            SECTION: 13,
+            SUBTITLE: 11,
+            BODY: 10,
+            SMALL: 9
+        },
+
+        // Spacing (clean separation)
         SPACING: {
-            SECTION_MARGIN: 12,
-            ITEM_MARGIN: 6,
-            LINE_HEIGHT: 5,
-            PARAGRAPH_SPACING: 4,
-            HEADER_SPACING: 8
+            SECTION: 10,
+            ITEM: 6,
+            LINE: 4.5,
+            HEADER: 8
         },
 
-        // ATS-friendly color palette (minimal colors for text differentiation)
+        // Colors (minimal for ATS)
         COLORS: {
-            PRIMARY: [44, 62, 80],      // Navy blue for name only
-            TEXT: [0, 0, 0],            // Pure black for maximum readability
-            LIGHT_GRAY: [100, 100, 100] // Light gray for supporting text
+            BLACK: [0, 0, 0],
+            NAVY: [44, 62, 80],
+            GRAY: [100, 100, 100]
         },
 
-        // ATS-optimized typography (clear hierarchy without decorative elements)
-        FONT_SIZES: {
-            NAME: 20,           // Name title (large but not excessive)
-            SECTION: 14,        // Section headers
-            SUBSECTION: 12,     // Job titles and project names
-            BODY: 11,           // Standard body text
-            SMALL: 10           // Supporting information
-        },
-
-        // Standard document margins for ATS parsing
-        PAGE_MARGINS: {
-            TOP: 20,
-            BOTTOM: 20,
-            LEFT: 20,
-            RIGHT: 20
-        },
-
-        // Multilingual section titles for ATS optimization
-        SECTION_TITLES: {
+        // Section titles by language
+        TITLES: {
             pt: {
-                PROFESSIONAL_SUMMARY: 'RESUMO PROFISSIONAL',
-                WORK_EXPERIENCE: 'EXPERIENCIA PROFISSIONAL',
+                SUMMARY: 'RESUMO PROFISSIONAL',
+                EXPERIENCE: 'EXPERIENCIA PROFISSIONAL',
                 PROJECTS: 'PROJETOS DESTACADOS',
-                TECHNICAL_SKILLS: 'HABILIDADES TECNICAS',
+                SKILLS: 'HABILIDADES TECNICAS',
                 EDUCATION: 'FORMACAO ACADEMICA',
                 CERTIFICATIONS: 'CERTIFICACOES'
             },
             en: {
-                PROFESSIONAL_SUMMARY: 'PROFESSIONAL SUMMARY',
-                WORK_EXPERIENCE: 'WORK EXPERIENCE',
+                SUMMARY: 'PROFESSIONAL SUMMARY',
+                EXPERIENCE: 'PROFESSIONAL EXPERIENCE',
                 PROJECTS: 'FEATURED PROJECTS',
-                TECHNICAL_SKILLS: 'TECHNICAL SKILLS',
+                SKILLS: 'TECHNICAL SKILLS',
                 EDUCATION: 'EDUCATION',
                 CERTIFICATIONS: 'CERTIFICATIONS'
             }
         }
     };
 
-    /**
-     * Initialize ATS-optimized PDF generator
-     */
     constructor() {
-        /** @type {Object} jsPDF instance reference */
         this.pdf = null;
+        this.currentY = 0;
+        this.pageWidth = 210;
+        this.pageHeight = 297;
+        this.contentWidth = this.pageWidth - PDFGenerator.CONFIG.MARGINS.LEFT - PDFGenerator.CONFIG.MARGINS.RIGHT;
+        this.language = 'pt';
+        this.isReady = false;
 
-        /** @type {Object} ATS-optimized document configuration */
-        this.config = this.initializeATSConfiguration();
-
-        /** @type {number} Current Y position tracking */
-        this.currentY = PDFGenerator.CONSTANTS.PAGE_MARGINS.TOP;
-
-        /** @type {boolean} PDF library availability status */
-        this.isLibraryLoaded = false;
-
-        /** @type {Object} Page dimension calculations */
-        this.pageInfo = {};
-
-        /** @type {string} Current document language */
-        this.currentLanguage = 'pt';
-
-        this.checkLibraryAvailability();
+        this.initLibrary();
     }
 
     /**
-     * Initializes ATS-optimized configuration for maximum compatibility
-     * @returns {Object} Complete ATS-friendly configuration
+     * Initialize PDF library
      */
-    initializeATSConfiguration() {
-        return {
-            // Standard margins for consistent parsing
-            margins: PDFGenerator.CONSTANTS.PAGE_MARGINS,
-
-            // Minimal color scheme for ATS compatibility
-            colors: PDFGenerator.CONSTANTS.COLORS,
-
-            // Clear font hierarchy for machine reading
-            fontSize: PDFGenerator.CONSTANTS.FONT_SIZES,
-
-            // Optimized spacing for content separation
-            spacing: PDFGenerator.CONSTANTS.SPACING,
-
-            // Content width calculation for text wrapping
-            get contentWidth() {
-                return 210 - this.margins.LEFT - this.margins.RIGHT; // A4 width minus margins
-            }
-        };
-    }
-
-    /**
-     * Gets localized section title based on current language
-     * @param {string} sectionKey - Section identifier
-     * @returns {string} Localized section title
-     */
-    getSectionTitle(sectionKey) {
-        return PDFGenerator.CONSTANTS.SECTION_TITLES[this.currentLanguage][sectionKey] || sectionKey;
-    }
-
-    /**
-     * Enhanced library availability detection
-     */
-    checkLibraryAvailability() {
+    async initLibrary() {
         let attempts = 0;
+        const maxAttempts = 50;
 
-        const checkInterval = setInterval(() => {
-            attempts++;
-
-            if (this.isJsPDFAvailable()) {
-                clearInterval(checkInterval);
-                this.isLibraryLoaded = true;
-                console.log('[PDFGenerator] ATS-Optimized PDF library loaded successfully');
-            } else if (attempts >= PDFGenerator.CONSTANTS.MAX_LOAD_ATTEMPTS) {
-                clearInterval(checkInterval);
-                this.isLibraryLoaded = false;
-                this.loadLibraryDynamically();
+        const checkLibrary = () => {
+            if (window.jspdf?.jsPDF || window.jsPDF || typeof jsPDF !== 'undefined') {
+                this.isReady = true;
+                console.log('[PDFGenerator] Library ready');
+                return true;
             }
-        }, PDFGenerator.CONSTANTS.LOAD_CHECK_INTERVAL);
+
+            attempts++;
+            if (attempts >= maxAttempts) {
+                console.error('[PDFGenerator] Library load failed');
+                return false;
+            }
+
+            setTimeout(checkLibrary, 100);
+        };
+
+        checkLibrary();
     }
 
     /**
-     * Comprehensive jsPDF availability verification
-     * @returns {boolean} Library availability status
-     */
-    isJsPDFAvailable() {
-        return (window.jspdf && typeof window.jspdf.jsPDF === 'function') ||
-            (typeof window.jsPDF === 'function') ||
-            (typeof jsPDF === 'function');
-    }
-
-    /**
-     * Dynamic library loading with enhanced error recovery
-     */
-    async loadLibraryDynamically() {
-        try {
-            const script = document.createElement('script');
-            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
-            script.crossOrigin = 'anonymous';
-
-            script.onload = () => {
-                this.isLibraryLoaded = true;
-                console.log('[PDFGenerator] Library loaded dynamically');
-            };
-
-            script.onerror = () => {
-                console.error('[PDFGenerator] Dynamic loading failed');
-            };
-
-            document.head.appendChild(script);
-        } catch (error) {
-            console.error('[PDFGenerator] Library loading error:', error);
-        }
-    }
-
-    /**
-     * Enhanced PDF constructor resolution
-     * @returns {Function} jsPDF constructor
-     * @throws {Error} When no constructor is available
+     * Get PDF constructor
      */
     getPDFConstructor() {
-        if (window.jspdf && typeof window.jspdf.jsPDF === 'function') {
-            return window.jspdf.jsPDF;
-        }
-        if (typeof window.jsPDF === 'function') {
-            return window.jsPDF;
-        }
-        if (typeof jsPDF === 'function') {
-            return jsPDF;
-        }
-        throw new Error('PDF library constructor not accessible');
+        if (window.jspdf?.jsPDF) return window.jspdf.jsPDF;
+        if (window.jsPDF) return window.jsPDF;
+        if (typeof jsPDF !== 'undefined') return jsPDF;
+        throw new Error('PDF library not available');
     }
 
     /**
-     * ATS-optimized PDF generation with machine-readable structure
-     * @param {Object} cvData - Complete curriculum vitae data
-     * @param {string} language - Localization language code
-     * @returns {Promise<void>} Generation completion promise
+     * Get localized title
+     */
+    getTitle(key) {
+        return PDFGenerator.CONFIG.TITLES[this.language]?.[key] || key;
+    }
+
+    /**
+     * Main PDF generation
      */
     async generatePDF(cvData, language = 'pt') {
-        if (!this.isLibraryLoaded) {
-            throw new Error('PDF generation library not available');
+        if (!this.isReady) {
+            throw new Error('PDF library not ready');
         }
 
-        if (!cvData || !cvData.nome) {
-            throw new Error('Invalid CV data provided');
+        if (!cvData?.nome) {
+            throw new Error('Invalid CV data');
         }
 
         try {
-            // Set current language for section titles
-            this.currentLanguage = language;
-
-            this.initializeATSDocument();
-            this.generateATSHeader(cvData);
-            this.generateATSContent(cvData, language);
-            this.addATSFooter(cvData);
-            this.saveATSPDF(cvData.nome);
-            this.showSuccessNotification();
+            this.language = language;
+            this.initDocument();
+            this.addHeader(cvData);
+            this.addContent(cvData);
+            this.addFooter(cvData);
+            this.savePDF(cvData.nome);
+            this.showSuccess();
         } catch (error) {
-            console.error('[PDFGenerator] ATS generation failed:', error);
-            this.showErrorNotification();
+            console.error('[PDFGenerator] Generation failed:', error);
+            this.showError();
             throw error;
         }
     }
 
     /**
-     * Initializes PDF document with ATS-optimized settings
+     * Initialize document
      */
-    initializeATSDocument() {
+    initDocument() {
         const PDFConstructor = this.getPDFConstructor();
         this.pdf = new PDFConstructor('portrait', 'mm', 'a4');
+        this.currentY = PDFGenerator.CONFIG.MARGINS.TOP;
 
-        // Calculate page dimensions
-        this.pageInfo = {
-            width: this.pdf.internal.pageSize.getWidth(),
-            height: this.pdf.internal.pageSize.getHeight(),
-            centerX: this.pdf.internal.pageSize.getWidth() / 2
-        };
-
-        this.currentY = this.config.margins.TOP;
-
-        // ATS-friendly document metadata
+        // Set properties
         this.pdf.setProperties({
-            title: 'Resume - Curriculum Vitae',
-            subject: 'Professional Resume',
+            title: 'Professional Resume',
             author: 'Angelo Ferdinand Imon Spanó',
-            creator: 'ATS-Optimized CV Generator v6.1',
-            producer: 'jsPDF ATS Generator'
+            creator: 'ATS PDF Generator v7.0'
         });
 
-        // Set standard font for maximum compatibility
+        // Default font
         this.pdf.setFont('helvetica', 'normal');
-        this.pdf.setTextColor(0, 0, 0); // Pure black text
+        this.setColor('BLACK');
     }
 
     /**
-     * Generates ATS-optimized header with clean linear layout
-     * @param {Object} cvData - Personal and contact information
+     * Set text color
      */
-    generateATSHeader(cvData) {
-        // Professional name with navy blue color (only colored element)
-        this.pdf.setFontSize(this.config.fontSize.NAME);
-        this.pdf.setFont('helvetica', 'bold');
-        this.pdf.setTextColor(...this.config.colors.PRIMARY); // Navy blue for name only
-
-        const name = cvData.nome.toUpperCase();
-        this.centerText(name, this.currentY);
-        this.currentY += this.config.spacing.HEADER_SPACING;
-
-        // Professional subtitle in black
-        if (cvData.cargo || cvData.area) {
-            this.pdf.setFontSize(this.config.fontSize.SUBSECTION);
-            this.pdf.setFont('helvetica', 'normal');
-            this.pdf.setTextColor(0, 0, 0); // Back to black
-            const subtitle = cvData.cargo || cvData.area || 'Desenvolvedor Profissional';
-            this.centerText(subtitle, this.currentY);
-            this.currentY += this.config.spacing.HEADER_SPACING;
-        }
-
-        // ATS-friendly contact information (linear layout)
-        this.addATSContactInformation(cvData);
+    setColor(colorName) {
+        const color = PDFGenerator.CONFIG.COLORS[colorName] || PDFGenerator.CONFIG.COLORS.BLACK;
+        this.pdf.setTextColor(...color);
     }
 
     /**
-     * Adds ATS-optimized contact information with direct URLs
-     * @param {Object} cvData - Contact data
+     * Check page break
      */
-    addATSContactInformation(cvData) {
-        this.pdf.setFontSize(this.config.fontSize.BODY);
-        this.pdf.setFont('helvetica', 'normal');
-        this.pdf.setTextColor(0, 0, 0); // Pure black for ATS
-
-        const contactLines = [];
-
-        // Email (direct text, no hyperlink)
-        if (cvData.email) {
-            contactLines.push(`Email: ${cvData.email}`);
+    checkPageBreak(space = 10) {
+        if (this.currentY + space > this.pageHeight - PDFGenerator.CONFIG.MARGINS.BOTTOM) {
+            this.pdf.addPage();
+            this.currentY = PDFGenerator.CONFIG.MARGINS.TOP;
         }
-
-        // GitHub (full URL for ATS parsing)
-        if (cvData.links?.github) {
-            contactLines.push(`GitHub: ${cvData.links.github}`);
-        }
-
-        // LinkedIn (full URL for ATS parsing)
-        if (cvData.links?.linkedin) {
-            contactLines.push(`LinkedIn: ${cvData.links.linkedin}`);
-        }
-
-        // Phone if available
-        if (cvData.telefone) {
-            contactLines.push(`Telefone: ${cvData.telefone}`);
-        }
-
-        // Render contact information in clean lines
-        contactLines.forEach(line => {
-            this.centerText(line, this.currentY);
-            this.currentY += 6;
-        });
-
-        this.currentY += this.config.spacing.HEADER_SPACING;
-
-        // Add separator line for visual organization
-        this.addSeparatorLine();
     }
 
     /**
-     * Generates ATS-optimized main content with clear section structure
-     * @param {Object} cvData - Complete curriculum data
-     * @param {string} language - Content language
+     * Center text
      */
-    generateATSContent(cvData, language) {
-        // Professional summary
-        if (cvData.resumo) {
-            this.addATSSection(this.getSectionTitle('PROFESSIONAL_SUMMARY'), cvData.resumo);
-        }
-
-        // Work experience
-        if (cvData.experiencia?.length > 0) {
-            this.addATSExperienceSection(cvData.experiencia);
-        }
-
-        // Projects
-        if (cvData.projetos?.length > 0) {
-            this.addATSProjectsSection(cvData.projetos);
-        }
-
-        // Technical skills
-        if (cvData.habilidades?.length > 0) {
-            this.addATSSkillsSection(cvData.habilidades);
-        }
-
-        // Education
-        if (cvData.formacao) {
-            this.addATSSection(this.getSectionTitle('EDUCATION'), cvData.formacao);
-        }
-
-        // Certifications
-        if (cvData.certificacoes?.length > 0) {
-            this.addATSCertificationsSection(cvData.certificacoes);
-        }
+    centerText(text, y) {
+        const textWidth = this.pdf.getTextWidth(text);
+        const x = (this.pageWidth - textWidth) / 2;
+        this.pdf.text(text, x, y);
     }
 
     /**
-     * Adds ATS-optimized section with clean formatting
-     * @param {string} title - Section title
-     * @param {string} content - Section content
-     */
-    addATSSection(title, content) {
-        this.checkPageBreak(20);
-
-        // Section header with clear separation
-        this.addATSSectionHeader(title);
-
-        // Clean content presentation
-        this.pdf.setFontSize(this.config.fontSize.BODY);
-        this.pdf.setFont('helvetica', 'normal');
-        this.pdf.setTextColor(0, 0, 0);
-
-        const wrappedContent = this.wrapText(content, this.config.contentWidth);
-        this.addWrappedText(wrappedContent);
-
-        this.currentY += this.config.spacing.SECTION_MARGIN;
-    }
-
-    /**
-     * ATS-optimized section header with clean visual hierarchy (NO LINES)
-     * @param {string} title - Section title
-     */
-    addATSSectionHeader(title) {
-        // Add some space before section
-        this.currentY += this.config.spacing.SECTION_MARGIN;
-
-        // Section title in bold black (clean, no underlines)
-        this.pdf.setFontSize(this.config.fontSize.SECTION);
-        this.pdf.setFont('helvetica', 'bold');
-        this.pdf.setTextColor(0, 0, 0);
-
-        this.pdf.text(title, this.config.margins.LEFT, this.currentY);
-        this.currentY += this.config.spacing.HEADER_SPACING;
-
-        // NO LINES - removed for clean ATS-friendly appearance
-    }
-
-    /**
-     * ATS-optimized experience section
-     * @param {Array} experiences - Work experience data
-     */
-    addATSExperienceSection(experiences) {
-        this.addATSSectionHeader(this.getSectionTitle('WORK_EXPERIENCE'));
-
-        experiences.forEach((exp, index) => {
-            this.checkPageBreak(25);
-
-            // Job title
-            this.pdf.setFontSize(this.config.fontSize.SUBSECTION);
-            this.pdf.setFont('helvetica', 'bold');
-            this.pdf.setTextColor(0, 0, 0);
-            this.pdf.text(exp.cargo || 'Cargo', this.config.margins.LEFT, this.currentY);
-            this.currentY += 6;
-
-            // Company and period
-            this.pdf.setFontSize(this.config.fontSize.BODY);
-            this.pdf.setFont('helvetica', 'normal');
-
-            const companyText = `${exp.empresa || 'Empresa'} | ${exp.periodo || 'Período'}`;
-            this.pdf.text(companyText, this.config.margins.LEFT, this.currentY);
-            this.currentY += 6;
-
-            // Responsibilities with clean bullets
-            if (exp.tarefas?.length > 0) {
-                exp.tarefas.forEach(task => {
-                    this.checkPageBreak(6);
-                    const bulletText = `• ${task}`;
-                    const wrappedTask = this.wrapText(bulletText, this.config.contentWidth - 5);
-                    this.addWrappedText(wrappedTask, this.config.margins.LEFT + 3);
-                });
-            }
-
-            this.currentY += this.config.spacing.ITEM_MARGIN;
-        });
-    }
-
-    /**
-     * ATS-optimized projects section
-     * @param {Array} projects - Project data
-     */
-    addATSProjectsSection(projects) {
-        this.addATSSectionHeader(this.getSectionTitle('PROJECTS'));
-
-        projects.forEach((project, index) => {
-            this.checkPageBreak(15);
-
-            // Project name
-            this.pdf.setFontSize(this.config.fontSize.SUBSECTION);
-            this.pdf.setFont('helvetica', 'bold');
-            this.pdf.setTextColor(0, 0, 0);
-            this.pdf.text(project.nome || 'Projeto', this.config.margins.LEFT, this.currentY);
-            this.currentY += 6;
-
-            // Project description
-            if (project.descricao) {
-                this.pdf.setFontSize(this.config.fontSize.BODY);
-                this.pdf.setFont('helvetica', 'normal');
-
-                const wrappedDesc = this.wrapText(project.descricao, this.config.contentWidth);
-                this.addWrappedText(wrappedDesc);
-            }
-
-            // Project link (direct URL for ATS)
-            if (project.link) {
-                this.pdf.setFontSize(this.config.fontSize.BODY);
-                this.pdf.text(`Link: ${project.link}`, this.config.margins.LEFT, this.currentY);
-                this.currentY += 6;
-            }
-
-            this.currentY += this.config.spacing.ITEM_MARGIN;
-        });
-    }
-
-    /**
-     * ATS-optimized skills section
-     * @param {Array} skills - Technical skills
-     */
-    addATSSkillsSection(skills) {
-        this.addATSSectionHeader(this.getSectionTitle('TECHNICAL_SKILLS'));
-
-        this.pdf.setFontSize(this.config.fontSize.BODY);
-        this.pdf.setFont('helvetica', 'normal');
-        this.pdf.setTextColor(0, 0, 0);
-
-        // Skills as comma-separated list (ATS-friendly)
-        const skillsText = skills.join(', ');
-        const wrappedSkills = this.wrapText(skillsText, this.config.contentWidth);
-        this.addWrappedText(wrappedSkills);
-
-        this.currentY += this.config.spacing.SECTION_MARGIN;
-    }
-
-    /**
-     * ATS-optimized certifications section
-     * @param {Array} certifications - Certifications data
-     */
-    addATSCertificationsSection(certifications) {
-        this.addATSSectionHeader(this.getSectionTitle('CERTIFICATIONS'));
-
-        this.pdf.setFontSize(this.config.fontSize.BODY);
-        this.pdf.setFont('helvetica', 'normal');
-        this.pdf.setTextColor(0, 0, 0);
-
-        certifications.forEach(cert => {
-            this.checkPageBreak(6);
-            this.pdf.text(`• ${cert}`, this.config.margins.LEFT, this.currentY);
-            this.currentY += 6;
-        });
-
-        this.currentY += this.config.spacing.SECTION_MARGIN;
-    }
-
-    /**
-     * Standard text wrapping for ATS compatibility
-     * @param {string} text - Text to wrap
-     * @param {number} maxWidth - Maximum width
-     * @returns {Array<string>} Wrapped text lines
+     * Wrap text
      */
     wrapText(text, maxWidth) {
         const words = text.split(' ');
         const lines = [];
         let currentLine = '';
 
-        words.forEach(word => {
+        for (const word of words) {
             const testLine = currentLine ? `${currentLine} ${word}` : word;
-            const testWidth = this.pdf.getTextWidth(testLine);
-
-            if (testWidth <= maxWidth) {
+            if (this.pdf.getTextWidth(testLine) <= maxWidth) {
                 currentLine = testLine;
             } else {
-                if (currentLine) {
-                    lines.push(currentLine);
-                    currentLine = word;
-                } else {
-                    lines.push(word);
-                    currentLine = '';
-                }
+                if (currentLine) lines.push(currentLine);
+                currentLine = word;
             }
-        });
-
-        if (currentLine) {
-            lines.push(currentLine);
         }
 
+        if (currentLine) lines.push(currentLine);
         return lines;
     }
 
     /**
-     * Adds wrapped text with consistent spacing
-     * @param {Array<string>} lines - Text lines
-     * @param {number} leftMargin - Left margin override
+     * Add text block
      */
-    addWrappedText(lines, leftMargin = null) {
-        const margin = leftMargin || this.config.margins.LEFT;
+    addTextBlock(lines, leftMargin = null) {
+        const margin = leftMargin || PDFGenerator.CONFIG.MARGINS.LEFT;
 
-        lines.forEach(line => {
-            this.checkPageBreak(this.config.spacing.LINE_HEIGHT);
+        for (const line of lines) {
+            this.checkPageBreak(PDFGenerator.CONFIG.SPACING.LINE);
             this.pdf.text(line, margin, this.currentY);
-            this.currentY += this.config.spacing.LINE_HEIGHT;
-        });
-    }
-
-    /**
-     * Intelligent page break management
-     * @param {number} requiredSpace - Required space
-     */
-    checkPageBreak(requiredSpace) {
-        if (this.currentY + requiredSpace > this.pageInfo.height - this.config.margins.BOTTOM) {
-            this.pdf.addPage();
-            this.currentY = this.config.margins.TOP;
+            this.currentY += PDFGenerator.CONFIG.SPACING.LINE;
         }
     }
 
     /**
-     * Centers text horizontally
-     * @param {string} text - Text to center
-     * @param {number} y - Y position
+     * Add header
      */
-    centerText(text, y) {
-        const textWidth = this.pdf.getTextWidth(text);
-        const x = (this.pageInfo.width - textWidth) / 2;
-        this.pdf.text(text, x, y);
+    addHeader(cvData) {
+        // Name (only colored element)
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.NAME);
+        this.pdf.setFont('helvetica', 'bold');
+        this.setColor('NAVY');
+        this.centerText(cvData.nome.toUpperCase(), this.currentY);
+        this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+
+        // Subtitle
+        if (cvData.cargo || cvData.area) {
+            this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SUBTITLE);
+            this.pdf.setFont('helvetica', 'normal');
+            this.setColor('BLACK');
+            const subtitle = cvData.cargo || cvData.area || 'Desenvolvedor';
+            this.centerText(subtitle, this.currentY);
+            this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+        }
+
+        // Contact info
+        this.addContactInfo(cvData);
+
+        // Separator
+        this.addSeparator();
     }
 
     /**
-     * Adds clean visual separator line (only for header)
+     * Add contact information
      */
-    addSeparatorLine() {
-        this.pdf.setLineWidth(0.3);
+    addContactInfo(cvData) {
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
+        this.pdf.setFont('helvetica', 'normal');
+        this.setColor('BLACK');
+
+        const contacts = [];
+
+        if (cvData.email) contacts.push(`Email: ${cvData.email}`);
+        if (cvData.links?.github) contacts.push(`GitHub: ${cvData.links.github}`);
+        if (cvData.links?.linkedin) contacts.push(`LinkedIn: ${cvData.links.linkedin}`);
+        if (cvData.telefone) contacts.push(`Telefone: ${cvData.telefone}`);
+
+        for (const contact of contacts) {
+            this.centerText(contact, this.currentY);
+            this.currentY += 5;
+        }
+
+        this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+    }
+
+    /**
+     * Add separator line
+     */
+    addSeparator() {
+        this.pdf.setLineWidth(0.2);
         this.pdf.setDrawColor(150, 150, 150);
         this.pdf.line(
-            this.config.margins.LEFT + 30,
+            PDFGenerator.CONFIG.MARGINS.LEFT + 20,
             this.currentY,
-            this.pageInfo.width - this.config.margins.RIGHT - 30,
+            this.pageWidth - PDFGenerator.CONFIG.MARGINS.RIGHT - 20,
             this.currentY
         );
-        this.currentY += this.config.spacing.HEADER_SPACING;
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
     }
 
     /**
-     * ATS-friendly footer
-     * @param {Object} cvData - CV data
+     * Add main content
      */
-    addATSFooter(cvData) {
+    addContent(cvData) {
+        // Summary
+        if (cvData.resumo) {
+            this.addSection(this.getTitle('SUMMARY'), cvData.resumo);
+        }
+
+        // Experience
+        if (cvData.experiencia?.length > 0) {
+            this.addExperience(cvData.experiencia);
+        }
+
+        // Projects
+        if (cvData.projetos?.length > 0) {
+            this.addProjects(cvData.projetos);
+        }
+
+        // Skills
+        if (cvData.habilidades?.length > 0) {
+            this.addSkills(cvData.habilidades);
+        }
+
+        // Education
+        if (cvData.formacao) {
+            this.addSection(this.getTitle('EDUCATION'), cvData.formacao);
+        }
+
+        // Certifications
+        if (cvData.certificacoes?.length > 0) {
+            this.addCertifications(cvData.certificacoes);
+        }
+    }
+
+    /**
+     * Add section
+     */
+    addSection(title, content) {
+        this.checkPageBreak(20);
+
+        // Section title
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
+        this.pdf.setFont('helvetica', 'bold');
+        this.setColor('BLACK');
+        this.pdf.text(title, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+        this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+
+        // Content
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
+        this.pdf.setFont('helvetica', 'normal');
+        const lines = this.wrapText(content, this.contentWidth);
+        this.addTextBlock(lines);
+
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+    }
+
+    /**
+     * Add experience section
+     */
+    addExperience(experiences) {
+        this.checkPageBreak(30);
+
+        // Section title
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
+        this.pdf.setFont('helvetica', 'bold');
+        this.setColor('BLACK');
+        this.pdf.text(this.getTitle('EXPERIENCE'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+        this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+
+        for (const exp of experiences) {
+            this.checkPageBreak(20);
+
+            // Job title
+            this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SUBTITLE);
+            this.pdf.setFont('helvetica', 'bold');
+            this.pdf.text(exp.cargo || 'Cargo', PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+            this.currentY += 5;
+
+            // Company
+            this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
+            this.pdf.setFont('helvetica', 'normal');
+            const company = `${exp.empresa || 'Empresa'} | ${exp.periodo || 'Período'}`;
+            this.pdf.text(company, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+            this.currentY += 6;
+
+            // Tasks
+            if (exp.tarefas?.length > 0) {
+                for (const task of exp.tarefas) {
+                    this.checkPageBreak(5);
+                    const bullet = `• ${task}`;
+                    const lines = this.wrapText(bullet, this.contentWidth - 5);
+                    this.addTextBlock(lines, PDFGenerator.CONFIG.MARGINS.LEFT + 3);
+                }
+            }
+
+            this.currentY += PDFGenerator.CONFIG.SPACING.ITEM;
+        }
+    }
+
+    /**
+     * Add projects section
+     */
+    addProjects(projects) {
+        this.checkPageBreak(25);
+
+        // Section title
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
+        this.pdf.setFont('helvetica', 'bold');
+        this.setColor('BLACK');
+        this.pdf.text(this.getTitle('PROJECTS'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+        this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+
+        for (const project of projects) {
+            this.checkPageBreak(15);
+
+            // Project name
+            this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SUBTITLE);
+            this.pdf.setFont('helvetica', 'bold');
+            this.pdf.text(project.nome || 'Projeto', PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+            this.currentY += 5;
+
+            // Description
+            if (project.descricao) {
+                this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
+                this.pdf.setFont('helvetica', 'normal');
+                const lines = this.wrapText(project.descricao, this.contentWidth);
+                this.addTextBlock(lines);
+            }
+
+            // Link
+            if (project.link) {
+                this.pdf.text(`Link: ${project.link}`, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+                this.currentY += 5;
+            }
+
+            this.currentY += PDFGenerator.CONFIG.SPACING.ITEM;
+        }
+    }
+
+    /**
+     * Add skills section
+     */
+    addSkills(skills) {
+        this.checkPageBreak(15);
+
+        // Section title
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
+        this.pdf.setFont('helvetica', 'bold');
+        this.setColor('BLACK');
+        this.pdf.text(this.getTitle('SKILLS'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+        this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+
+        // Skills list
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
+        this.pdf.setFont('helvetica', 'normal');
+        const skillsText = skills.join(', ');
+        const lines = this.wrapText(skillsText, this.contentWidth);
+        this.addTextBlock(lines);
+
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+    }
+
+    /**
+     * Add certifications section
+     */
+    addCertifications(certifications) {
+        this.checkPageBreak(15);
+
+        // Section title
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
+        this.pdf.setFont('helvetica', 'bold');
+        this.setColor('BLACK');
+        this.pdf.text(this.getTitle('CERTIFICATIONS'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+        this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+
+        // Certifications list
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
+        this.pdf.setFont('helvetica', 'normal');
+
+        for (const cert of certifications) {
+            this.checkPageBreak(5);
+            this.pdf.text(`• ${cert}`, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+            this.currentY += 5;
+        }
+
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+    }
+
+    /**
+     * Add footer
+     */
+    addFooter(cvData) {
         const pageCount = this.pdf.internal.getNumberOfPages();
 
         for (let i = 1; i <= pageCount; i++) {
             this.pdf.setPage(i);
-
-            this.pdf.setFontSize(this.config.fontSize.SMALL);
+            this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SMALL);
             this.pdf.setFont('helvetica', 'normal');
-            this.pdf.setTextColor(100, 100, 100);
+            this.setColor('GRAY');
 
-            // Simple footer with language-appropriate page text
-            const pageText = this.currentLanguage === 'en' ? 'Page' : 'Página';
-            const footerText = `${cvData.nome || 'Angelo Ferdinand Imon Spanó'} - ${pageText} ${i} ${this.currentLanguage === 'en' ? 'of' : 'de'} ${pageCount}`;
-            const footerWidth = this.pdf.getTextWidth(footerText);
-            const footerX = (this.pageInfo.width - footerWidth) / 2;
-            this.pdf.text(footerText, footerX, this.pageInfo.height - 10);
+            const pageText = this.language === 'en' ? 'Page' : 'Página';
+            const ofText = this.language === 'en' ? 'of' : 'de';
+            const footer = `${cvData.nome} - ${pageText} ${i} ${ofText} ${pageCount}`;
+
+            const footerWidth = this.pdf.getTextWidth(footer);
+            const footerX = (this.pageWidth - footerWidth) / 2;
+            this.pdf.text(footer, footerX, this.pageHeight - 10);
         }
     }
 
     /**
-     * Saves ATS-optimized PDF
-     * @param {string} name - Base filename
+     * Save PDF
      */
-    saveATSPDF(name) {
-        const sanitizedName = name.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
-        const timestamp = new Date().toISOString().split('T')[0];
-        const languageSuffix = this.currentLanguage === 'en' ? 'EN' : 'PT';
-        const filename = `${sanitizedName}_Resume_ATS_${languageSuffix}_${timestamp}.pdf`;
+    savePDF(name) {
+        const cleanName = name.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
+        const date = new Date().toISOString().split('T')[0];
+        const lang = this.language.toUpperCase();
+        const filename = `${cleanName}_Resume_ATS_${lang}_${date}.pdf`;
         this.pdf.save(filename);
     }
 
     /**
-     * Enhanced success notification
+     * Show success notification
      */
-    showSuccessNotification() {
-        const notification = this.createNotification(
-            '#27ae60',
-            '✅ PDF ATS-Optimized Gerado com Sucesso!'
-        );
-        this.displayNotification(notification);
+    showSuccess() {
+        const message = this.language === 'en'
+            ? '✅ ATS-Optimized PDF Generated!'
+            : '✅ PDF ATS-Otimizado Gerado!';
+        this.notify('#27ae60', message);
     }
 
     /**
-     * Enhanced error notification
+     * Show error notification
      */
-    showErrorNotification() {
-        const notification = this.createNotification(
-            '#e74c3c',
-            '❌ Erro na Geração do PDF!'
-        );
-        this.displayNotification(notification);
+    showError() {
+        const message = this.language === 'en'
+            ? '❌ PDF Generation Error!'
+            : '❌ Erro na Geração do PDF!';
+        this.notify('#e74c3c', message);
     }
 
     /**
-     * Creates notification element
-     * @param {string} backgroundColor - Background color
-     * @param {string} message - Message text
-     * @returns {HTMLElement} Notification element
+     * Show notification
      */
-    createNotification(backgroundColor, message) {
+    notify(color, message) {
         const notification = document.createElement('div');
         notification.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
-            background: ${backgroundColor};
+            background: ${color};
             color: white;
             padding: 16px 24px;
-            border-radius: 12px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 14px;
             z-index: 10000;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-family: system-ui, sans-serif;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
         `;
         notification.textContent = message;
-        return notification;
-    }
 
-    /**
-     * Displays notification with timing
-     * @param {HTMLElement} notification - Notification element
-     */
-    displayNotification(notification) {
         document.body.appendChild(notification);
 
+        // Animate in
+        requestAnimationFrame(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateX(0)';
+        });
+
+        // Animate out
         setTimeout(() => {
-            if (notification.parentNode) {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => notification.remove(), 300);
-            }
-        }, 4000);
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
     }
 }
 
-// Enhanced global export
+// Export
 window.PDFGenerator = PDFGenerator;
-console.log('[PDFGenerator] ATS-Optimized Professional PDF Generator v6.1.0 loaded successfully');
+console.log('[PDFGenerator] ATS-Optimized PDF Generator v7.0.0 loaded successfully');
