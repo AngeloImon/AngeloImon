@@ -1,163 +1,177 @@
 {
-  "nome": "Angelo Ferdinand Imon Spanó",
-  "email": "angeloimon@outlook.com",
-  "subtitulo": "Desenvolvedor em Formação (Fatec) | Python • C++ • PL/SQL • Git/GitHub • Banco de Dados Oracle | Lógica, Suporte Técnico e Inglês Fluente (TOEIC 945)",
-  "lastUpdated": "30 de julho de 2025",
-  "links": {
-    "github": "https://github.com/AngeloImon",
-    "linkedin": "https://www.linkedin.com/in/angelo-ferdinand-imon-spano-73386b197"
-  },
-  "resumo": "Desenvolvedor em transição para a área de tecnologia, cursando Análise e Desenvolvimento de Sistemas (FATEC-RP). Fluente em inglês (TOEIC 945), com experiência em atendimento ao cliente e análise de crédito. Desenvolvi aplicações em nuvem usando Python e APIs REST do Firebase (Auth, NoSQL), com integração de dados em tempo real. Tenho prática em desenvolvimento mobile com Flutter/Dart, e projetos orientados por dados utilizando criptografia RSA, aprendizado de máquina com Scikit-learn e otimização com Gurobi. Entreguei soluções em visão computacional com OpenCV. Aplico Git/GitHub e metodologias ágeis para colaboração e controle de versão. Movido por empatia, autonomia e propósito — pronto para agregar valor a equipes de tecnologia com foco em impacto.",
-  "formacao": "Tecnólogo em Análise e Desenvolvimento de Sistemas – FATEC-RP (2022–2025)",
-  "habilidades": [
-    "Abordagem lógica",
-    "Algoritmos",
-    "Análise crítica",
-    "Aplicações multiplataforma",
-    "APIs RESTful",
-    "Banco de dados",
-    "Banco de Dados Oracle",
-    "C++",
-    "Capacidade de adaptação",
-    "Ciência da computação",
-    "Comprometimento",
-    "Comunicação",
-    "Controle de qualidade",
-    "CSS",
-    "Dart",
-    "Design de banco de dados",
-    "Desenvolvimento de aplicativos",
-    "Documentação técnica",
-    "Empatia na tecnologia",
-    "Estrutura de dados",
-    "Firebase",
-    "Git/GitHub",
-    "Google Colab",
-    "Gurobi",
-    "HTML5",
-    "Informática",
-    "JavaScript",
-    "Levantamento de requisitos",
-    "Linux",
-    "Microsoft Office",
-    "Modelagem de banco de dados",
-    "Montagem de computadores",
-    "NiceGUI",
-    "NoSQL",
-    "OpenCV",
-    "PL/SQL",
-    "Princípios da engenharia de software",
-    "Python",
-    "Qualidade de código",
-    "Relatórios técnicos",
-    "Relacionamento com clientes",
-    "Responsabilidade de projetos",
-    "Resolução de problemas",
-    "Scikit-learn",
-    "Segurança da informação",
-    "Autoaprendizado",
-    "Servidor Windows",
-    "Suporte técnico",
-    "Sistemas de controle de versão",
-    "Trabalho em equipe",
-    "Tecnologia da informação",
-    "Testes unitários / Depuração",
-    "Gestão do tempo",
-    "Trabalho remoto",
-    "VBA",
-    "Versionamento de código",
-    "VS Code"
-  ],
-  "certificacoes": [
-    "TOEIC - 945 pontos (2025)",
-    "SAP/ABAP",
-    "Oracle BD Design",
-    "Oracle SQL",
-    "Soft Skills para profissionais de TI",
-    "Controle de Impulso e Manejo Emocional",
-    "Mini-Curso Veículos Autônomos",
-    "Visão Computacional com OpenCV"
-  ],
-  "experiencia": [
-    {
-      "empresa": "Foxtime",
-      "cargo": "Assistente Administrativo I",
-      "periodo": "mai/2021 – mai/2022",
-      "tarefas": [
-        "Analisei crédito e documentos para aprovação de financiamentos.",
-        "Mantive atualizados os bancos de dados internos via planilhas e sistemas corporativos.",
-        "Estabeleci parcerias comerciais e conduzi vendas consultivas de seguros."
-      ]
+    "nome": "Angelo Ferdinand Imon Spanó",
+    "email": "angeloimon@outlook.com",
+    "subtitulo": "Desenvolvedor em Formação (Fatec) | Python • C++ • PL/SQL • Git/GitHub • Banco de Dados Oracle | Lógica, Suporte Técnico e Inglês Fluente (TOEIC 945)",
+    "lastUpdated": "30 de julho de 2025",
+    "links": {
+        "github": "https://github.com/AngeloImon",
+        "linkedin": "https://www.linkedin.com/in/angelo-ferdinand-imon-spano-73386b197"
     },
-    {
-      "empresa": "Museu da Gula",
-      "cargo": "Atendente / Especialista responsável de setor",
-      "periodo": "dez/2014 – fev/2020",
-      "tarefas": [
-        "Gerenciei o setor de destilados, incluindo reposição, vitrine e supervisão de estoque.",
-        "Realizei atendimento personalizado, contribuindo para o aumento das vendas por recomendação direta.",
-        "Treinei atendentes, organizei escalas e apoiei a liderança com foco em metas e KPIs de vendas."
-      ]
+    "resumo": "Desenvolvedor em transição para a área de tecnologia, cursando Análise e Desenvolvimento de Sistemas (FATEC-RP). Fluente em inglês (TOEIC 945), com experiência em atendimento ao cliente e análise de crédito. Desenvolvi aplicações em nuvem usando Python e APIs REST do Firebase (Auth, NoSQL), com integração de dados em tempo real. Tenho prática em desenvolvimento mobile com Flutter/Dart, e projetos orientados por dados utilizando criptografia RSA, aprendizado de máquina com Scikit-learn e otimização com Gurobi. Entreguei soluções em visão computacional com OpenCV. Aplico Git/GitHub e metodologias ágeis para colaboração e controle de versão. Movido por empatia, autonomia e propósito — pronto para agregar valor a equipes de tecnologia com foco em impacto.",
+    "formacao": "Tecnólogo em Análise e Desenvolvimento de Sistemas – FATEC-RP (2022–2025)",
+    "habilidades": {
+        "linguagens": [
+            "Python",
+            "C++",
+            "PL/SQL",
+            "JavaScript",
+            "HTML5",
+            "CSS",
+            "Dart",
+            "VBA"
+        ],
+        "tecnologias": [
+            "Firebase",
+            "Git/GitHub",
+            "OpenCV",
+            "Scikit-learn",
+            "Gurobi",
+            "NiceGUI",
+            "Google Colab",
+            "VS Code",
+            "Microsoft Office"
+        ],
+        "bancoDados": [
+            "Banco de dados",
+            "Banco de Dados Oracle",
+            "Design de banco de dados",
+            "Modelagem de banco de dados",
+            "NoSQL"
+        ],
+        "infraestrutura": [
+            "Linux",
+            "Servidor Windows",
+            "Suporte técnico",
+            "Montagem de computadores"
+        ],
+        "metodologias": [
+            "APIs RESTful",
+            "Testes unitários / Depuração",
+            "Documentação técnica",
+            "Princípios da engenharia de software",
+            "Controle de qualidade",
+            "Sistemas de controle de versão",
+            "Responsabilidade de projetos",
+            "Relatórios técnicos",
+            "Git/GitHub"
+        ],
+        "softSkills": [
+            "Comunicação",
+            "Trabalho em equipe",
+            "Empatia na tecnologia",
+            "Capacidade de adaptação",
+            "Autoaprendizado",
+            "Gestão do tempo",
+            "Comprometimento",
+            "Análise crítica",
+            "Resolução de problemas",
+            "Relacionamento com clientes",
+            "Trabalho remoto"
+        ],
+        "conceitos": [
+            "Algoritmos",
+            "Estrutura de dados",
+            "Abordagem lógica",
+            "Ciência da computação",
+            "Tecnologia da informação",
+            "Segurança da informação",
+            "Aplicações multiplataforma",
+            "Desenvolvimento de aplicativos",
+            "Qualidade de código",
+            "Informática",
+            "Levantamento de requisitos"
+        ]
     },
-    {
-      "empresa": "Fundamental TI",
-      "cargo": "Digitalizador",
-      "periodo": "nov/2013 – dez/2014",
-      "tarefas": [
-        "Digitalizei e classifiquei documentos cartoriais com foco em acurácia e integridade de dados.",
-        "Prestei suporte técnico interno na manutenção e organização dos arquivos digitais.",
-        "Estruturei arquivos digitais para indexação em sistema interno de dados, otimizando resultados."
-      ]
+    "certificacoes": [
+        "TOEIC - 945 pontos (2025)",
+        "SAP/ABAP",
+        "Oracle BD Design",
+        "Oracle SQL",
+        "Soft Skills para profissionais de TI",
+        "Controle de Impulso e Manejo Emocional",
+        "Mini-Curso Veículos Autônomos",
+        "Visão Computacional com OpenCV"
+    ],
+    "experiencia": [
+        {
+            "empresa": "Foxtime",
+            "cargo": "Assistente Administrativo I",
+            "periodo": "mai/2021 – mai/2022",
+            "tarefas": [
+                "Analisei crédito e documentos para aprovação de financiamentos.",
+                "Mantive atualizados os bancos de dados internos via planilhas e sistemas corporativos.",
+                "Estabeleci parcerias comerciais e conduzi vendas consultivas de seguros."
+            ]
+        },
+        {
+            "empresa": "Museu da Gula",
+            "cargo": "Atendente / Especialista responsável de setor",
+            "periodo": "dez/2014 – fev/2020",
+            "tarefas": [
+                "Gerenciei o setor de destilados, incluindo reposição, vitrine e supervisão de estoque.",
+                "Realizei atendimento personalizado, contribuindo para o aumento das vendas por recomendação direta.",
+                "Treinei atendentes, organizei escalas e apoiei a liderança com foco em metas e KPIs de vendas."
+            ]
+        },
+        {
+            "empresa": "Fundamental TI",
+            "cargo": "Digitalizador",
+            "periodo": "nov/2013 – dez/2014",
+            "tarefas": [
+                "Digitalizei e classifiquei documentos cartoriais com foco em acurácia e integridade de dados.",
+                "Prestei suporte técnico interno na manutenção e organização dos arquivos digitais.",
+                "Estruturei arquivos digitais para indexação em sistema interno de dados, otimizando resultados."
+            ]
+        }
+    ],
+    "projetos": [
+        {
+            "nome": "Estratégia de Machine Learning aplicada a campanhas reais - PCA + K-Means + logitic regression",
+            "descricao": "Executa um pipeline completo de clustering e classificação supervisionada.",
+            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
+        },
+        {
+            "nome": "Classificador de sobrevivência do Titanic – Machine learning com Scikit-learn ",
+            "descricao": "Executa uma classificação supervisionada para prever a sobrevivência de passageiros a partir do Titanic Dataset.",
+            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
+        },
+        {
+            "nome": "Processamento de Imagens Digitais – Segmentação e manipulação com OpenCV + Matplotlib",
+            "descricao": "Explora técnicas fundamentais de processamento de imagem, com aplicação em imagens reais e sintéticas.",
+            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
+        },
+        {
+            "nome": "Criptosistema RSA com Aritmética Modular – Algoritmo de criptografia em Python",
+            "descricao": "Implementa o algoritmo de criptografia RSA do zero usando aritmética modular, incluindo geração de chaves públicas e privadas.",
+            "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
+        },
+        {
+            "nome": "Otimização de Carga Veicular com Gurobi – Programação Linear Inteira com Restrições Logísticas + Gurobi",
+            "descricao": "Resolve um problema de carga. Considera peso máximo, valor dos produtos, quantidades disponíveis e restrições de incompatibilidade entre itens, para maximizar o valor total.",
+            "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_carga_veiculo.ipynb"
+        },
+        {
+            "nome": "Otimização da Força de Trabalho – Modelagem com Programação Linear usando Python + Gurobi",
+            "descricao": "Otimização de escalas de trabalho, minimizando os custos salarias em diferentes cenários.",
+            "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
+        },
+        {
+            "nome": "Aplicativo de Organização de Estudos - Python + NiceGUI + Firebase + NoSQL",
+            "descricao": "Aplicativo web intuitivo, focado em criar planos de estudo personalizados, visualizar cronogramas semanais e exportar dados.",
+            "link": "https://github.com/AngeloImon/Projeto_P2_TEI"
+        },
+        {
+            "nome": "Aplicativo de Gerenciamento Financeiro Pessoal — Flutter/Dart + Firebase + NoSQL",
+            "descricao": "App multiplataforma para controle financeiro pessoal com autenticação, atualização em tempo real e visualização por telas modulares.",
+            "link": "https://github.com/MariTaba/projeto_gerenciamento_financas"
+        }
+    ],
+    "secoes": {
+        "resumo": "Resumo",
+        "experiencia": "Experiência Profissional",
+        "habilidades": "Habilidades Técnicas",
+        "formacao": "Formação",
+        "certificacoes": "Certificações",
+        "projetos": "Projetos"
     }
-  ],
-  "projetos": [
-    {
-      "nome": "Estratégia de Machine Learning aplicada a campanhas reais - PCA + K-Means + logitic regression",
-      "descricao": "Executa um pipeline completo de clustering e classificação supervisionada.",
-      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
-    },
-    {
-      "nome": "Classificador de sobrevivência do Titanic – Machine learning com Scikit-learn ",
-      "descricao": "Executa uma classificação supervisionada para prever a sobrevivência de passageiros a partir do Titanic Dataset.",
-      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
-    },
-    {
-      "nome": "Processamento de Imagens Digitais – Segmentação e manipulação com OpenCV + Matplotlib",
-      "descricao": "Explora técnicas fundamentais de processamento de imagem, com aplicação em imagens reais e sintéticas.",
-      "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
-    },
-    {
-      "nome": "Criptosistema RSA com Aritmética Modular – Algoritmo de criptografia em Python",
-      "descricao": "Implementa o algoritmo de criptografia RSA do zero usando aritmética modular, incluindo geração de chaves públicas e privadas.",
-      "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
-    },
-    {
-      "nome": "Otimização de Carga Veicular com Gurobi – Programação Linear Inteira com Restrições Logísticas + Gurobi",
-      "descricao": "Resolve um problema de carga. Considera peso máximo, valor dos produtos, quantidades disponíveis e restrições de incompatibilidade entre itens, para maximizar o valor total.",
-      "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_carga_veiculo.ipynb"
-    },
-    {
-      "nome": "Otimização da Força de Trabalho – Modelagem com Programação Linear usando Python + Gurobi",
-      "descricao": "Otimização de escalas de trabalho, minimizando os custos salarias em diferentes cenários.",
-      "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
-    },
-    {
-      "nome": "Aplicativo de Organização de Estudos - Python + NiceGUI + Firebase + NoSQL",
-      "descricao": "Aplicativo web intuitivo, focado em criar planos de estudo personalizados, visualizar cronogramas semanais e exportar dados.",
-      "link": "https://github.com/AngeloImon/Projeto_P2_TEI"
-    },
-    {
-      "nome": "Aplicativo de Gerenciamento Financeiro Pessoal — Flutter/Dart + Firebase + NoSQL",
-      "descricao": "App multiplataforma para controle financeiro pessoal com autenticação, atualização em tempo real e visualização por telas modulares.",
-      "link": "https://github.com/MariTaba/projeto_gerenciamento_financas"
-    }
-  ],
-  "secoes": {
-    "resumo": "Resumo",
-    "experiencia": "Experiência Profissional",
-    "habilidades": "Habilidades Técnicas",
-    "formacao": "Formação",
-    "certificacoes": "Certificações",
-    "projetos": "Projetos"
-  }
 }

@@ -257,17 +257,41 @@ class CVApp {
                 break;
 
             case 'skills':
-                // Skills as individual list items for CSS styling
-                el.innerHTML = items.map(skill => `<li>${skill}</li>`).join('');
+                // Categorized skills with multilingual headers
+                if (typeof items === 'object' && !Array.isArray(items)) {
+                    const categories = {
+                        linguagens: this.lang === 'pt' ? 'Linguagens' : 'Languages',
+                        tecnologias: this.lang === 'pt' ? 'Tecnologias' : 'Technologies',
+                        bancoDados: this.lang === 'pt' ? 'Banco de Dados' : 'Databases',
+                        infraestrutura: this.lang === 'pt' ? 'Infraestrutura' : 'Infrastructure',
+                        metodologias: this.lang === 'pt' ? 'Metodologias' : 'Methodologies',
+                        softSkills: 'Soft Skills',
+                        conceitos: this.lang === 'pt' ? 'Conceitos' : 'Concepts'
+                    };
+
+                    el.innerHTML = Object.entries(items).map(([category, skills]) => {
+                        const categoryTitle = categories[category];
+                        if (!categoryTitle || !skills?.length) return '';
+
+                        return `
+                            <div class="skill-category">
+                                <h4 class="skill-category-title">${categoryTitle}</h4>
+                                <div class="skill-tags">
+                                    ${skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
                 break;
 
             case 'experience':
-                // Professional experience cards
+                // Professional experience items
                 el.innerHTML = items.map(exp => `
                     <div class="experience-item">
                         <h3>${exp.cargo}</h3>
-                        <p><strong>${exp.empresa}</strong> | ${exp.periodo}</p>
-                        <ul>${exp.tarefas?.map(t => `<li>${t}</li>`).join('') || ''}</ul>
+                        <p><strong>${exp.empresa}</strong> • ${exp.periodo}</p>
+                        ${exp.tarefas ? `<ul>${exp.tarefas.map(task => `<li>${task}</li>`).join('')}</ul>` : ''}
                     </div>
                 `).join('');
                 break;
