@@ -29,14 +29,14 @@
   <meta name="twitter:description" content="Desenvolvedor em transição para tecnologia">
 
   <!-- Performance optimization through resource preloading -->
-  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="css/style.css" as="style">
   <link rel="preload" href="js/app.js" as="script">
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <!-- Page title and styling -->
   <title>Angelo Imon - Desenvolvedor</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 
   <!-- Favicon using inline SVG with emoji for cross-platform compatibility -->
   <link rel="icon"
@@ -160,12 +160,9 @@
     <p>Última atualização: <time datetime="2025-01-29">29 de Janeiro de 2025</time></p>
   </footer>
 
-  <!-- Application modules loaded in dependency order -->
-  <script src="js/config.js" defer></script>
-  <script src="js/data-manager.js" defer></script>
-  <script src="js/ui-manager.js" defer></script>
-  <script src="js/pdf-generator.js" defer></script>
+  <!-- Application modules - Optimized (Only 2 files needed) -->
   <script src="js/app.js" defer></script>
+  <script src="js/pdf-generator.js" defer></script>
 </body>
 
 </html>
