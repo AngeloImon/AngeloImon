@@ -316,8 +316,8 @@ class PDFGenerator {
         }
 
         // Education
-        if (cvData.formacao) {
-            this.addSection(this.getTitle('EDUCATION'), cvData.formacao);
+        if (Array.isArray(cvData.formacao) && cvData.formacao.length > 0) {
+            this.addEducation(cvData.formacao);
         }
 
         // Certifications
@@ -516,6 +516,49 @@ class PDFGenerator {
             this.checkPageBreak(5);
             this.pdf.text(`• ${cert}`, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
             this.currentY += 5;
+        }
+
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+    }
+
+    /**
+     * Add education section
+     */
+    addEducation(education) {
+        this.checkPageBreak(20);
+
+        // Section title
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
+        this.pdf.setFont('helvetica', 'bold');
+        this.setColor('BLACK');
+        this.pdf.text(this.getTitle('EDUCATION'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+        this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
+        this.pdf.setFont('helvetica', 'normal');
+
+        for (const edu of education) {
+            this.checkPageBreak(15);
+
+            // Course title
+            this.pdf.setFont('helvetica', 'bold');
+            const lines = this.wrapText(edu.curso, this.contentWidth);
+            this.addTextBlock(lines, PDFGenerator.CONFIG.MARGINS.LEFT);
+
+            // Institution, period and status
+            this.pdf.setFont('helvetica', 'normal');
+            const institutionText = `${edu.instituicao} • ${edu.periodo} • ${edu.status}`;
+            this.pdf.text(institutionText, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+            this.currentY += 5;
+
+            // Description if available
+            if (edu.descricao) {
+                const descLines = this.wrapText(edu.descricao, this.contentWidth);
+                this.addTextBlock(descLines, PDFGenerator.CONFIG.MARGINS.LEFT);
+            }
+
+            this.currentY += 3;
         }
 
         this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;

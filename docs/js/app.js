@@ -155,12 +155,12 @@ class CVApp {
 
         // Basic personal information
         this.setText('#nome', d.nome);
-        this.setText('#subtitulo', d.subtitulo); // ✅ ADICIONAR SE NÃO EXISTE
+        this.setText('#subtitulo', d.subtitulo);
         this.setLink('#email', `mailto:${d.email}`, 'Email', 'email_click');
         this.setLink('#github', d.links?.github, 'GitHub', 'github_click');
         this.setLink('#linkedin', d.links?.linkedin, 'LinkedIn', 'linkedin_click');
         this.setText('#resumo', d.resumo);
-        this.setText('#formacao', d.formacao);
+        this.updateList('#formacao', d.formacao, 'formacao');
         this.setText('#footer-date', d.lastUpdated);
 
         // Update section titles based on language
@@ -306,8 +306,20 @@ class CVApp {
                     </div>
                 `).join('');
                 break;
-        }
-    }
+
+            case 'formacao':
+                // Educational background items
+                el.innerHTML = items.map(edu => `
+                    <div class="education-item">
+                        <h3>${edu.curso}</h3>
+                        <p><strong>${edu.instituicao}</strong> • ${edu.periodo}</p>
+                        <p class="status">${edu.status}</p>
+                        ${edu.descricao ? `<p class="description">${edu.descricao}</p>` : ''}
+                    </div>
+                `).join('');
+                break;
+                    }
+                }
 
     /**
      * Update UI texts based on current language

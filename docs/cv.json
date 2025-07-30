@@ -8,7 +8,22 @@
         "linkedin": "https://www.linkedin.com/in/angelo-ferdinand-imon-spano-73386b197"
     },
     "resumo": "Desenvolvedor em transição para a área de tecnologia, cursando Análise e Desenvolvimento de Sistemas (FATEC-RP). Fluente em inglês (TOEIC 945), com experiência em atendimento ao cliente e análise de crédito. Desenvolvi aplicações em nuvem usando Python e APIs REST do Firebase (Auth, NoSQL), com integração de dados em tempo real. Tenho prática em desenvolvimento mobile com Flutter/Dart, e projetos orientados por dados utilizando criptografia RSA, aprendizado de máquina com Scikit-learn e otimização com Gurobi. Entreguei soluções em visão computacional com OpenCV. Aplico Git/GitHub e metodologias ágeis para colaboração e controle de versão. Movido por empatia, autonomia e propósito — pronto para agregar valor a equipes de tecnologia com foco em impacto.",
-    "formacao": "Tecnólogo em Análise e Desenvolvimento de Sistemas – FATEC-RP (2022–2025)",
+    "formacao": [
+        {
+            "instituicao": "FATEC - RP",
+            "curso": "Tecnólogo em Análise e Desenvolvimento de Sistemas",
+            "periodo": "2022–2025",
+            "status": "Cursando",
+            "descricao": "Formação focada em desenvolvimento de software, banco de dados, engenharia de software e metodologias ágeis."
+        },
+        {
+            "instituicao": "Universidade de São Paulo - RP",
+            "curso": "Bacharelado em Ciências da Informação",
+            "periodo": "2012–2015",
+            "status": "Incompleto",
+            "descricao": "Formação voltada à gestão, organização e mediação da informação em ambientes físicos e digitais, com abordagem crítica, ética e interdisciplinar."
+        }
+    ],
     "habilidades": {
         "linguagens": [
             "Python",
@@ -67,7 +82,7 @@
             "Resolução de problemas",
             "Relacionamento com clientes",
             "Trabalho remoto"
-        ],
+        ], 
         "conceitos": [
             "Algoritmos",
             "Estrutura de dados",
