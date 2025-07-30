@@ -438,7 +438,7 @@ class PDFGenerator {
      * Add skills section
      */
     addSkills(skills) {
-        this.checkPageBreak(15);
+        this.checkPageBreak(20);
 
         // Section title
         this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
@@ -448,12 +448,48 @@ class PDFGenerator {
         this.pdf.text(this.getTitle('SKILLS'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
         this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
 
-        // Skills list
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
         this.pdf.setFont('helvetica', 'normal');
-        const skillsText = skills.join(', ');
-        const lines = this.wrapText(skillsText, this.contentWidth);
-        this.addTextBlock(lines);
+
+        // Check if skills are categorized (object) or simple array
+        if (typeof skills === 'object' && !Array.isArray(skills)) {
+            // Categorized skills
+            const categories = {
+                linguagens: this.language === 'pt' ? 'Linguagens' : 'Languages',
+                tecnologias: this.language === 'pt' ? 'Tecnologias' : 'Technologies',
+                bancoDados: this.language === 'pt' ? 'Banco de Dados' : 'Databases',
+                infraestrutura: this.language === 'pt' ? 'Infraestrutura' : 'Infrastructure',
+                metodologias: this.language === 'pt' ? 'Metodologias' : 'Methodologies',
+                softSkills: 'Soft Skills',
+                conceitos: this.language === 'pt' ? 'Conceitos' : 'Concepts'
+            };
+
+            for (const [category, skillList] of Object.entries(skills)) {
+                if (!skillList?.length) continue;
+
+                this.checkPageBreak(10);
+
+                // Category title
+                this.pdf.setFont('helvetica', 'bold');
+                const categoryTitle = categories[category] || category;
+                this.pdf.text(`${categoryTitle}:`, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+                this.currentY += 5;
+
+                // Skills in category
+                this.pdf.setFont('helvetica', 'normal');
+                const skillsText = skillList.join(', ');
+                const lines = this.wrapText(skillsText, this.contentWidth - 5);
+                this.addTextBlock(lines, PDFGenerator.CONFIG.MARGINS.LEFT + 3);
+
+                this.currentY += 3;
+            }
+        } else {
+            // Simple array of skills
+            const skillsArray = Array.isArray(skills) ? skills : Object.values(skills).flat();
+            const skillsText = skillsArray.join(', ');
+            const lines = this.wrapText(skillsText, this.contentWidth);
+            this.addTextBlock(lines);
+        }
 
         this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
     }
