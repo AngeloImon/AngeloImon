@@ -195,13 +195,43 @@ class PDFGenerator {
      * Wrap text
      */
     wrapText(text, maxWidth) {
+        if (!text) return [''];
+
+        if (this.pdf.getTextWidth(text) <= maxWidth) {
+            return [text];
+        }
+
         const words = text.split(' ');
         const lines = [];
         let currentLine = '';
 
-        for (const word of words) {
+        for (let i = 0; i < words.length; i++) {
+            const word = words[i];
             const testLine = currentLine ? `${currentLine} ${word}` : word;
-            if (this.pdf.getTextWidth(testLine) <= maxWidth) {
+
+            if (this.pdf.getTextWidth(word) > maxWidth) {
+                if (currentLine) {
+                    lines.push(currentLine);
+                    currentLine = '';
+                }
+
+                let remainingWord = word;
+                while (remainingWord.length > 0) {
+                    let chunk = '';
+                    for (let j = 1; j <= remainingWord.length; j++) {
+                        const testChunk = remainingWord.substring(0, j);
+                        if (this.pdf.getTextWidth(testChunk) <= maxWidth) {
+                            chunk = testChunk;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    if (chunk.length === 0) chunk = remainingWord.substring(0, 1);
+                    lines.push(chunk);
+                    remainingWord = remainingWord.substring(chunk.length);
+                }
+            } else if (this.pdf.getTextWidth(testLine) <= maxWidth) {
                 currentLine = testLine;
             } else {
                 if (currentLine) lines.push(currentLine);
@@ -210,7 +240,7 @@ class PDFGenerator {
         }
 
         if (currentLine) lines.push(currentLine);
-        return lines;
+        return lines.length > 0 ? lines : [''];
     }
 
     /**
@@ -413,8 +443,8 @@ class PDFGenerator {
             // Project name
             this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SUBTITLE);
             this.pdf.setFont('helvetica', 'bold');
-            this.pdf.text(project.nome || 'Projeto', PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
-            this.currentY += 5;
+            const projectNameLines = this.wrapText(project.nome || 'Projeto', this.contentWidth);
+            this.addTextBlock(projectNameLines, PDFGenerator.CONFIG.MARGINS.LEFT);
 
             // Description
             if (project.descricao) {
@@ -426,8 +456,14 @@ class PDFGenerator {
 
             // Link
             if (project.link) {
-                this.pdf.text(`Link: ${project.link}`, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
-                this.currentY += 5;
+                this.checkPageBreak(5);
+                this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
+                this.pdf.setFont('helvetica', 'normal');
+
+                // Quebrar link longo também
+                const linkText = `Link: ${project.link}`;
+                const linkLines = this.wrapText(linkText, this.contentWidth);
+                this.addTextBlock(linkLines, PDFGenerator.CONFIG.MARGINS.LEFT);
             }
 
             this.currentY += PDFGenerator.CONFIG.SPACING.ITEM;

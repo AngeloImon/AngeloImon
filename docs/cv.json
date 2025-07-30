@@ -163,7 +163,7 @@
             "link": "https://github.com/AngeloImon/Colab/blob/main/Exemplo_Criptografia_RSA.ipynb"
         },
         {
-            "nome": "Otimização de Carga Veicular com Gurobi – Programação Linear Inteira com Restrições Logísticas + Gurobi",
+            "nome": "Otimização de Carga Veicular – Programação Linear Inteira com Restrições Logísticas + Gurobi",
             "descricao": "Resolve um problema de carga. Considera peso máximo, valor dos produtos, quantidades disponíveis e restrições de incompatibilidade entre itens, para maximizar o valor total.",
             "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_carga_veiculo.ipynb"
         },
