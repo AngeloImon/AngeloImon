@@ -1,86 +1,53 @@
 /**
- * Professional CV Stylesheet
- * Modern, accessible, and responsive design system
+ * Professional CV Stylesheet - Optimized
+ * Clean, fast, ATS-friendly design
  * Author: Angelo Ferdinand Imon Spanó
- * Last Updated: January 2025
+ * Version: 3.0.0 - Complete Rebuild
+ * Date: January 2025
  */
 
-/* ==========================================================================
-   CSS Reset and Base Configuration
-   ========================================================================== */
-
-/* Modern CSS reset for consistent cross-browser behavior */
+/* ===== RESET & BASE ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ==========================================================================
-   Accessibility Features
-   ========================================================================== */
-
-/* Skip link for keyboard navigation accessibility */
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  z-index: 999;
-  padding: 1em;
-  background-color: #000;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-.skip-link:focus {
-  left: 1rem;
-  top: 1rem;
-  outline: 2px solid #fff;
-  outline-offset: 2px;
-}
-
-/* ==========================================================================
-   CSS Custom Properties (Design Tokens)
-   ========================================================================== */
-
 :root {
-  /* Color palette optimized for WCAG AA contrast compliance */
-  --bg-color: #ffffff;
-  --text-color: #1a1a1a;
-  --heading-color: #0d47a1;
-  --accent-color: #1976d2;
+  /* Colors */
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --heading: #0d47a1;
+  --accent: #1976d2;
   --accent-hover: #0d47a1;
-  --link-color: #1565c0;
-  --border-color: #e0e0e0;
+  --border: #e0e0e0;
   --section-bg: #f8f9fa;
   --button-bg: #f5f5f5;
   --button-hover: #e8f4fd;
 
-  /* Shadow system for depth and hierarchy */
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  /* Shadows */
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
 
-  /* Spacing scale using consistent proportions */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-
-  /* Animation and transition timing */
-  --transition: 0.2s ease-in-out;
+  /* Transitions */
+  --transition: 0.2s ease;
 }
 
-/* Dark theme with enhanced contrast ratios */
+/* Dark theme */
 .dark-theme {
-  --bg-color: #121212;
-  --text-color: #e8eaed;
-  --heading-color: #8ab4f8;
-  --accent-color: #4285f4;
+  --bg: #121212;
+  --text: #e8eaed;
+  --heading: #8ab4f8;
+  --accent: #4285f4;
   --accent-hover: #1976d2;
-  --link-color: #8ab4f8;
-  --border-color: #3c4043;
+  --border: #3c4043;
   --section-bg: #1e1e1e;
   --button-bg: #2d2d30;
   --button-hover: #2d3142;
@@ -88,31 +55,68 @@
   --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* ==========================================================================
-   Typography System
-   ========================================================================== */
-
-/* Base typography with fluid scaling for responsive design */
+/* ===== TYPOGRAPHY ===== */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: clamp(14px, 2vw, 16px);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 16px;
   line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--bg-color);
-  transition: background-color var(--transition), color var(--transition);
+  color: var(--text);
+  background: var(--bg);
+  transition: all var(--transition);
 }
 
-/* Enhanced focus indicators for keyboard navigation */
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-xs);
+  border-bottom: 2px solid var(--accent);
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: var(--space-xs);
+}
+
+p {
+  margin-bottom: var(--space-sm);
+  line-height: 1.7;
+}
+
+/* ===== ACCESSIBILITY ===== */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1rem;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
 *:focus {
-  outline: 2px solid var(--accent-color);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-/* ==========================================================================
-   Layout Components
-   ========================================================================== */
-
-/* Sticky navigation controls with backdrop blur effect */
+/* ===== NAVIGATION ===== */
 .controls {
   position: sticky;
   top: 0;
@@ -120,9 +124,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--section-bg);
-  border-bottom: 1px solid var(--border-color);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--section-bg);
+  border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow);
   backdrop-filter: blur(8px);
 }
@@ -130,30 +134,29 @@ body {
 .language-selector,
 .action-buttons {
   display: flex;
-  gap: var(--spacing-xs);
+  gap: var(--space-xs);
 }
 
-/* Interactive button component with accessibility enhancements */
+/* ===== BUTTONS ===== */
 button {
   font-family: inherit;
-  font-size: clamp(12px, 1.8vw, 14px);
+  font-size: 14px;
   font-weight: 500;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border: 1px solid var(--border-color);
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--border);
   border-radius: 6px;
-  background-color: var(--button-bg);
-  color: var(--text-color);
+  background: var(--button-bg);
+  color: var(--text);
   cursor: pointer;
   transition: all var(--transition);
   min-height: 44px;
-  /* Touch target size for mobile accessibility */
   min-width: 44px;
 }
 
 button:hover,
 button:focus {
-  background-color: var(--button-hover);
-  border-color: var(--accent-color);
+  background: var(--button-hover);
+  border-color: var(--accent);
   transform: translateY(-1px);
   box-shadow: var(--shadow-lg);
 }
@@ -162,47 +165,37 @@ button:active {
   transform: translateY(0);
 }
 
-/* State indicators for toggle buttons */
 button[aria-pressed="true"] {
-  background-color: var(--accent-color);
+  background: var(--accent);
   color: white;
-  border-color: var(--accent-color);
+  border-color: var(--accent);
 }
 
-/* Primary action button styling */
 #export-pdf {
-  background-color: var(--accent-color);
+  background: var(--accent);
   color: white;
-  border-color: var(--accent-color);
+  border-color: var(--accent);
 }
 
 #export-pdf:hover,
 #export-pdf:focus {
-  background-color: var(--accent-hover);
+  background: var(--accent-hover);
 }
 
-/* ==========================================================================
-   Header Section
-   ========================================================================== */
+#export-pdf:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
 
-/* Main header with gradient background and centered content */
+/* ===== HEADER ===== */
 header {
-  padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
-  background: linear-gradient(135deg, var(--section-bg) 0%, var(--bg-color) 100%);
-  border-bottom: 1px solid var(--border-color);
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
+  background: linear-gradient(135deg, var(--section-bg) 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
   text-align: center;
 }
 
-/* Primary heading with fluid typography */
-h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  color: var(--heading-color);
-  margin-bottom: var(--spacing-sm);
-  letter-spacing: -0.02em;
-}
-
-/* Contact information styling with semantic address element */
 .contact-info {
   font-style: normal;
   max-width: 600px;
@@ -210,66 +203,57 @@ h1 {
 }
 
 .contact-info p {
-  font-size: clamp(1rem, 2.5vw, 1.1rem);
-  margin-bottom: var(--spacing-xs);
-  color: var(--text-color);
+  font-size: 1.1rem;
+  margin-bottom: var(--space-xs);
+  color: var(--text);
 }
 
-/* Link styling with enhanced interaction states */
 .links a {
-  color: var(--link-color);
+  color: var(--accent);
   text-decoration: none;
   font-weight: 500;
   transition: color var(--transition);
-  padding: var(--spacing-xs);
+  padding: var(--space-xs);
   border-radius: 4px;
 }
 
 .links a:hover,
 .links a:focus {
-  color: var(--accent-color);
+  color: var(--accent-hover);
   text-decoration: underline;
-  background-color: var(--button-hover);
+  background: var(--button-hover);
 }
 
-/* ==========================================================================
-   Main Content Layout
-   ========================================================================== */
-
-/* Responsive grid layout for main content areas */
+/* ===== MAIN LAYOUT ===== */
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: var(--space-lg) var(--space-md);
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: var(--spacing-lg);
+  gap: var(--space-lg);
   align-items: start;
 }
 
 .main-column {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--space-lg);
 }
 
 .sidebar-column {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--space-md);
 }
 
-/* ==========================================================================
-   Content Sections
-   ========================================================================== */
-
-/* Card-based section styling with consistent spacing */
+/* ===== SECTIONS ===== */
 section,
 article {
-  background-color: var(--section-bg);
-  padding: var(--spacing-lg);
+  background: var(--section-bg);
+  padding: var(--space-lg);
   border-radius: 8px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border);
   box-shadow: var(--shadow);
   transition: box-shadow var(--transition);
 }
@@ -279,147 +263,171 @@ article:hover {
   box-shadow: var(--shadow-lg);
 }
 
-/* Section header styling */
 section header,
 article header {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--space-md);
 }
 
-/* Section heading typography with visual hierarchy */
-h2 {
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
-  font-weight: 600;
-  color: var(--heading-color);
-  margin-bottom: var(--spacing-sm);
-  padding-bottom: var(--spacing-xs);
-  border-bottom: 2px solid var(--accent-color);
-}
-
-/* Sidebar section differentiation */
 .sidebar-column section {
-  border-left: 4px solid var(--accent-color);
+  border-left: 4px solid var(--accent);
 }
 
 .sidebar-column h2 {
-  font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+  font-size: 1.25rem;
 }
 
-/* ==========================================================================
-   List Components
-   ========================================================================== */
-
-/* Custom list styling with consistent spacing */
+/* ===== LISTS ===== */
 ul {
   list-style: none;
   padding: 0;
 }
 
 ul li {
-  margin-bottom: var(--spacing-xs);
-  padding-left: var(--spacing-md);
+  margin-bottom: var(--space-xs);
+  padding-left: var(--space-md);
   position: relative;
+  line-height: 1.6;
 }
 
-/* Custom list markers for visual consistency */
 ul li::before {
   content: '▸';
   position: absolute;
   left: 0;
-  color: var(--accent-color);
+  color: var(--accent);
   font-weight: bold;
 }
 
-/* Project link styling within lists */
-#projetos a {
-  color: var(--link-color);
+/* ===== EXPERIENCE SECTION ===== */
+.experience-item {
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md);
+  background: var(--bg);
+  border-radius: 6px;
+  border-left: 4px solid var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.experience-item h3 {
+  color: var(--heading);
+  margin-bottom: var(--space-xs);
+}
+
+.experience-item p {
+  margin-bottom: var(--space-sm);
+}
+
+.experience-item p strong {
+  color: var(--accent);
+}
+
+.experience-item ul {
+  margin-top: var(--space-xs);
+}
+
+.experience-item ul li {
+  padding-left: var(--space-sm);
+  border-left: 2px solid var(--border);
+  margin-bottom: var(--space-xs);
+}
+
+.experience-item ul li::before {
+  content: '•';
+  color: var(--accent);
+  left: -8px;
+}
+
+/* ===== PROJECTS SECTION ===== */
+.project-item {
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md);
+  background: var(--bg);
+  border-radius: 6px;
+  border-left: 4px solid var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.project-item h3 {
+  color: var(--heading);
+  margin-bottom: var(--space-xs);
+}
+
+.project-item p {
+  margin-bottom: var(--space-sm);
+  color: var(--text);
+}
+
+.project-item a {
+  color: var(--accent);
   text-decoration: none;
   font-weight: 500;
-  transition: color var(--transition);
-}
-
-#projetos a:hover,
-#projetos a:focus {
-  color: var(--accent-color);
-  text-decoration: underline;
-}
-
-/* ==========================================================================
-   Experience Section
-   ========================================================================== */
-
-/* Experience item styling with visual separation */
-#experiencia>div {
-  margin-bottom: var(--spacing-lg);
-  padding: var(--spacing-md);
-  background-color: var(--bg-color);
-  border-radius: 6px;
-  border-left: 4px solid var(--accent-color);
-}
-
-#experiencia h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--heading-color);
-  margin-bottom: var(--spacing-xs);
-}
-
-#experiencia p strong {
-  color: var(--accent-color);
-}
-
-/* ==========================================================================
-   Skills Section
-   ========================================================================== */
-
-/* Skills displayed as interactive tags */
-#habilidades li {
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--button-bg);
+  border-radius: 4px;
+  border: 1px solid var(--border);
   display: inline-block;
-  background-color: var(--accent-color);
+  transition: all var(--transition);
+}
+
+.project-item a:hover,
+.project-item a:focus {
+  background: var(--accent);
   color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 16px;
-  margin: 0.25rem 0.25rem 0.25rem 0;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+/* ===== SKILLS SECTION ===== */
+#habilidades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+}
+
+#habilidades li {
+  background: var(--accent);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 500;
+  margin: 0;
+  padding-left: 0.8rem;
   transition: transform var(--transition);
 }
 
-#habilidades li:hover {
-  transform: scale(1.05);
-}
-
-/* Override default list marker for skill tags */
 #habilidades li::before {
   display: none;
 }
 
-/* ==========================================================================
-   Loading States
-   ========================================================================== */
+#habilidades li:hover {
+  transform: scale(1.05);
+  background: var(--accent-hover);
+}
 
-/* Loading indicator with centered layout */
+/* ===== LOADING ===== */
 .main-loading {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 60vh;
-  background-color: var(--bg-color);
+  background: var(--bg);
 }
 
 .loading-content {
   text-align: center;
-  color: var(--text-color);
+  color: var(--text);
 }
 
-/* Animated loading spinner */
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid var(--border-color);
-  border-top: 4px solid var(--accent-color);
+  border: 4px solid var(--border);
+  border-top: 4px solid var(--accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin: 0 auto var(--spacing-sm);
+  margin: 0 auto var(--space-sm);
 }
 
 @keyframes spin {
@@ -432,44 +440,35 @@ ul li::before {
   }
 }
 
-/* ==========================================================================
-   Footer Section
-   ========================================================================== */
-
-/* Page footer with subdued styling */
+/* ===== FOOTER ===== */
 footer {
-  background-color: var(--section-bg);
-  border-top: 1px solid var(--border-color);
-  padding: var(--spacing-lg) var(--spacing-md);
+  background: var(--section-bg);
+  border-top: 1px solid var(--border);
+  padding: var(--space-lg) var(--space-md);
   text-align: center;
-  margin-top: var(--spacing-xl);
+  margin-top: var(--space-xl);
 }
 
 footer p {
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--space-xs);
   font-size: 0.875rem;
-  color: var(--text-color);
+  color: var(--text);
   opacity: 0.8;
 }
 
-/* ==========================================================================
-   Responsive Design
-   ========================================================================== */
-
-/* Tablet breakpoint adjustments */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   main {
     grid-template-columns: 1fr 300px;
-    gap: var(--spacing-md);
+    gap: var(--space-md);
   }
 }
 
-/* Mobile-first responsive design for small screens */
 @media (max-width: 768px) {
   .controls {
     flex-direction: column;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-sm);
+    gap: var(--space-sm);
+    padding: var(--space-sm);
   }
 
   .language-selector,
@@ -479,14 +478,13 @@ footer p {
   }
 
   header {
-    padding: var(--spacing-lg) var(--spacing-sm);
+    padding: var(--space-lg) var(--space-sm);
   }
 
-  /* Single column layout for mobile */
   main {
     grid-template-columns: 1fr;
-    padding: var(--spacing-sm);
-    gap: var(--spacing-md);
+    padding: var(--space-sm);
+    gap: var(--space-md);
   }
 
   .sidebar-column {
@@ -495,36 +493,48 @@ footer p {
 
   section,
   article {
-    padding: var(--spacing-md);
+    padding: var(--space-md);
   }
 
-  /* Skills as vertical list on mobile for better readability */
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  #habilidades {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
   #habilidades li {
-    display: block;
-    background-color: transparent;
-    color: var(--text-color);
-    padding: var(--spacing-xs) 0;
+    background: transparent;
+    color: var(--text);
+    padding: var(--space-xs) 0;
     border-radius: 0;
-    margin: 0;
-    border-left: 3px solid var(--accent-color);
-    padding-left: var(--spacing-sm);
+    border-left: 3px solid var(--accent);
+    padding-left: var(--space-sm);
   }
 
   #habilidades li::before {
     display: inline;
+    content: '▸';
+    position: absolute;
+    left: 0;
   }
 }
 
-/* Extra small screen optimizations */
 @media (max-width: 480px) {
   :root {
-    --spacing-sm: 0.75rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.25rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.25rem;
   }
 
   .controls {
-    padding: var(--spacing-xs);
+    padding: var(--space-xs);
   }
 
   button {
@@ -533,11 +543,7 @@ footer p {
   }
 }
 
-/* ==========================================================================
-   Print Styles
-   ========================================================================== */
-
-/* Optimized print layout for professional presentation */
+/* ===== PRINT STYLES ===== */
 @media print {
 
   .controls,
@@ -555,20 +561,17 @@ footer p {
   }
 
   body {
-    background-color: white !important;
+    background: white !important;
     color: black !important;
     font-size: 12pt !important;
-    line-height: 1.4 !important;
   }
 
   section,
   article {
-    break-inside: avoid;
-    background-color: white !important;
+    background: white !important;
     box-shadow: none !important;
     border: 1px solid #ccc !important;
-    margin-bottom: 1rem !important;
-    padding: 1rem !important;
+    break-inside: avoid;
   }
 
   h1 {
@@ -579,41 +582,18 @@ footer p {
   h2 {
     font-size: 16pt !important;
     color: black !important;
-    border-bottom: 1px solid #ccc !important;
   }
 
-  a {
-    color: black !important;
-    text-decoration: underline !important;
-  }
-
-  /* Print-friendly skill display */
   #habilidades li {
-    background-color: transparent !important;
+    background: transparent !important;
     color: black !important;
     border: 1px solid #ccc !important;
-    border-radius: 0 !important;
     display: inline-block !important;
     margin: 0.25rem !important;
-    padding: 0.25rem !important;
-  }
-
-  .sidebar-column {
-    order: -1 !important;
-  }
-
-  /* Print URLs after external links */
-  a[target="_blank"]::after {
-    content: " (" attr(href) ")";
-    font-size: 0.8em;
   }
 }
 
-/* ==========================================================================
-   Accessibility and Motion Preferences
-   ========================================================================== */
-
-/* Respect user's motion preferences */
+/* ===== MOTION PREFERENCES ===== */
 @media (prefers-reduced-motion: reduce) {
 
   *,
@@ -627,43 +607,4 @@ footer p {
   .spinner {
     animation: none !important;
   }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  :root {
-    --border-color: #000000;
-    --text-color: #000000;
-    --bg-color: #ffffff;
-    --accent-color: #0000ff;
-  }
-
-  .dark-theme {
-    --border-color: #ffffff;
-    --text-color: #ffffff;
-    --bg-color: #000000;
-    --accent-color: #00ffff;
-  }
-}
-
-/* Enhanced focus styles for better visibility */
-button:focus-visible,
-a:focus-visible {
-  outline: 3px solid var(--accent-color);
-  outline-offset: 2px;
-  background-color: var(--button-hover);
-}
-
-/* Improved text readability */
-p {
-  max-width: 70ch;
-  text-align: justify;
-  hyphens: auto;
-}
-
-/* Visual indicator for external links */
-a[target="_blank"]::after {
-  content: " ↗";
-  font-size: 0.8em;
-  opacity: 0.7;
 }
