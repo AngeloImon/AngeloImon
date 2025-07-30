@@ -149,9 +149,9 @@ class CVApp {
 
         // Basic personal information
         this.setText('#nome', d.nome);
-        this.setText('#email', d.email);
-        this.setText('#github', d.links?.github);
-        this.setText('#linkedin', d.links?.linkedin);
+        this.setLink('#email', `mailto:${d.email}`, 'Email');
+        this.setLink('#github', d.links?.github, 'GitHub');
+        this.setLink('#linkedin', d.links?.linkedin, 'LinkedIn');
         this.setText('#resumo', d.resumo);
         this.setText('#formacao', d.formacao);
 
@@ -191,6 +191,26 @@ class CVApp {
     setText(selector, text) {
         const el = $(selector);
         if (el) el.textContent = text || '';
+    }
+
+    /**
+     * Set link content with title text
+     * @param {string} selector - CSS selector
+     * @param {string} href - Link URL
+     * @param {string} title - Link title text
+     */
+    setLink(selector, href, title) {
+        const el = $(selector);
+        if (el && href) {
+            if (el.tagName === 'A') {
+                el.href = href;
+                el.textContent = title;
+                el.setAttribute('target', '_blank');
+                el.setAttribute('rel', 'noopener');
+            } else {
+                el.innerHTML = `<a href="${href}" target="_blank" rel="noopener">${title}</a>`;
+            }
+        }
     }
 
     /**
