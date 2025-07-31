@@ -49,7 +49,6 @@
         "bancoDados": [
             "Modelagem de banco de dados",
             "Design de banco de dados",
-            "Banco de dados",
             "Banco de Dados Oracle",
             "NoSQL"
         ],
@@ -67,8 +66,7 @@
             "Controle de qualidade",
             "Sistemas de controle de versão",
             "Responsabilidade de projetos",
-            "Relatórios técnicos",
-            "Git/GitHub"
+            "Relatórios técnicos"
         ],
         "softSkills": [
             "Comunicação",
