@@ -1,10 +1,13 @@
 # imon-dev: versão em constante desenvolvimento 🚀
+[Confira meu currículo](https://angeloimon.github.io/AngeloImon/#main-content)
+
 
     class Angelo_Imon:
         def __init__(self):
             self.nome = "Angelo Ferdinand Imon Spano"
             self.stack = ["Python", "SQL", "Git", "OpenCV", "Scikit-learn"]
             self.status = "Explorando o mundo do código com curiosidade e consistência"
+            self.curriculo = "https://angeloimon.github.io/AngeloImon/#main-content"
     
     def aprendizado_continuo(self):
         while True:
@@ -29,13 +32,18 @@
 
 💬 Ainda não sei tudo — mas estou sempre aprendendo de verdade.
 
-# imon-dev: constantly evolving 🛠️🚀
+
+
+# imon-dev: constantly evolving 🚀
+[Check out my resumé](https://angeloimon.github.io/AngeloImon/#main-content)
+
 
     class Angelo_Imon:
         def __init__(self):
             self.name = "Angelo Ferdinand Imon Spano"
             self.stack = ["Python", "SQL", "Git", "OpenCV", "Scikit-learn"]
             self.status = "Exploring code through curiosity and consistency"
+            self.curriculo = "https://angeloimon.github.io/AngeloImon/#main-content"
     
     def lifelong_learning(self):
         while True:
