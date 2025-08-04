@@ -3,23 +3,30 @@
 
 
     class Angelo_Imon:
-        def __init__(self):
-            self.nome = "Angelo Ferdinand Imon Spano"
-            self.stack = ["Python", "SQL", "Git", "OpenCV", "Scikit-learn"]
-            self.status = "Explorando o mundo do código com curiosidade e consistência"
-            self.curriculo = "https://angeloimon.github.io/AngeloImon/#main-content"
-    
+    def __init__(self):
+        self.nome = "Angelo Ferdinand Imon Spano"
+        self.stack = [
+            "Python", "SQL", "Git", "Firebase", "Scikit-learn",
+            "OpenCV", "Gurobi", "NoSQL"
+        ]
+        self.status = "Aprimorando com propósito"
+        self.curriculo = "https://angeloimon.github.io/AngeloImon/#main-content"
+        self.certificacoes = [
+            "Oracle SQL", "Oracle Database Design", "TOEIC 945", "SAP/ABAP"
+        ]
+        self.tracos = ["análise sistêmica", "curiosidade aplicada", "consistência"]
+
     def aprendizado_continuo(self):
         while True:
             try:
                 self.aprender(novo_conhecimento)
-            except Limite:  
+            except Limite:
                 self.descansar()
             else:
-                self.compartilhar(github_projects)
+                self.aplicar(self.conhecimento)
 
     def construir(self, problema):
-        return self.código_resolve(problema)
+        return self.código_resolve(problema, com=["dados", "lógica", "empatia"])
 
         
 🎓 Tecnólogo em Análise e Desenvolvimento de Sistemas (FATEC-RP)
@@ -39,23 +46,30 @@
 
 
     class Angelo_Imon:
-        def __init__(self):
-            self.name = "Angelo Ferdinand Imon Spano"
-            self.stack = ["Python", "SQL", "Git", "OpenCV", "Scikit-learn"]
-            self.status = "Exploring code through curiosity and consistency"
-            self.curriculo = "https://angeloimon.github.io/AngeloImon/#main-content"
-    
-    def lifelong_learning(self):
+    def __init__(self):
+        self.nome = "Angelo Ferdinand Imon Spano"
+        self.stack = [
+            "Python", "SQL", "Git", "Firebase", "Scikit-learn",
+            "OpenCV", "Gurobi", "NoSQL"
+        ]
+        self.status = "Evolving with purpose"
+        self.resume = "https://angeloimon.github.io/AngeloImon/#main-content"
+        self.certifications = [
+            "Oracle SQL", "Oracle Database Design", "TOEIC 945", "SAP/ABAP"
+        ]
+        self.traits = ["systemic thinking", "applied curiosity", "consistency"]
+
+    def constantly_learning(self):
         while True:
             try:
-                self.learn(new_idea)
-            except LimitReached:  
+                self.learn(new_knowledge)
+            except LimitReached:
                 self.rest()
             else:
-                self.share(github_projects)
+                self.apply(self.knowledge)
 
-    def build(self, challenge):
-        return self.code_solves(challenge)
+    def build(self, problem):
+        return self.solve_code(problem, with=["data", "logic", "empathy"])
 
 
 🎓 Technologist in Systems Analysis and Development (FATEC-RP).
