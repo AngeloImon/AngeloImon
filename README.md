@@ -53,7 +53,7 @@
             "OpenCV", "Gurobi", "NoSQL"
         ]
         self.status = "Evolving with purpose"
-        self.curriculo = "https://angeloimon.github.io/AngeloImon"
+        self.resume = "https://angeloimon.github.io/AngeloImon"
         self.certifications = [
             "Oracle SQL", "Oracle Database Design", "TOEIC 945", "SAP/ABAP"
         ]
