@@ -1,5 +1,5 @@
 # imon-dev: versão em constante desenvolvimento 🚀
-[Confira meu currículo](https://angeloimon.github.io/AngeloImon/#main-content)
+[Confira meu currículo](https://angeloimon.github.io/AngeloImon)
 
 
     class Angelo_Imon:
@@ -10,7 +10,7 @@
             "OpenCV", "Gurobi", "NoSQL"
         ]
         self.status = "Aprimorando com propósito"
-        self.curriculo = "https://angeloimon.github.io/AngeloImon/#main-content"
+        self.curriculo = "https://angeloimon.github.io/AngeloImon"
         self.certificacoes = [
             "Oracle SQL", "Oracle Database Design", "TOEIC 945", "SAP/ABAP"
         ]
@@ -42,7 +42,7 @@
 
 
 # imon-dev: constantly evolving 🚀
-[Check out my resumé](https://angeloimon.github.io/AngeloImon/#main-content)
+[Check out my resumé](https://angeloimon.github.io/AngeloImon)
 
 
     class Angelo_Imon:
@@ -53,7 +53,7 @@
             "OpenCV", "Gurobi", "NoSQL"
         ]
         self.status = "Evolving with purpose"
-        self.resume = "https://angeloimon.github.io/AngeloImon/#main-content"
+        self.resume = "https://angeloimon.github.io/AngeloImon"
         self.certifications = [
             "Oracle SQL", "Oracle Database Design", "TOEIC 945", "SAP/ABAP"
         ]
