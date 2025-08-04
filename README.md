@@ -10,7 +10,7 @@
             "OpenCV", "Gurobi", "NoSQL"
         ]
         self.status = "Aprimorando com propósito"
-        self.curriculo = "https://angeloimon.github.io/AngeloImon"
+        self.curriculo = "[https://angeloimon.github.io/AngeloImon](https://angeloimon.github.io/AngeloImon)"
         self.certificacoes = [
             "Oracle SQL", "Oracle Database Design", "TOEIC 945", "SAP/ABAP"
         ]
@@ -53,7 +53,7 @@
             "OpenCV", "Gurobi", "NoSQL"
         ]
         self.status = "Evolving with purpose"
-        self.resume = "https://angeloimon.github.io/AngeloImon"
+        self.resume = "[https://angeloimon.github.io/AngeloImon](https://angeloimon.github.io/AngeloImon)"
         self.certifications = [
             "Oracle SQL", "Oracle Database Design", "TOEIC 945", "SAP/ABAP"
         ]
