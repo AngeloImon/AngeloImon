@@ -33,7 +33,7 @@
 
 💡 Sou movido pela curiosidade de destrinchar estruturas complexas e encontrar caminhos mais simples e eficientes.
 
-🔍 Já brinquei com IA supervisionada, pré-processamento de imagens e dashboards interativos.
+🔍 Já brinquei com IA supervisionada, pré-processamento de imagens e aplicativos simples...
 
 🌱 Expandindo minha bagagem com projetos que envolvem Python, dados, visão computacional e automação — sempre aprendendo com intenção e prática.
 
@@ -76,7 +76,7 @@
 
 💡 I'm driven by the need to break complex structures down and rebuild them in simpler, smarter ways.
 
-🔍 I've explored supervised learning, image preprocessing, and interactive dashboards.
+🔍 I've explored supervised learning, image preprocessing, and simple aplications...
 
 🌱 Currently expanding my skills through small real-world projects involving Python, data, computer vision, and automation.
 
