@@ -1,3 +1,5 @@
+BR v1.1
+
 # imon-dev: versão em constante desenvolvimento 🚀
 [Confira meu currículo](https://angeloimon.github.io/AngeloImon)
 
@@ -49,7 +51,8 @@
 
 💬 Ainda não sei tudo — mas estou sempre aprendendo de verdade.
 
-
+---
+## EN v1.1
 
 # imon-dev: constantly evolving 🚀
 [Check out my resumé](https://angeloimon.github.io/AngeloImon)
@@ -97,7 +100,7 @@
 
 💡 I'm driven by the need to break complex structures down and rebuild them in simpler, smarter ways.
 
-🔍 I've explored supervised learning, image preprocessing, and simple aplications...
+🔍 I've explored supervised learning, image preprocessing, and simple applications...
 
 🌱 Currently expanding my skills through small real-world projects involving Python, data, computer vision, and automation.
 
