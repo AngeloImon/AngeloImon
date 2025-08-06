@@ -1,7 +1,7 @@
 # imon-dev: versão em constante desenvolvimento 🚀
 [Confira meu currículo](https://angeloimon.github.io/AngeloImon)
 
-
+''''
     class Angelo_Imon:
     def __init__(self):
         self.nome = "Angelo Ferdinand Imon Spano"
@@ -19,15 +19,25 @@
     def aprendizado_continuo(self):
         while True:
             try:
+                novo_conhecimento = "algo novo"
                 self.aprender(novo_conhecimento)
-            except Limite:
+            except Exception:
                 self.descansar()
             else:
-                self.aplicar(self.conhecimento)
+                self.aplicar(novo_conhecimento)
+
+    def aprender(self, conhecimento):
+        print(f"Aprendendo: {conhecimento}")
+
+    def descansar(self):
+        print("Descansando para retomar com mais foco.")
+
+    def aplicar(self, conhecimento):
+        print(f"Aplicando: {conhecimento}")
 
     def construir(self, problema):
-        return self.código_resolve(problema, com=["dados", "lógica", "empatia"])
-
+        return f"Resolvendo '{problema}' com dados, lógica e empatia."
+'''
         
 🎓 Tecnólogo em Análise e Desenvolvimento de Sistemas (FATEC-RP)
 
