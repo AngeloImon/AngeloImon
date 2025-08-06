@@ -1,4 +1,4 @@
-## [BR](#imon-dev-versão-em-constante-desenvolvimento-) ➡️ [EN](#imon-dev-constantly-evolving-)
+## 🌐 [BR](#imon-dev-versão-em-constante-desenvolvimento-) ➡️ [EN](#imon-dev-constantly-evolving-)
 
 
 # imon-dev: versão em constante desenvolvimento 🚀
@@ -56,7 +56,7 @@
 ---
 
 
-## [EN](#imon-dev-constantly-evolving-) ➡️ [BR](#imon-dev-versão-em-constante-desenvolvimento-)
+## 🌐 [EN](#imon-dev-constantly-evolving-) ➡️ [BR](#imon-dev-versão-em-constante-desenvolvimento-)
 
 # imon-dev: constantly evolving 🚀
 [Check out my resumé](https://angeloimon.github.io/AngeloImon)
