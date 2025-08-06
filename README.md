@@ -1,4 +1,5 @@
-BR v1.1
+## [BR](#imon-dev-versão-em-constante-desenvolvimento-) ➡️ [EN](#imon-dev-constantly-evolving-)
+
 
 # imon-dev: versão em constante desenvolvimento 🚀
 [Confira meu currículo](https://angeloimon.github.io/AngeloImon)
@@ -51,8 +52,11 @@ BR v1.1
 
 💬 Ainda não sei tudo — mas estou sempre aprendendo de verdade.
 
+
 ---
-## EN v1.1
+
+
+## [BR](#imon-dev-versão-em-constante-desenvolvimento-) ➡️ [BR](#imon-dev-versão-em-constante-desenvolvimento-)
 
 # imon-dev: constantly evolving 🚀
 [Check out my resumé](https://angeloimon.github.io/AngeloImon)
