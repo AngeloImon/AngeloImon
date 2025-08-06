@@ -1,7 +1,7 @@
 # imon-dev: versão em constante desenvolvimento 🚀
 [Confira meu currículo](https://angeloimon.github.io/AngeloImon)
 
-''''
+
     class Angelo_Imon:
     def __init__(self):
         self.nome = "Angelo Ferdinand Imon Spano"
@@ -37,7 +37,7 @@
 
     def construir(self, problema):
         return f"Resolvendo '{problema}' com dados, lógica e empatia."
-'''
+
         
 🎓 Tecnólogo em Análise e Desenvolvimento de Sistemas (FATEC-RP)
 
