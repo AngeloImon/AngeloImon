@@ -57,7 +57,7 @@
 
     class Angelo_Imon:
     def __init__(self):
-        self.nome = "Angelo Ferdinand Imon Spano"
+        self.name = "Angelo Ferdinand Imon Spano"
         self.stack = [
             "Python", "SQL", "Git", "Firebase", "Scikit-learn",
             "OpenCV", "Gurobi", "NoSQL"
@@ -72,14 +72,25 @@
     def constantly_learning(self):
         while True:
             try:
+                new_knowledge = "something new"
                 self.learn(new_knowledge)
-            except LimitReached:
+            except Exception:
                 self.rest()
             else:
-                self.apply(self.knowledge)
+                self.apply(new_knowledge)
+
+    def learn(self, knowledge):
+        print(f"Learning: {knowledge}")
+
+    def rest(self):
+        print("Resting to regain focus.")
+
+    def apply(self, knowledge):
+        print(f"Applying: {knowledge}")
 
     def build(self, problem):
-        return self.solve_code(problem, with=["data", "logic", "empathy"])
+        return f"Solving '{problem}' with data, logic, and empathy."
+
 
 
 🎓 Technologist in Systems Analysis and Development (FATEC-RP).
