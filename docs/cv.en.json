@@ -141,7 +141,7 @@
     ],
     "projetos": [
         {
-            "nome": "Strategic ML Pipeline for Real Campaign Data – PCA + K-Means + logistic regression",
+            "nome": "Machine Learning Strategy Applied to Real Campaigns | PCA + K-Means + Logistic Regression",
             "descricao": "Executes a full pipeline combining clustering and supervised classification.",
             "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
         },
