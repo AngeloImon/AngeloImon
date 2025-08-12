@@ -142,7 +142,7 @@
     "projetos": [
         {
             "nome": "Data Science Salary Dashboard – Streamlit + Plotly + Pandas",
-            "descrição": "Interactive dashboard for analyzing global salary data of data professionals.",
+            "descricao": "Interactive dashboard for analyzing global salary data of data professionals.",
             "link": "https://github.com/AngeloImon/Alura-Imersao-Python-Dados/tree/main"
         },
         {
