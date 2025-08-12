@@ -141,7 +141,12 @@
     ],
     "projetos": [
         {
-            "nome": "Machine Learning Strategy Applied to Real Campaigns | PCA + K-Means + Logistic Regression",
+            "nome": "Data Science Salary Dashboard – Streamlit + Plotly + Pandas",
+            "descrição": "Interactive dashboard for analyzing global salary data of data professionals.",
+            "link": "https://github.com/AngeloImon/Alura-Imersao-Python-Dados/tree/main"
+        },
+        {
+            "nome": "Machine Learning Strategy Applied to Real Campaigns – PCA + K-Means + Logistic Regression",
             "descricao": "Executes a full pipeline combining clustering and supervised classification.",
             "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
         },

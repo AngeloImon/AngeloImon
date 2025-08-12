@@ -141,6 +141,11 @@
     ],
     "projetos": [
         {
+            "nome": "Dashboard Salários de Cientistas de Dados – Streamlit + Plotly + Pandas",
+            "descrição": "Dashboard interativo para análise de dados salariais globais de profissionais de dados.",
+            "link": "https://github.com/AngeloImon/Alura-Imersao-Python-Dados/tree/main"
+        },
+        {
             "nome": "Estratégia de Machine Learning aplicada a campanhas reais – PCA + K-Means + regressão logística",
             "descricao": "Executa um pipeline completo de clustering e classificação supervisionada.",
             "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
