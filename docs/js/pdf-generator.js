@@ -301,7 +301,7 @@ class PDFGenerator {
         if (cvData.email) contacts.push(`Email: ${cvData.email}`);
         if (cvData.links?.github) contacts.push(`GitHub: ${cvData.links.github}`);
         if (cvData.links?.linkedin) contacts.push(`LinkedIn: ${cvData.links.linkedin}`);
-        contacts.push(`CV PT/EN: https://angeloimon.github.io/AngeloImon`);
+        contacts.push(`Complete CV PT - EN: https://angeloimon.github.io/AngeloImon`);
         for (const contact of contacts) {
             this.centerText(contact, this.currentY);
             this.currentY += 5;
