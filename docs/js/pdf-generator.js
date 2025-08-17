@@ -260,6 +260,7 @@ class PDFGenerator {
      * Add header
      */
     addHeader(cvData) {
+
         // Name (only colored element)
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.NAME);
         this.pdf.setFont('helvetica', 'bold');
@@ -268,13 +269,16 @@ class PDFGenerator {
         this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
 
         // Subtitle
-        if (cvData.cargo || cvData.area) {
+        if (cvData.subtitulo) {
             this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SUBTITLE);
             this.pdf.setFont('helvetica', 'normal');
             this.setColor('BLACK');
-            const subtitle = cvData.cargo || cvData.area || 'Desenvolvedor';
-            this.centerText(subtitle, this.currentY);
-            this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+            const lines = this.wrapText(cvData.subtitulo, this.contentWidth);
+            for (const line of lines) {
+                this.centerText(line, this.currentY);
+                this.currentY += PDFGenerator.CONFIG.SPACING.LINE;
+            }
+            this.currentY += PDFGenerator.CONFIG.SPACING.HEADER / 2;
         }
 
         // Contact info
@@ -326,8 +330,8 @@ class PDFGenerator {
      */
     addContent(cvData) {
 
-        if (cvData.subtitulo) {
-            this.addSection('Objetivo', cvData.subtitulo);
+        if (cvData.objetivo) {
+            this.addSection('Objetivo', cvData.objetivo);
         }
 
         // Summary

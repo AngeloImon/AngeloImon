@@ -1,19 +1,20 @@
 {
     "nome": "Angelo Ferdinand Imon Spanó",
     "email": "angeloimon@outlook.com",
-    "subtitulo": "Em transição para tecnologia, busco oportunidades como desenvolvedor júnior ou analista técnico, onde possa aplicar minha formação em sistemas, projetos práticos e habilidades interpessoais para contribuir com soluções digitais eficientes e escaláveis.",
+    "subtitulo" : "Developer in Training (Fatec) | Python • C++ • PL/SQL • Git/GitHub • Oracle Database | Logic, Technical Support & Fluent English (TOEIC 945)",
+    "objetivo": "Em transição para tecnologia, busco oportunidades como desenvolvedor júnior ou analista técnico, aplicando minha formação em sistemas, projetos práticos e habilidades interpessoais para entregar soluções digitais escaláveis.",
     "lastUpdated": "30 de julho de 2025",
     "links": {
         "github": "https://github.com/AngeloImon",
         "linkedin": "https://www.linkedin.com/in/angelo-ferdinand-imon-spano-73386b197"
     },
-    "resumo": "Desenvolvedor em transição para a área de tecnologia, cursando Análise e Desenvolvimento de Sistemas (FATEC-RP). Fluente em inglês (TOEIC 945), com experiência em atendimento ao cliente e análise de crédito. Desenvolvi aplicações em nuvem usando Python e APIs REST do Firebase (Auth, NoSQL), com integração de dados em tempo real. Tenho prática em desenvolvimento mobile com Flutter/Dart, e projetos orientados por dados utilizando criptografia RSA, aprendizado de máquina com Scikit-learn e otimização com Gurobi. Entreguei soluções em visão computacional com OpenCV. Aplico Git/GitHub e metodologias ágeis para colaboração e controle de versão. Movido por empatia, autonomia e propósito — pronto para agregar valor a equipes de tecnologia com foco em impacto.",
+    "resumo": "Desenvolvedor em formação (FATEC-RP), com experiência em atendimento ao cliente e análise de crédito. Criei aplicações em nuvem com Python e Firebase, dashboards interativos com Streamlit, e soluções mobile com Flutter. Atuei com machine learning, criptografia RSA e otimização com Gurobi. Fluente em inglês (TOEIC 945), colaborativo, autodidata e movido por propósito.",
     "formacao": [
         {
             "instituicao": "FATEC - RP",
             "curso": "Tecnólogo em Análise e Desenvolvimento de Sistemas",
             "periodo": "2022–2025",
-            "status": "Cursando (6º semestre), Pontuação de Rendimento atual: 9.07/10",
+            "status": "Cursando (6º semestre) • Pontuação de Rendimento atual: 9.07/10",
             "descricao": "Formação técnica em desenvolvimento de software, sistemas de banco de dados, engenharia de software e análise de sistemas — com ênfase em lógica de programação e aprendizagem baseada em projetos."
         },
         {
@@ -27,51 +28,49 @@
     "habilidades": {
         "linguagens": [
             "Python",
-            "C++",
             "PL/SQL",
+            "C++",
             "JavaScript",
-            "HTML5",
+            "HTML",
             "CSS",
             "Dart",
             "VBA"
         ],
         "tecnologias": [
-            "Firebase",
             "Git/GitHub",
-            "OpenCV",
             "Scikit-learn",
-            "Gurobi",
-            "NiceGUI",
-            "Google Colab",
             "VS Code",
+            "OpenCV",
+            "Gurobi",
+            "Firebase",
+            "Google Colab",
+            "NiceGUI",
             "Microsoft Office"
         ],
         "bancoDados": [
-            "Modelagem de banco de dados",
-            "Design de banco de dados",
-            "Banco de Dados Oracle",
-            "NoSQL"
+            "SQL",
+            "NoSQL",
+            "Database Design", 
+            "Oracle Database"
         ],
         "infraestrutura": [
             "Linux",
-            "Servidor Windows",
+            "Windows Server",
             "Suporte técnico",
             "Montagem de computadores"
         ],
         "metodologias": [
             "APIs RESTful",
-            "Testes unitários / Depuração",
+            "Testes unitários",
             "Documentação técnica",
             "Princípios da engenharia de software",
             "Controle de qualidade",
-            "Sistemas de controle de versão",
-            "Responsabilidade de projetos",
             "Relatórios técnicos"
         ],
         "softSkills": [
             "Comunicação",
             "Trabalho em equipe",
-            "Empatia na tecnologia",
+            "Empatia",
             "Capacidade de adaptação",
             "Autoaprendizado",
             "Gestão do tempo",
@@ -85,13 +84,11 @@
             "Algoritmos",
             "Estrutura de dados",
             "Abordagem lógica",
-            "Ciência da computação",
             "Tecnologia da informação",
             "Segurança da informação",
             "Aplicações multiplataforma",
-            "Desenvolvimento de aplicativos",
+            "metodologias Ágeis",
             "Qualidade de código",
-            "Informática",
             "Levantamento de requisitos"
         ]
     },
@@ -126,7 +123,7 @@
                 "Gerenciei o setor de destilados e produtos premium, com foco em controle de estoque, reposição estratégica e vitrine de alto valor agregado.",
                 "Realizei atendimento consultivo e personalizado, contribuindo para o aumento das vendas por recomendação direta.",
                 "Treinei novos colaboradores, organizei escalas e repassei boas práticas sobre o mix de produtos.",
-                "Apoiei a liderança na definição de metas, acompanhamento de KPIs e relacionamento com fornecedores"
+                "Apoiei a liderança na definição de metas, acompanhamento de KPIs e relacionamento com fornecedores."
             ]
         },
         {
