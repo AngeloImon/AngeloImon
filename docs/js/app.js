@@ -56,35 +56,15 @@ class CVApp {
             return;
         }
 
-        const btn = $('#export-summary-pdf');
-        const originalText = btn?.textContent;
 
         try {
-            if (btn) {
-                btn.textContent = this.lang === 'pt' ? '⏳ Gerando...' : '⏳ Generating...';
-                btn.disabled = true;
-            }
 
             const generator = new PDFGenerator();
             await generator.generateSummaryPDF(this.data, this.lang);
 
-            if (btn) {
-                btn.textContent = this.lang === 'pt' ? '✅ Gerado!' : '✅ Generated!';
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.disabled = false;
-                }, 2000);
-            }
         } catch (error) {
             console.error('Summary PDF generation error:', error);
             this.showError(this.lang === 'pt' ? 'Erro ao gerar PDF resumido' : 'Error generating summary PDF');
-            if (btn) {
-                btn.textContent = this.lang === 'pt' ? '❌ Erro' : '❌ Error';
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.disabled = false;
-                }, 3000);
-            }
         }
     }
     constructor() {
@@ -397,11 +377,6 @@ class CVApp {
         const exportBtn = $('#export-pdf');
         if (exportBtn) {
             exportBtn.textContent = texts.exportPdf;
-        }
-        // Summary PDF export button
-        const exportSummaryBtn = $('#export-summary-pdf');
-        if (exportSummaryBtn) {
-            exportSummaryBtn.textContent = texts.exportSummaryPdf;
         }
 
         // Loading text
