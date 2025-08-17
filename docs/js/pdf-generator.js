@@ -49,7 +49,8 @@ class PDFGenerator {
                 PROJECTS: 'PROJETOS DESTACADOS',
                 SKILLS: 'HABILIDADES TECNICAS',
                 EDUCATION: 'FORMACAO ACADEMICA',
-                CERTIFICATIONS: 'CERTIFICACOES'
+                CERTIFICATIONS: 'CERTIFICACOES',
+                OBJECTIVE: 'Objetivo'
             },
             en: {
                 SUMMARY: 'PROFESSIONAL SUMMARY',
@@ -57,7 +58,8 @@ class PDFGenerator {
                 PROJECTS: 'FEATURED PROJECTS',
                 SKILLS: 'TECHNICAL SKILLS',
                 EDUCATION: 'EDUCATION',
-                CERTIFICATIONS: 'CERTIFICATIONS'
+                CERTIFICATIONS: 'CERTIFICATIONS',
+                OBJECTIVE: 'OBJECTIVE'
             }
         }
     };
@@ -331,7 +333,7 @@ class PDFGenerator {
     addContent(cvData) {
 
         if (cvData.objetivo) {
-            this.addSection('Objetivo', cvData.objetivo);
+            this.addSection(this.getTitle('OBJECTIVE'), cvData.objetivo);
         }
 
         // Summary
