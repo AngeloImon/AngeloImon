@@ -50,7 +50,7 @@ class PDFGenerator {
                 SKILLS: 'HABILIDADES TECNICAS',
                 EDUCATION: 'FORMACAO ACADEMICA',
                 CERTIFICATIONS: 'CERTIFICACOES',
-                OBJECTIVE: 'Objetivo'
+                OBJECTIVE: 'OBJETIVO'
             },
             en: {
                 SUMMARY: 'PROFESSIONAL SUMMARY',
@@ -332,6 +332,7 @@ class PDFGenerator {
      */
     addContent(cvData) {
 
+        // Objective
         if (cvData.objetivo) {
             this.addSection(this.getTitle('OBJECTIVE'), cvData.objetivo);
         }
