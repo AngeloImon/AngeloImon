@@ -80,7 +80,22 @@ class PDFGenerator {
                 }
             }
             if (eduCertLines.length > 0) {
-                this.addSection(eduCertTitle, eduCertLines.join('\n'));
+                // Add the section, but each line as a separate item
+                this.checkPageBreak(20);
+                this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+                this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
+                this.pdf.setFont('helvetica', 'bold');
+                this.setColor('BLACK');
+                this.pdf.text(eduCertTitle, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+                this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+
+                this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
+                this.pdf.setFont('helvetica', 'normal');
+                for (const line of eduCertLines) {
+                    const lines = this.wrapText(line, this.contentWidth);
+                    this.addTextBlock(lines);
+                }
+                this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
             }
 
             this.addFooter(cvData);
