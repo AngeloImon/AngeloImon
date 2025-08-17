@@ -15,7 +15,7 @@ class PDFGenerator {
      */
     static CONFIG = {
         // Page settings
-    MARGINS: { TOP: 12, BOTTOM: 12, LEFT: 12, RIGHT: 12 },
+        MARGINS: { TOP: 12, BOTTOM: 12, LEFT: 12, RIGHT: 12 },
 
         // Typography (ATS-friendly sizes)
         FONTS: {
@@ -384,8 +384,6 @@ class PDFGenerator {
         this.pdf.setFont('helvetica', 'normal');
         const lines = this.wrapText(content, this.contentWidth);
         this.addTextBlock(lines);
-
-        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
     }
 
     /**
@@ -446,7 +444,7 @@ class PDFGenerator {
         this.pdf.text(this.getTitle('PROJECTS'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
         this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
 
-    for (const project of projects.slice(0, 6)) {
+        for (const project of projects.slice(0, 6)) {
             this.checkPageBreak(15);
 
             // Project name
