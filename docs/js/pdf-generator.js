@@ -28,7 +28,7 @@ class PDFGenerator {
 
         // Spacing (clean separation)
         SPACING: {
-            SECTION: 16,
+            SECTION: 8,
             ITEM: 4.5,
             LINE: 3.5,
             HEADER: 6
@@ -369,21 +369,24 @@ class PDFGenerator {
      * Add section
      */
     addSection(title, content) {
-        this.checkPageBreak(20);
+    this.checkPageBreak(20);
 
-        // Section title
-        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
-        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
-        this.pdf.setFont('helvetica', 'bold');
-        this.setColor('BLACK');
-        this.pdf.text(title, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
-        this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+    // Section title
+    this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+    this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
+    this.pdf.setFont('helvetica', 'bold');
+    this.setColor('BLACK');
+    this.pdf.text(title, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+    this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
 
-        // Content
-        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
-        this.pdf.setFont('helvetica', 'normal');
-        const lines = this.wrapText(content, this.contentWidth);
-        this.addTextBlock(lines);
+    // Content
+    this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
+    this.pdf.setFont('helvetica', 'normal');
+    const lines = this.wrapText(content, this.contentWidth);
+    this.addTextBlock(lines);
+
+    // Espaçamento extra após a seção
+    this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
     }
 
     /**
