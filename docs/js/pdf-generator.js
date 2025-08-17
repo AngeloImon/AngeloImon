@@ -15,23 +15,23 @@ class PDFGenerator {
      */
     static CONFIG = {
         // Page settings
-        MARGINS: { TOP: 20, BOTTOM: 20, LEFT: 20, RIGHT: 20 },
+    MARGINS: { TOP: 12, BOTTOM: 12, LEFT: 12, RIGHT: 12 },
 
         // Typography (ATS-friendly sizes)
         FONTS: {
-            NAME: 18,
-            SECTION: 13,
-            SUBTITLE: 11,
+            NAME: 16,
+            SECTION: 12,
+            SUBTITLE: 10,
             BODY: 10,
             SMALL: 9
         },
 
         // Spacing (clean separation)
         SPACING: {
-            SECTION: 10,
-            ITEM: 6,
-            LINE: 4.5,
-            HEADER: 8
+            SECTION: 6,
+            ITEM: 4.5,
+            LINE: 3.5,
+            HEADER: 6
         },
 
         // Colors (minimal for ATS)
