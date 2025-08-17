@@ -22,6 +22,7 @@ const Config = {
             darkTheme: '🌙 Tema Escuro',
             lightTheme: '☀️ Tema Claro',
             exportPdf: '📄 Exportar PDF',
+            exportSummaryPdf: '📄 Exportar PDF Resumido',
             footerRights: 'Todos os direitos reservados.',
             footerUpdated: 'Última atualização:',
             analyticsNotice: '📊 Este site utiliza Google Analytics para coleta de dados estatísticos anônimos - sem fins lucrativos.'
@@ -31,6 +32,7 @@ const Config = {
             darkTheme: '🌙 Dark Theme',
             lightTheme: '☀️ Light Theme',
             exportPdf: '📄 Export PDF',
+            exportSummaryPdf: '📄 Export Summary PDF',
             footerRights: 'All rights reserved.',
             footerUpdated: 'Last updated:',
             analyticsNotice: '📊 This site uses Google Analytics for anonymous statistical data collection - non-profit purposes.'
@@ -45,6 +47,46 @@ const log = (...args) => Config.isDev && console.log('[CV]', ...args);
 
 // ===== MAIN APPLICATION =====
 class CVApp {
+    /**
+     * Export summarized CV as PDF using PDFGenerator
+     */
+    async exportSummaryPDF() {
+        if (!window.PDFGenerator) {
+            this.showError(this.lang === 'pt' ? 'PDF Generator não carregado' : 'PDF Generator not loaded');
+            return;
+        }
+
+        const btn = $('#export-summary-pdf');
+        const originalText = btn?.textContent;
+
+        try {
+            if (btn) {
+                btn.textContent = this.lang === 'pt' ? '⏳ Gerando...' : '⏳ Generating...';
+                btn.disabled = true;
+            }
+
+            const generator = new PDFGenerator();
+            await generator.generateSummaryPDF(this.data, this.lang);
+
+            if (btn) {
+                btn.textContent = this.lang === 'pt' ? '✅ Gerado!' : '✅ Generated!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }, 2000);
+            }
+        } catch (error) {
+            console.error('Summary PDF generation error:', error);
+            this.showError(this.lang === 'pt' ? 'Erro ao gerar PDF resumido' : 'Error generating summary PDF');
+            if (btn) {
+                btn.textContent = this.lang === 'pt' ? '❌ Erro' : '❌ Error';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }, 3000);
+            }
+        }
+    }
     constructor() {
         this.data = {};
         this.lang = 'pt';
@@ -120,8 +162,10 @@ class CVApp {
             });
         });
 
-        // PDF export
-        $('#export-pdf')?.addEventListener('click', () => this.exportPDF());
+    // PDF export
+    $('#export-pdf')?.addEventListener('click', () => this.exportPDF());
+    // Summary PDF export
+    $('#export-summary-pdf')?.addEventListener('click', () => this.exportSummaryPDF());
     }
 
     /**
@@ -340,6 +384,11 @@ class CVApp {
         const exportBtn = $('#export-pdf');
         if (exportBtn) {
             exportBtn.textContent = texts.exportPdf;
+        }
+        // Summary PDF export button
+        const exportSummaryBtn = $('#export-summary-pdf');
+        if (exportSummaryBtn) {
+            exportSummaryBtn.textContent = texts.exportSummaryPdf;
         }
 
         // Loading text

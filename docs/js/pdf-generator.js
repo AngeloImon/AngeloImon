@@ -11,11 +11,89 @@
 
 class PDFGenerator {
     /**
+     * Generate a summarized PDF version of the CV
+     * Includes: header, objective, summary, up to 3 projects, up to 3 skills (flat),
+     * and a combined Education & Certifications section (first education, last 3 certifications)
+     * @param {Object} cvData - CV data object
+     * @param {string} language - Language code ('pt' or 'en')
+     */
+    async generateSummaryPDF(cvData, language = 'pt') {
+        if (!this.isReady) {
+            throw new Error('PDF library not ready');
+        }
+        if (!cvData?.nome) {
+            throw new Error('Invalid CV data');
+        }
+        try {
+            this.language = language;
+            this.initDocument();
+            this.addHeader(cvData);
+
+            // Objective
+            if (cvData.objetivo) {
+                this.addSection(this.getTitle('OBJECTIVE'), cvData.objetivo);
+            }
+
+            // Summary
+            if (cvData.resumo) {
+                this.addSection(this.getTitle('SUMMARY'), cvData.resumo);
+            }
+
+            // Projects (up to 3)
+            if (cvData.projetos?.length > 0) {
+                this.addProjects(cvData.projetos.slice(0, 3));
+            }
+
+            // Skills (up to 3, flat, not categorized)
+            if (cvData.habilidades) {
+                let skillsArray = [];
+                if (Array.isArray(cvData.habilidades)) {
+                    skillsArray = cvData.habilidades;
+                } else if (typeof cvData.habilidades === 'object') {
+                    skillsArray = Object.values(cvData.habilidades).flat();
+                }
+                const topSkills = skillsArray.slice(0, 3);
+                if (topSkills.length > 0) {
+                    const skillsTitle = this.getTitle('SKILLS');
+                    this.addSection(skillsTitle, topSkills.join(', '));
+                }
+            }
+
+            // Education & Certifications (first education and last 3 certifications)
+            const eduCertTitle = (this.language === 'en') ? 'EDUCATION & CERTIFICATIONS' : 'FORMAÇÃO & CERTIFICAÇÕES';
+            let eduCertContent = '';
+            // First education
+            if (Array.isArray(cvData.formacao) && cvData.formacao.length > 0) {
+                const edu = cvData.formacao[0];
+                eduCertContent += `${edu.curso} - ${edu.instituicao} (${edu.periodo}, ${edu.status})`;
+            }
+            // Last 3 certifications
+            if (Array.isArray(cvData.certificacoes) && cvData.certificacoes.length > 0) {
+                const lastCerts = cvData.certificacoes.slice(-3);
+                if (eduCertContent) eduCertContent += '\n';
+                eduCertContent += (this.language === 'en' ? 'Certifications: ' : 'Certificações: ');
+                eduCertContent += lastCerts.join(', ');
+            }
+            if (eduCertContent) {
+                this.addSection(eduCertTitle, eduCertContent);
+            }
+
+            this.addFooter(cvData);
+            this.savePDF(cvData.nome + ' - Summary');
+            this.showSuccess();
+        } catch (error) {
+            console.error('[PDFGenerator] Summary generation failed:', error);
+            this.showError();
+            throw error;
+        }
+    }
+
+    /**
      * Configuration constants for ATS optimization
      */
     static CONFIG = {
         // Page settings
-    MARGINS: { TOP: 20, BOTTOM: 20, LEFT: 20, RIGHT: 20 },
+        MARGINS: { TOP: 20, BOTTOM: 20, LEFT: 20, RIGHT: 20 },
 
         // Typography (ATS-friendly sizes)
         FONTS: {
@@ -372,24 +450,24 @@ class PDFGenerator {
      * Add section
      */
     addSection(title, content) {
-    this.checkPageBreak(20);
+        this.checkPageBreak(20);
 
-    // Section title
-    this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
-    this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
-    this.pdf.setFont('helvetica', 'bold');
-    this.setColor('BLACK');
-    this.pdf.text(title, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
-    this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
+        // Section title
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
+        this.pdf.setFont('helvetica', 'bold');
+        this.setColor('BLACK');
+        this.pdf.text(title, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
+        this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
 
-    // Content
-    this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
-    this.pdf.setFont('helvetica', 'normal');
-    const lines = this.wrapText(content, this.contentWidth);
-    this.addTextBlock(lines);
+        // Content
+        this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
+        this.pdf.setFont('helvetica', 'normal');
+        const lines = this.wrapText(content, this.contentWidth);
+        this.addTextBlock(lines);
 
-    // Espaçamento extra após a seção
-    this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
+        // Espaçamento extra após a seção
+        this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
     }
 
     /**
