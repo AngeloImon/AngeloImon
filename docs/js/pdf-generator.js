@@ -71,12 +71,12 @@ class PDFGenerator {
                     eduCertLines.push((this.language === 'en' ? 'GPA equivalent: ' : 'Média/GPA: ') + gpa);
                 }
             }
-            // Last 3 certifications
+            // First 3 certifications (most recent)
             if (Array.isArray(cvData.certificacoes) && cvData.certificacoes.length > 0) {
-                const lastCerts = cvData.certificacoes.slice(-3);
-                if (lastCerts.length > 0) {
+                const recentCerts = cvData.certificacoes.slice(0, 3);
+                if (recentCerts.length > 0) {
                     eduCertLines.push((this.language === 'en' ? 'Certifications:' : 'Certificações:'));
-                    lastCerts.forEach(cert => eduCertLines.push(`- ${cert}`));
+                    recentCerts.forEach(cert => eduCertLines.push(`- ${cert}`));
                 }
             }
             if (eduCertLines.length > 0) {
