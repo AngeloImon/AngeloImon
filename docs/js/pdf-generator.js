@@ -44,18 +44,18 @@ class PDFGenerator {
                 this.addProjects(cvData.projetos.slice(0, 3));
             }
 
-            // Skills (up to 3, flat, not categorized)
-            if (cvData.habilidades) {
-                let skillsArray = [];
-                if (Array.isArray(cvData.habilidades)) {
-                    skillsArray = cvData.habilidades;
-                } else if (typeof cvData.habilidades === 'object') {
-                    skillsArray = Object.values(cvData.habilidades).flat();
+            // Skills: first 3 of each category, sequentially
+            if (cvData.habilidades && typeof cvData.habilidades === 'object') {
+                let selectedSkills = [];
+                for (const key of Object.keys(cvData.habilidades)) {
+                    const arr = cvData.habilidades[key];
+                    if (Array.isArray(arr)) {
+                        selectedSkills.push(...arr.slice(0, 3));
+                    }
                 }
-                const topSkills = skillsArray.slice(0, 3);
-                if (topSkills.length > 0) {
+                if (selectedSkills.length > 0) {
                     const skillsTitle = this.getTitle('SKILLS');
-                    this.addSection(skillsTitle, topSkills.join(', '));
+                    this.addSection(skillsTitle, selectedSkills.join(', '));
                 }
             }
 

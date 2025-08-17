@@ -162,10 +162,23 @@ class CVApp {
             });
         });
 
-    // PDF export
-    $('#export-pdf')?.addEventListener('click', () => this.exportPDF());
-    // Summary PDF export
-    $('#export-summary-pdf')?.addEventListener('click', () => this.exportSummaryPDF());
+        // PDF export: open modal for version selection
+        $('#export-pdf')?.addEventListener('click', () => {
+            const modal = document.getElementById('export-modal');
+            if (modal) modal.style.display = 'flex';
+        });
+        // Modal buttons
+        document.getElementById('export-full-btn')?.addEventListener('click', () => {
+            document.getElementById('export-modal').style.display = 'none';
+            this.exportPDF();
+        });
+        document.getElementById('export-summary-btn')?.addEventListener('click', () => {
+            document.getElementById('export-modal').style.display = 'none';
+            this.exportSummaryPDF();
+        });
+        document.getElementById('export-cancel-btn')?.addEventListener('click', () => {
+            document.getElementById('export-modal').style.display = 'none';
+        });
     }
 
     /**

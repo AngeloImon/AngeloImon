@@ -1,3 +1,37 @@
+/* ===== EXPORT PDF MODAL ===== */
+.export-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+}
+.export-modal-content {
+  background: var(--bg);
+  padding: 2rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 220px;
+  align-items: stretch;
+}
+.export-modal-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.export-modal-content button {
+  font-size: 1rem;
+  padding: 0.75rem 0.5rem;
+  margin: 0.2rem 0;
+}
 /**
  * Professional CV Stylesheet - OPTIMIZED VERSION
  * Author: Angelo Ferdinand Imon Spanó

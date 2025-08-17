@@ -74,6 +74,15 @@
       <button id="export-pdf" data-action="export-pdf" aria-label="Exportar currículo em formato PDF">
         📄 Exportar PDF
       </button>
+      <!-- Export PDF Modal -->
+      <div id="export-modal" class="export-modal" style="display:none;">
+        <div class="export-modal-content">
+          <h3>Escolha o tipo de PDF</h3>
+          <button id="export-full-btn">Completo</button>
+          <button id="export-summary-btn">Resumido</button>
+          <button id="export-cancel-btn">Cancelar</button>
+        </div>
+      </div>
       <button id="export-summary-pdf" data-action="export-summary-pdf" aria-label="Exportar currículo resumido em PDF">
         📄 Exportar PDF Resumido
       </button>
