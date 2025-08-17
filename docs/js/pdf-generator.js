@@ -99,7 +99,13 @@ class PDFGenerator {
             }
 
             this.addFooter(cvData);
-            this.savePDF(cvData.nome + ' - Summary');
+            let fileName;
+            if (this.language === 'pt') {
+                fileName = cvData.nome + ' - Resumo';
+            } else {
+                fileName = cvData.nome + ' - Summary';
+            }
+            this.savePDF(fileName);
             this.showSuccess();
         } catch (error) {
             console.error('[PDFGenerator] Summary generation failed:', error);
