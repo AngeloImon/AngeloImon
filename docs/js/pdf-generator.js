@@ -61,21 +61,26 @@ class PDFGenerator {
 
             // Education & Certifications (first education and last 3 certifications)
             const eduCertTitle = (this.language === 'en') ? 'EDUCATION & CERTIFICATIONS' : 'FORMAÇÃO & CERTIFICAÇÕES';
-            let eduCertContent = '';
+            let eduCertLines = [];
             // First education
             if (Array.isArray(cvData.formacao) && cvData.formacao.length > 0) {
                 const edu = cvData.formacao[0];
-                eduCertContent += `${edu.curso} - ${edu.instituicao} (${edu.periodo}, ${edu.status})`;
+                eduCertLines.push(`${edu.curso} - ${edu.instituicao} (${edu.periodo}, ${edu.status})`);
+                if (edu.gpa || edu.gpa_equivalente) {
+                    const gpa = edu.gpa || edu.gpa_equivalente;
+                    eduCertLines.push((this.language === 'en' ? 'GPA equivalent: ' : 'Média/GPA: ') + gpa);
+                }
             }
             // Last 3 certifications
             if (Array.isArray(cvData.certificacoes) && cvData.certificacoes.length > 0) {
                 const lastCerts = cvData.certificacoes.slice(-3);
-                if (eduCertContent) eduCertContent += '\n';
-                eduCertContent += (this.language === 'en' ? 'Certifications: ' : 'Certificações: ');
-                eduCertContent += lastCerts.join(', ');
+                if (lastCerts.length > 0) {
+                    eduCertLines.push((this.language === 'en' ? 'Certifications:' : 'Certificações:'));
+                    lastCerts.forEach(cert => eduCertLines.push(`- ${cert}`));
+                }
             }
-            if (eduCertContent) {
-                this.addSection(eduCertTitle, eduCertContent);
+            if (eduCertLines.length > 0) {
+                this.addSection(eduCertTitle, eduCertLines.join('\n'));
             }
 
             this.addFooter(cvData);
