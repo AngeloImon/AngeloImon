@@ -1,7 +1,7 @@
 {
     "nome": "Angelo Ferdinand Imon Spanó",
     "email": "angeloimon@outlook.com",
-    "subtitulo": "Desenvolvedor em Formação (Fatec) | Python • C++ • PL/SQL • Git/GitHub • Banco de Dados Oracle | Lógica, Suporte Técnico e Inglês Fluente (TOEIC 945)",
+    "subtitulo": "Em transição para tecnologia, busco oportunidades como desenvolvedor júnior ou analista técnico, onde possa aplicar minha formação em sistemas, projetos práticos e habilidades interpessoais para contribuir com soluções digitais eficientes e escaláveis.",
     "lastUpdated": "30 de julho de 2025",
     "links": {
         "github": "https://github.com/AngeloImon",
@@ -120,12 +120,13 @@
         },
         {
             "empresa": "Museu da Gula",
-            "cargo": "Atendente / Especialista responsável de setor",
-            "periodo": "dez/2014 – fev/2020",
+            "cargo": "Atendente Pleno / Especialista responsável de setor",
+            "periodo": "dez/2014 – jul/2017 e mar/2018 – fev/2020 (Dois períodos distintos)",
             "tarefas": [
-                "Gerenciei o setor de destilados, incluindo reposição, vitrine e supervisão de estoque.",
-                "Realizei atendimento personalizado, contribuindo para o aumento das vendas por recomendação direta.",
-                "Treinei atendentes, organizei escalas e apoiei a liderança com foco em metas e KPIs de vendas."
+                "Gerenciei o setor de destilados e produtos premium, com foco em controle de estoque, reposição estratégica e vitrine de alto valor agregado.",
+                "Realizei atendimento consultivo e personalizado, contribuindo para o aumento das vendas por recomendação direta.",
+                "Treinei novos colaboradores, organizei escalas e repassei boas práticas sobre o mix de produtos.",
+                "Apoiei a liderança na definição de metas, acompanhamento de KPIs e relacionamento com fornecedores"
             ]
         },
         {
@@ -137,9 +138,42 @@
                 "Prestei suporte técnico interno na manutenção e organização dos arquivos digitais.",
                 "Estruturei arquivos digitais para indexação em sistema interno de dados, otimizando resultados."
             ]
+        },
+        {
+            "empresa" : "BTwin Informática",
+            "cargo": "Vendedor",
+            "periodo": "fev/2011 – jun/2011",
+            "tarefas": [
+                "Realizei vendas diretas de equipamentos e acessórios de informática, com foco em atendimento técnico e personalizado.",
+                "Prestei suporte básico aos clientes na escolha e utilização de produtos, garantindo satisfação e fidelização.",
+                "Organizei e reabasteci mercadorias, mantendo a apresentação visual da loja sempre atrativa.",
+                "Auxiliei no controle de caixa e no atendimento presencial, contribuindo para a fluidez das operações diárias."
+            ]
+        },
+        {
+            "empresa": "Suprisystem Informática",
+            "cargo": "Assistente Técnico",
+            "periodo": "mar/2007 – out/2008",
+            "tarefas": [
+                "Prestei suporte técnico na montagem, reposição e manutenção de computadores e periféricos.",
+                "Realizei atendimento ao cliente no ponto de venda, orientando sobre produtos e soluções em informática.",
+                "Efetuei vendas de equipamentos eletrônicos, computadores e acessórios com foco em consultoria técnica.",
+                "Organizei a loja, controlei o estoque e atuei na abertura e fechamento de caixa.",
+                "Auxiliei no treinamento de novos colaboradores e na rotina técnica da assistência."
+            ]
         }
     ],
     "projetos": [
+        {
+            "nome": "Aplicativo de Gerenciamento Financeiro Pessoal – Flutter/Dart + Firebase + NoSQL",
+            "descricao": "App multiplataforma para controle financeiro pessoal com autenticação, atualização em tempo real e visualização por telas modulares.",
+            "link": "https://github.com/MariTaba/projeto_gerenciamento_financas"
+        },
+        {
+            "nome": "Aplicativo de Organização de Estudos – Python + NiceGUI + Firebase + NoSQL",
+            "descricao": "Aplicativo web intuitivo, focado em criar planos de estudo personalizados, visualizar cronogramas semanais e exportar dados.",
+            "link": "https://github.com/AngeloImon/Projeto_P2_TEI"
+        },
         {
             "nome": "Dashboard Salários de Cientistas de Dados – Streamlit + Plotly + Pandas",
             "descricao": "Dashboard interativo para análise de dados salariais globais de profissionais de dados.",
@@ -149,16 +183,6 @@
             "nome": "Estratégia de Machine Learning aplicada a campanhas reais – PCA + K-Means + regressão logística",
             "descricao": "Executa um pipeline completo de clustering e classificação supervisionada.",
             "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
-        },
-        {
-            "nome": "Classificador de sobrevivência do Titanic – Machine learning com Scikit-learn ",
-            "descricao": "Executa uma classificação supervisionada para prever a sobrevivência de passageiros a partir do Titanic Dataset.",
-            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
-        },
-        {
-            "nome": "Processamento de Imagens Digitais – OpenCV + Matplotlib",
-            "descricao": "Explora técnicas fundamentais de processamento de imagem, com aplicação em imagens reais e sintéticas.",
-            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
         },
         {
             "nome": "Criptosistema RSA – Aritmética Modular + Python",
@@ -171,19 +195,19 @@
             "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_carga_veiculo.ipynb"
         },
         {
+            "nome": "Classificador de sobrevivência do Titanic – Machine learning com Scikit-learn ",
+            "descricao": "Executa uma classificação supervisionada para prever a sobrevivência de passageiros a partir do Titanic Dataset.",
+            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
+        },
+        {
+            "nome": "Processamento de Imagens Digitais – OpenCV + Matplotlib",
+            "descricao": "Explora técnicas fundamentais de processamento de imagem, com aplicação em imagens reais e sintéticas.",
+            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
+        },
+        {
             "nome": "Otimização da Força de Trabalho – Programação Linear com Gurobi",
             "descricao": "Otimização de escalas de trabalho, minimizando os custos salarias em diferentes cenários.",
             "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
-        },
-        {
-            "nome": "Aplicativo de Organização de Estudos – Python + NiceGUI + Firebase + NoSQL",
-            "descricao": "Aplicativo web intuitivo, focado em criar planos de estudo personalizados, visualizar cronogramas semanais e exportar dados.",
-            "link": "https://github.com/AngeloImon/Projeto_P2_TEI"
-        },
-        {
-            "nome": "Aplicativo de Gerenciamento Financeiro Pessoal – Flutter/Dart + Firebase + NoSQL",
-            "descricao": "App multiplataforma para controle financeiro pessoal com autenticação, atualização em tempo real e visualização por telas modulares.",
-            "link": "https://github.com/MariTaba/projeto_gerenciamento_financas"
         }
     ],
     "secoes": {
