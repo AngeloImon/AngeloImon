@@ -15,7 +15,7 @@ class PDFGenerator {
      */
     static CONFIG = {
         // Page settings
-        MARGINS: { TOP: 12, BOTTOM: 12, LEFT: 12, RIGHT: 12 },
+    MARGINS: { TOP: 20, BOTTOM: 20, LEFT: 20, RIGHT: 20 },
 
         // Typography (ATS-friendly sizes)
         FONTS: {
