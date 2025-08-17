@@ -28,7 +28,7 @@ class PDFGenerator {
 
         // Spacing (clean separation)
         SPACING: {
-            SECTION: 12,
+            SECTION: 16,
             ITEM: 4.5,
             LINE: 3.5,
             HEADER: 6

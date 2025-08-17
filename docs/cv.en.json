@@ -2,7 +2,8 @@
     "nome": "Angelo Ferdinand Imon Spanó",
     "email": "angeloimon@outlook.com",
     "subtitulo": "Developer in Training (Fatec) | Python • C++ • PL/SQL • Git/GitHub • Oracle Database | Logic, Technical Support & Fluent English (TOEIC 945)",
-    "lastUpdated": "July 30, 2025",
+    "objetivo": "Transitioning into tech, I’m seeking opportunities as a junior developer or technical analyst, applying my systems training, hands-on projects, and interpersonal skills to deliver scalable digital solutions.",
+    "lastUpdated": "August 17, 2025",
     "links": {
         "github": "https://github.com/AngeloImon",
         "linkedin": "https://www.linkedin.com/in/angelo-ferdinand-imon-spano-73386b197"
@@ -13,7 +14,7 @@
             "instituicao": "FATEC - RP",
             "curso": "Technology in Systems Analysis and Development",
             "periodo": "2022–2025",
-            "status": "In Progress (6th semester), GPA equivalent: 9.07/10",
+            "status": "In Progress (6th semester) • GPA equivalent: 9.07/10",
             "descricao": "Technical education in software development, database systems, software engineering and systems analysis — with emphasis on programming logic and project-based learning."
         },
         {
@@ -27,119 +28,147 @@
     "habilidades": {
         "linguagens": [
             "Python",
-            "C++",
             "PL/SQL",
+            "C++",
             "JavaScript",
-            "HTML5",
+            "HTML",
             "CSS",
             "Dart",
             "VBA"
         ],
         "tecnologias": [
-            "Firebase",
             "Git/GitHub",
-            "OpenCV",
             "Scikit-learn",
-            "Gurobi",
-            "NiceGUI",
-            "Google Colab",
             "VS Code",
+            "OpenCV",
+            "Gurobi",
+            "Firebase",
+            "Google Colab",
+            "NiceGUI",
             "Microsoft Office"
         ],
         "bancoDados": [
-            "Data modeling",
-            "Database design",
-            "Oracle Database",
-            "NoSQL"
+            "SQL",
+            "NoSQL",
+            "Database Design", 
+            "Oracle Database"
         ],
         "infraestrutura": [
             "Linux",
             "Windows Server",
-            "Technical support",
-            "Computer assembly"
+            "Technical Support",
+            "Computer Assembly"
         ],
         "metodologias": [
-            "RESTful APIs",
-            "Unit testing / Debugging",
-            "Technical documentation",
-            "Software engineering principles",
-            "Quality control",
-            "Version control systems",
-            "Project accountability",
-            "Technical reports"
+            "APIs RESTful",
+            "Unit Testing",
+            "Technical Documentation",
+            "Software Engineering Principles",
+            "Quality Control",
+            "Technical Reporting"
         ],
         "softSkills": [
             "Communication",
             "Teamwork",
-            "Tech empathy",
+            "Empathy",
             "Adaptability",
-            "Self-learning",
-            "Time management",
+            "Self-Learning",
+            "Time Management",
             "Commitment",
-            "Critical analysis",
-            "Problem solving",
-            "Client relationship",
-            "Remote work"
+            "Critical Thinking",
+            "Problem Solving",
+            "Client Relationship Management",
+            "Remote Work"
         ],
         "conceitos": [
             "Algorithms",
-            "Data structures",
-            "Logical reasoning",
-            "Computer science",
-            "Information technology",
-            "Information security",
-            "Cross-platform applications",
-            "Application development",
-            "Code quality",
-            "Computer literacy",
-            "Requirements gathering"
+            "Data Structures",
+            "Logical Approach",
+            "Information Technology",
+            "Information Security",
+            "Cross-Platform Applications",
+            "Agile Methodologies",
+            "Code Quality",
+            "Requirements Gathering"
         ]
     },
     "certificacoes": [
         "TOEIC - 945 points (2025)",
-        "Oracle Programming with SQL (Oracle - 2025)",
-        "Oracle Database Design (Oracle - 2024)",
+        "Database Design & Programming with SQL (Oracle - 2024|2025)",
         "SAP/ABAP (Fatec - 2024)",
         "Soft Skills for IT professionals (Fatec - 2022)",
         "Emotional Management & Self-Control (Fundação Bradesco - 2022)",
         "Autonomous Vehicles Mini-Course (Fatec - 2022)",
         "Computer Vision with OpenCV (Fatec - 2022)",
-        "Logistics Fundamentals (Senai - 2021)",
-        "Excel (Senai - 2021)"
+        "Logistics Fundamentals & Excel (Senai - 2021)"
     ],
     "experiencia": [
         {
             "empresa": "Foxtime",
             "cargo": "Administrative Assistant I",
-            "periodo": "May/2021 – May/2022",
+            "periodo": "may/2021 – may/2022",
             "tarefas": [
-                "Analyzed credit and documentation for financing approval.",
-                "Maintained internal databases using spreadsheets and enterprise systems.",
-                "Developed commercial partnerships and led consultative insurance sales."
+                "Analyzed credit and documents for loan approval.",
+                "Maintained internal databases via spreadsheets and corporate systems.",
+                "Established business partnerships and conducted consultative sales of insurance."
             ]
         },
         {
             "empresa": "Museu da Gula",
-            "cargo": "Sales Associate / Department Lead",
-            "periodo": "Dec/2014 – Feb/2020",
+            "cargo": "Sales Associate / Specialist Department Lead",
+            "periodo": "dec/2014 – jul/2017 and mar/2018 – feb/2020 (Two distinct periods)",
             "tarefas": [
-                "Managed the spirits department, handling restocking, display, and inventory supervision.",
-                "Delivered personalized service, increasing sales through direct recommendation.",
-                "Trained staff, coordinated schedules, and supported leadership with goals and sales KPIs."
+                "Responsible for the spirits and premium products sector, managing inventory, restocking, and displays.",
+                "Provided consultative service, driving sales through direct recommendations.",
+                "Supported training for employees, organized schedules, and shared best practices regarding the product mix.",
+                "Supported goals, KPIs, and supplier relationships."
             ]
         },
         {
             "empresa": "Fundamental TI",
             "cargo": "Document Technician",
-            "periodo": "Nov/2013 – Dec/2014",
+            "periodo": "nov/2013 – dec/2014",
             "tarefas": [
-                "Digitized and classified official documents with accuracy and data integrity.",
-                "Provided internal tech support for digital archive management.",
-                "Structured files for indexing in internal systems, optimizing data retrieval."
+                "Digitalized and classified notarial documents with a focus on accuracy and data integrity.",
+                "Provided internal technical support for the maintenance and organization of digital files.",
+                "Structured digital files for indexing in the internal data system, optimizing results."
+            ]
+        },
+        {
+            "empresa" : "BTwin Informática",
+            "cargo": "Sales Associate",
+            "periodo": "feb/2011 – jun/2011",
+            "tarefas": [
+                "Sold equipment and accessories with technical and personalized service.",
+                "Provided basic support in choosing and using products, ensuring customer loyalty.",
+                "Organized and restocked merchandise, keeping the store's visual presentation always attractive.",
+                "Assisted in cash control and in-person service, contributing to the smooth flow of daily operations."
+            ]
+        },
+        {
+            "empresa": "Suprisystem Informática",
+            "cargo": "Technical Assistant",
+            "periodo": "mar/2007 – oct/2008",
+            "tarefas": [
+                "Provided technical support in assembling, restocking, and maintaining computers and peripherals.",
+                "Assisted customers at the point of sale, guiding them on products and IT solutions.",
+                "Sold electronic equipment, computers, and accessories with a focus on technical consulting.",
+                "Organized the store, controlled inventory, and managed cash register operations.",
+                "Supported the training of new employees and the technical routine of the assistance."
             ]
         }
     ],
     "projetos": [
+        {
+            "nome": "Personal Finance Management App – Flutter/Dart + Firebase + NoSQL",
+            "descricao": "Cross-platform, modular app with real-time tracking for personal financial management.",
+            "link": "https://github.com/MariTaba/projeto_gerenciamento_financas"
+        },
+        {
+            "nome": "Study Planner Web App – Python + NiceGUI + Firebase + NoSQL",
+            "descricao": "Intuitive web application, focused on personalized study plans, with weekly schedule and data exportation.",
+            "link": "https://github.com/AngeloImon/Projeto_P2_TEI"
+        },
         {
             "nome": "Data Science Salary Dashboard – Streamlit + Plotly + Pandas",
             "descricao": "Interactive dashboard for analyzing global salary data of data professionals.",
@@ -149,16 +178,6 @@
             "nome": "Machine Learning Strategy Applied to Real Campaigns – PCA + K-Means + Logistic Regression",
             "descricao": "Executes a full pipeline combining clustering and supervised classification.",
             "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Prática_IA_1.ipynb"
-        },
-        {
-            "nome": "Titanic Survival Classifier – Machine Learning with Scikit-learn",
-            "descricao": "Supervised model predicting passenger survival using the Titanic Dataset",
-            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
-        },
-        {
-            "nome": "Digital Image Processing – OpenCV + Matplotlib",
-            "descricao": "Applied key techniques for real-world image manipulation and visualization",
-            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
         },
         {
             "nome": "RSA Cryptosystem – Modular Arithmetic + Python",
@@ -171,19 +190,19 @@
             "link": "https://github.com/AngeloImon/Colab/blob/main/prog_linear_pesq_operacional_carga_veiculo.ipynb"
         },
         {
+            "nome": "Titanic Survival Classifier – Machine Learning with Scikit-learn",
+            "descricao": "Supervised model predicting passenger survival using the Titanic Dataset",
+            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Trabalho_IA_Classificador_Titanic.ipynb"
+        },
+        {
+            "nome": "Digital Image Processing – OpenCV + Matplotlib",
+            "descricao": "Applied key techniques for real-world image manipulation and visualization",
+            "link": "https://github.com/AngeloImon/Aulas-IA/blob/main/Prova_Pr%C3%A1tica_IA_2.ipynb"
+        },
+        {
             "nome": "Workforce Optimization – Linear Programming with Gurobi",
             "descricao": "Designed models to optimize shift schedules and reduce payroll costs across scenarios",
             "link": "https://github.com/AngeloImon/Programacao-Linear/blob/main/Trabalho%20Final.py"
-        },
-        {
-            "nome": "Study Planner Web App – Python + NiceGUI + Firebase + NoSQL",
-            "descricao": "Intuitive web application, focused on personalized study plans, with weekly schedule and data exportation.",
-            "link": "https://github.com/AngeloImon/Projeto_P2_TEI"
-        },
-        {
-            "nome": "Personal Finance Management App – Flutter/Dart + Firebase + NoSQL",
-            "descricao": "Cross-platform, modular app with real-time tracking for personal financial management.",
-            "link": "https://github.com/MariTaba/projeto_gerenciamento_financas"
         }
     ],
     "secoes": {

@@ -154,12 +154,13 @@ class CVApp {
         const d = this.data;
 
         // Basic personal information
-        this.setText('#nome', d.nome);
-        this.setText('#subtitulo', d.subtitulo);
-        this.setLink('#email', `mailto:${d.email}`, 'Email', 'email_click');
-        this.setLink('#github', d.links?.github, 'GitHub', 'github_click');
-        this.setLink('#linkedin', d.links?.linkedin, 'LinkedIn', 'linkedin_click');
-        this.setText('#resumo', d.resumo);
+    this.setText('#nome', d.nome);
+    this.setText('#subtitulo', d.subtitulo);
+    this.setLink('#email', `mailto:${d.email}`, 'Email', 'email_click');
+    this.setLink('#github', d.links?.github, 'GitHub', 'github_click');
+    this.setLink('#linkedin', d.links?.linkedin, 'LinkedIn', 'linkedin_click');
+    this.setText('#objetivo', d.objetivo);
+    this.setText('#resumo', d.resumo);
         this.updateList('#formacao', d.formacao, 'formacao');
         this.setText('#footer-date', d.lastUpdated);
 
@@ -183,7 +184,8 @@ class CVApp {
         const titles = this.data.titles || {};
 
         // Update section titles using JSON data or fallback to defaults
-        this.setText('#resumo-title', titles.resumo || (this.lang === 'pt' ? 'Resumo' : 'Summary'));
+    this.setText('#objetivo-title', this.lang === 'pt' ? 'Objetivo' : 'Objective');
+    this.setText('#resumo-title', titles.resumo || (this.lang === 'pt' ? 'Resumo' : 'Summary'));
         this.setText('#experiencia-title', titles.experiencia || (this.lang === 'pt' ? 'Experiência Profissional' : 'Professional Experience'));
         this.setText('#habilidades-title', titles.habilidades || (this.lang === 'pt' ? 'Habilidades Técnicas' : 'Technical Skills'));
         this.setText('#formacao-title', titles.formacao || (this.lang === 'pt' ? 'Formação' : 'Education'));
