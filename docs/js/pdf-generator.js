@@ -84,13 +84,13 @@ class PDFGenerator {
                 this.checkPageBreak(20);
                 this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
                 this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
-                this.pdf.setFont('helvetica', 'bold');
+                this.pdf.setFont('DejaVuSans', 'bold');
                 this.setColor('BLACK');
                 this.pdf.text(eduCertTitle, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
                 this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
 
                 this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
-                this.pdf.setFont('helvetica', 'normal');
+                this.pdf.setFont('DejaVuSans', 'normal');
                 for (const line of eduCertLines) {
                     const lines = this.wrapText(line, this.contentWidth);
                     this.addTextBlock(lines);
@@ -272,7 +272,7 @@ class PDFGenerator {
         });
 
         // Default font
-        this.pdf.setFont('helvetica', 'normal');
+        this.pdf.setFont('DejaVuSans', 'normal');
         this.setColor('BLACK');
     }
 
@@ -375,7 +375,7 @@ class PDFGenerator {
 
         // Name (only colored element)
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.NAME);
-        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setFont('DejaVuSans', 'bold');
         this.setColor('NAVY');
         this.centerText(cvData.nome.toUpperCase(), this.currentY);
         this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
@@ -383,7 +383,7 @@ class PDFGenerator {
         // Subtitle
         if (cvData.subtitulo) {
             this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SUBTITLE);
-            this.pdf.setFont('helvetica', 'normal');
+            this.pdf.setFont('DejaVuSans', 'normal');
             this.setColor('BLACK');
             const lines = this.wrapText(cvData.subtitulo, this.contentWidth);
             for (const line of lines) {
@@ -405,7 +405,7 @@ class PDFGenerator {
      */
     addContactInfo(cvData) {
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
-        this.pdf.setFont('helvetica', 'normal');
+        this.pdf.setFont('DejaVuSans', 'normal');
         this.setColor('BLACK');
 
         const contacts = [];
@@ -487,14 +487,14 @@ class PDFGenerator {
         // Section title
         this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
-        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setFont('DejaVuSans', 'bold');
         this.setColor('BLACK');
         this.pdf.text(title, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
         this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
 
         // Content
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
-        this.pdf.setFont('helvetica', 'normal');
+        this.pdf.setFont('DejaVuSans', 'normal');
         const lines = this.wrapText(content, this.contentWidth);
         this.addTextBlock(lines);
 
@@ -511,7 +511,7 @@ class PDFGenerator {
         // Section title
         this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
-        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setFont('DejaVuSans', 'bold');
         this.setColor('BLACK');
         this.pdf.text(this.getTitle('EXPERIENCE'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
         this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
@@ -521,13 +521,13 @@ class PDFGenerator {
 
             // Job title
             this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SUBTITLE);
-            this.pdf.setFont('helvetica', 'bold');
+            this.pdf.setFont('DejaVuSans', 'bold');
             this.pdf.text(exp.cargo || 'Cargo', PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
             this.currentY += 5;
 
             // Company
             this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
-            this.pdf.setFont('helvetica', 'normal');
+            this.pdf.setFont('DejaVuSans', 'normal');
             const company = `${exp.empresa || 'Empresa'} | ${exp.periodo || 'Período'}`;
             this.pdf.text(company, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
             this.currentY += 6;
@@ -555,7 +555,7 @@ class PDFGenerator {
         // Section title
         this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
-        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setFont('DejaVuSans', 'bold');
         this.setColor('BLACK');
         this.pdf.text(this.getTitle('PROJECTS'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
         this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
@@ -565,14 +565,14 @@ class PDFGenerator {
 
             // Project name
             this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SUBTITLE);
-            this.pdf.setFont('helvetica', 'bold');
+            this.pdf.setFont('DejaVuSans', 'bold');
             const projectNameLines = this.wrapText(project.nome || 'Projeto', this.contentWidth);
             this.addTextBlock(projectNameLines, PDFGenerator.CONFIG.MARGINS.LEFT);
 
             // Description
             if (project.descricao) {
                 this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
-                this.pdf.setFont('helvetica', 'normal');
+                this.pdf.setFont('DejaVuSans', 'normal');
                 const lines = this.wrapText(project.descricao, this.contentWidth);
                 this.addTextBlock(lines);
             }
@@ -581,7 +581,7 @@ class PDFGenerator {
             if (project.link) {
                 this.checkPageBreak(5);
                 this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
-                this.pdf.setFont('helvetica', 'normal');
+                this.pdf.setFont('DejaVuSans', 'normal');
 
                 // Quebrar link longo também
                 const linkText = `Link: ${project.link}`;
@@ -602,13 +602,13 @@ class PDFGenerator {
         // Section title
         this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
-        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setFont('DejaVuSans', 'bold');
         this.setColor('BLACK');
         this.pdf.text(this.getTitle('SKILLS'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
         this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
 
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
-        this.pdf.setFont('helvetica', 'normal');
+        this.pdf.setFont('DejaVuSans', 'normal');
 
         // Check if skills are categorized (object) or simple array
         if (typeof skills === 'object' && !Array.isArray(skills)) {
@@ -629,13 +629,13 @@ class PDFGenerator {
                 this.checkPageBreak(10);
 
                 // Category title
-                this.pdf.setFont('helvetica', 'bold');
+                this.pdf.setFont('DejaVuSans', 'bold');
                 const categoryTitle = categories[category] || category;
                 this.pdf.text(`${categoryTitle}:`, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
                 this.currentY += 5;
 
                 // Skills in category
-                this.pdf.setFont('helvetica', 'normal');
+                this.pdf.setFont('DejaVuSans', 'normal');
                 const skillsText = skillList.join(', ');
                 const lines = this.wrapText(skillsText, this.contentWidth - 5);
                 this.addTextBlock(lines, PDFGenerator.CONFIG.MARGINS.LEFT + 3);
@@ -662,14 +662,14 @@ class PDFGenerator {
         // Section title
         this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
-        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setFont('DejaVuSans', 'bold');
         this.setColor('BLACK');
         this.pdf.text(this.getTitle('CERTIFICATIONS'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
         this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
 
         // Certifications list
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
-        this.pdf.setFont('helvetica', 'normal');
+        this.pdf.setFont('DejaVuSans', 'normal');
 
         for (const cert of certifications) {
             this.checkPageBreak(5);
@@ -689,24 +689,24 @@ class PDFGenerator {
         // Section title
         this.currentY += PDFGenerator.CONFIG.SPACING.SECTION;
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SECTION);
-        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setFont('DejaVuSans', 'bold');
         this.setColor('BLACK');
         this.pdf.text(this.getTitle('EDUCATION'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
         this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
 
         this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.BODY);
-        this.pdf.setFont('helvetica', 'normal');
+        this.pdf.setFont('DejaVuSans', 'normal');
 
         for (const edu of education) {
             this.checkPageBreak(15);
 
             // Course title
-            this.pdf.setFont('helvetica', 'bold');
+            this.pdf.setFont('DejaVuSans', 'bold');
             const lines = this.wrapText(edu.curso, this.contentWidth);
             this.addTextBlock(lines, PDFGenerator.CONFIG.MARGINS.LEFT);
 
             // Institution, period and status
-            this.pdf.setFont('helvetica', 'normal');
+            this.pdf.setFont('DejaVuSans', 'normal');
             const institutionText = `${edu.instituicao} • ${edu.periodo} • ${edu.status}`;
             this.pdf.text(institutionText, PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
             this.currentY += 5;
@@ -732,7 +732,7 @@ class PDFGenerator {
         for (let i = 1; i <= pageCount; i++) {
             this.pdf.setPage(i);
             this.pdf.setFontSize(PDFGenerator.CONFIG.FONTS.SMALL);
-            this.pdf.setFont('helvetica', 'normal');
+            this.pdf.setFont('DejaVuSans', 'normal');
             this.setColor('GRAY');
 
             const pageText = this.language === 'en' ? 'Page' : 'Página';
