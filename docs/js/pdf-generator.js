@@ -560,7 +560,7 @@ class PDFGenerator {
         this.pdf.text(this.getTitle('PROJECTS'), PDFGenerator.CONFIG.MARGINS.LEFT, this.currentY);
         this.currentY += PDFGenerator.CONFIG.SPACING.HEADER;
 
-    for (const project of projects) {
+    for (const project of projects.slice(0, 6)) {
             this.checkPageBreak(15);
 
             // Project name
