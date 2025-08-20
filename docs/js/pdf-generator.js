@@ -243,7 +243,7 @@ class PDFGenerator {
             this.addFooter(cvData);
             let fileName;
             if (this.language === 'pt') {
-                fileName = 'Curriculo Angelo Ferdinand Imon Spanó';
+                fileName = 'Currículo Angelo Ferdinand Imon Spanó';
             } else {
                 fileName = 'Résumé Angelo Ferdinand Imon Spanó';
             }
