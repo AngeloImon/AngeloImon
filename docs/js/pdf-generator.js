@@ -241,7 +241,13 @@ class PDFGenerator {
             this.addHeader(cvData);
             this.addContent(cvData);
             this.addFooter(cvData);
-            this.savePDF(cvData.nome);
+            let fileName;
+            if (this.language === 'pt') {
+                fileName = 'Curriculo Angelo Ferdinand Imon Spanó';
+            } else {
+                fileName = 'Résumé Angelo Ferdinand Imon Spanó';
+            }
+            this.savePDF(fileName);
             this.showSuccess();
         } catch (error) {
             console.error('[PDFGenerator] Generation failed:', error);
