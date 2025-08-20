@@ -379,6 +379,24 @@ class CVApp {
             exportBtn.textContent = texts.exportPdf;
         }
 
+        // Export modal popup (title and buttons)
+        const exportModalTitle = document.querySelector('.export-modal-content h3');
+        if (exportModalTitle) {
+            exportModalTitle.textContent = this.lang === 'pt' ? 'Escolha o tipo de PDF' : 'Choose PDF type';
+        }
+        const exportFullBtn = document.getElementById('export-full-btn');
+        if (exportFullBtn) {
+            exportFullBtn.textContent = this.lang === 'pt' ? 'Completo' : 'Full';
+        }
+        const exportSummaryBtn = document.getElementById('export-summary-btn');
+        if (exportSummaryBtn) {
+            exportSummaryBtn.textContent = this.lang === 'pt' ? 'Resumido' : 'Summary';
+        }
+        const exportCancelBtn = document.getElementById('export-cancel-btn');
+        if (exportCancelBtn) {
+            exportCancelBtn.textContent = this.lang === 'pt' ? 'Cancelar' : 'Cancel';
+        }
+
         // Loading text
         const loadingText = $('.loading-content p');
         if (loadingText) {

@@ -743,9 +743,8 @@ class PDFGenerator {
      * Save PDF
      */
     savePDF(name) {
-        const lang = this.language === 'pt' ? 'Pt' : 'En';
-        const filename = `${name} - ${lang}.pdf`;
-        this.pdf.save(filename);
+    const filename = `${name}.pdf`;
+    this.pdf.save(filename);
     }
 
     /**
