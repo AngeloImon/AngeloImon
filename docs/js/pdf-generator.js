@@ -416,9 +416,9 @@ class PDFGenerator {
         // Telefone fixo para PDF, variação por idioma
         let phoneText = '';
         if (cvData.lang === 'en') {
-            phoneText = 'Phone: (11) 99999-9999';
+            phoneText = 'Phone: +55 16 98249-0007';
         } else {
-            phoneText = 'Telefone: (11) 99999-9999';
+            phoneText = 'Telefone: (16) 98249-0007';
         }
         contacts.push(phoneText);
 
