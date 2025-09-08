@@ -413,9 +413,8 @@ class PDFGenerator {
         // Email
         if (cvData.email) contacts.push(`Email: ${cvData.email}`);
 
-        // Telefone fixo para PDF, variação por idioma
         let phoneText = '';
-        if (cvData.lang === 'en') {
+        if (this.language === 'en') {
             phoneText = 'Phone: +55 16 98249-0007';
         } else {
             phoneText = 'Telefone: (16) 98249-0007';
