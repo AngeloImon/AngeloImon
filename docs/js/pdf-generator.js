@@ -410,7 +410,19 @@ class PDFGenerator {
 
         const contacts = [];
 
+        // Email
         if (cvData.email) contacts.push(`Email: ${cvData.email}`);
+
+        // Telefone fixo para PDF, variação por idioma
+        let phoneText = '';
+        if (cvData.lang === 'en') {
+            phoneText = 'Phone: (11) 99999-9999';
+        } else {
+            phoneText = 'Telefone: (11) 99999-9999';
+        }
+        contacts.push(phoneText);
+
+        // Links
         if (cvData.links?.github) contacts.push(`GitHub: ${cvData.links.github}`);
         if (cvData.links?.linkedin) contacts.push(`LinkedIn: ${cvData.links.linkedin}`);
         contacts.push(`Complete CV PT - EN: https://angeloimon.github.io/AngeloImon`);
