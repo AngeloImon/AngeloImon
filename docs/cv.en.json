@@ -1,7 +1,7 @@
 {
     "nome": "Angelo Ferdinand Imon Spanó",
     "email": "angeloimon@outlook.com",
-    "subtitulo": "Developer in Training (Fatec) | Python • C++ • PL/SQL • Git/GitHub • Oracle Database | Logic, Technical Support & Fluent English (TOEIC 945)",
+    "subtitulo": "Brazilian developer in Training (Fatec) | Python • C++ • PL/SQL • Git/GitHub • Oracle Database | Logic, Technical Support & Fluent English (TOEIC 945)",
     "objetivo": "Transitioning into tech, I’m seeking opportunities as a junior developer or technical analyst, applying my systems training, hands-on projects, and interpersonal skills to deliver scalable digital solutions.",
     "lastUpdated": "August 17, 2025",
     "links": {
@@ -93,7 +93,8 @@
         ]
     },
     "certificacoes": [
-        "TOEIC - 945 points (2025)",
+        "C1 Advanced English (EF SET - 2025)",
+        "TOEIC - 945 points (TOEIC 2025)",
         "Database Design & Programming with SQL (Oracle - 2024|2025)",
         "SAP/ABAP (Fatec - 2024)",
         "Soft Skills for IT professionals (Fatec - 2022)",
